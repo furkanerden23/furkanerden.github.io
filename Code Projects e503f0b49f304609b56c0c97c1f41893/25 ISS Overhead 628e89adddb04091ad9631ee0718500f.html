@@ -1,0 +1,731 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>25. ISS Overhead</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="628e89ad-ddb0-4091-ad96-31ee0718500f" class="page sans"><header><h1 class="page-title">25. ISS Overhead</h1><p class="page-description"></p></header><div class="page-body"><p id="648751eb-9a48-435b-9ca8-cb854fc9a8b2" class="">
+</p><h1 id="e34694da-7a45-4a9d-a27a-55fe6b82180d" class="">Introduction</h1><p id="cd8579e8-d982-4a83-9e5c-db7a393d80fa" class="">The <code><strong>iss_overhead.py</strong></code> script is designed to notify users via email when the International Space Station (ISS) is passing overhead during nighttime at their specified location. It utilizes two primary functions: <code><strong>is_iss_overhead()</strong></code> and <code><strong>is_night()</strong></code>, which determine if the ISS is within a certain proximity of the user&#x27;s latitude and longitude coordinates, and if it is currently nighttime at their location, respectively.</p><ul id="08eb5883-dc1c-429b-83e6-51186573174f" class="bulleted-list"><li style="list-style-type:disc"><strong>Dependencies</strong>: The script requires the <code><strong>requests</strong></code> library for making HTTP requests, <code><strong>datetime</strong></code> for handling date and time operations, <code><strong>smtplib</strong></code> for sending emails, and <code><strong>time</strong></code> for implementing a delay.</li></ul><ul id="7252fd36-803d-45b8-9c6c-367d7fcae202" class="bulleted-list"><li style="list-style-type:disc"><strong>User Configuration</strong>: Users need to provide their email credentials (<code><strong>MY_EMAIL</strong></code> and <code><strong>MY_PASSWORD</strong></code>), latitude (<code><strong>MY_LAT</strong></code>), and longitude (<code><strong>MY_LONG</strong></code>) coordinates in the script.</li></ul><ul id="2aa8c781-2ca8-40f4-9620-09570f09bd22" class="bulleted-list"><li style="list-style-type:disc"><strong>Functionality</strong>:<ol type="1" id="2cd782fd-7ce0-42a3-938a-ce88d7719415" class="numbered-list" start="1"><li><strong>is_iss_overhead()</strong>: This function retrieves the current position of the ISS from the Open Notify API. It checks whether the ISS is within a specified range (+5 or -5 degrees) of the user&#x27;s coordinates.</li></ol><ol type="1" id="ee07a9dd-dd44-4bac-855b-0ff51e106875" class="numbered-list" start="2"><li><strong>is_night()</strong>: This function determines whether it is currently nighttime at the user&#x27;s location. It retrieves sunrise and sunset times using the Sunrise-Sunset API and compares them with the current time.</li></ol></li></ul><ul id="5a7211e1-9b2d-4ea2-bbd5-10d039b10264" class="bulleted-list"><li style="list-style-type:disc"><strong>Main Loop</strong>: The script continuously runs in an infinite loop with a sleep interval of 60 seconds. During each iteration, it checks if both conditions (<code><strong>is_iss_overhead()</strong></code> and <code><strong>is_night()</strong></code>) are met. If so, it sends an email notification using the provided SMTP server address.</li></ul><ul id="8dd5c316-06e2-4ce4-b87d-1f7fd1af3716" class="bulleted-list"><li style="list-style-type:disc"><strong>Notification</strong>: The email notification includes a subject line indicating the ISS&#x27;s presence and a simple message prompting the user to look up at the sky.</li></ul><p id="28c7b3eb-8f5e-4bda-996c-71569502c90e" class=""><strong>Note</strong>: Users must replace placeholders such as email credentials and SMTP server address with their own information for the script to function correctly. Additionally, they may need to adjust the latitude and longitude coordinates to match their location accurately.</p><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Features</summary><div class="indented"><ol type="1" id="7762c54c-e481-4fc0-bb6e-c3839a06f8c8" class="numbered-list" start="1"><li><strong>ISS Tracking</strong>: The script tracks the real-time position of the International Space Station (ISS) using the Open Notify API. It retrieves latitude and longitude coordinates of the ISS to determine its proximity to the user&#x27;s specified location.</li></ol><ol type="1" id="7dd4b307-078a-4722-919a-1404cef30988" class="numbered-list" start="2"><li><strong>Nighttime Detection</strong>: It determines whether it is currently nighttime at the user&#x27;s location by fetching sunrise and sunset times from the Sunrise-Sunset API and comparing them with the current time.</li></ol><ol type="1" id="04f81af0-be69-4888-8489-68c0de780e48" class="numbered-list" start="3"><li><strong>Email Notification</strong>: When the ISS is overhead during nighttime, the script sends an email notification to the user. This notification includes a subject line indicating the ISS&#x27;s presence and a message prompting the user to look up at the sky.</li></ol><ol type="1" id="90ebad70-bc65-4739-a888-beb4a1819732" class="numbered-list" start="4"><li><strong>Customization</strong>: Users can configure the script by providing their email credentials, latitude, and longitude coordinates to personalize the notifications according to their location.</li></ol><ol type="1" id="aee3182e-260d-4b05-bd88-4f566473c201" class="numbered-list" start="5"><li><strong>Automation</strong>: The script runs continuously in an infinite loop with a sleep interval of 60 seconds. This ensures that it continually monitors the ISS&#x27;s position and nighttime conditions, providing timely notifications whenever necessary.</li></ol><ol type="1" id="98ba2926-8c5f-4e21-b709-fce6f96af48f" class="numbered-list" start="6"><li><strong>Error Handling</strong>: The script includes error handling mechanisms to handle potential issues with HTTP requests, API responses, and email sending operations. It raises exceptions to alert users about any errors encountered during execution.</li></ol><ol type="1" id="e7503cad-3282-4bcc-8ac0-46c206ab8373" class="numbered-list" start="7"><li><strong>Modular Design</strong>: The functionality of the script is divided into separate functions (<code><strong>is_iss_overhead()</strong></code> and <code><strong>is_night()</strong></code>) to improve code readability, maintainability, and reusability.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">The aim of this project</summary><div class="indented"><ol type="1" id="4c0ed437-e348-4f87-95ae-b9e7dc360c58" class="numbered-list" start="1"><li><strong>API Integration</strong>: Students learn how to interact with external APIs (such as the Open Notify API and the Sunrise-Sunset API) to retrieve real-time data, in this case, the current position of the ISS and sunrise/sunset times.</li></ol><ol type="1" id="44c430b7-9eef-454e-aa60-7034dae6b0c5" class="numbered-list" start="2"><li><strong>Data Handling and Parsing</strong>: The project involves parsing JSON data retrieved from API responses to extract relevant information, such as latitude, longitude, sunrise, and sunset times. This helps students become familiar with data manipulation techniques in Python.</li></ol><ol type="1" id="73d08a31-f924-44a8-9b69-d3fe3cc97938" class="numbered-list" start="3"><li><strong>Conditional Logic</strong>: Students learn to implement conditional logic to make decisions based on certain criteria, such as determining if the ISS is overhead and if it is nighttime at the user&#x27;s location.</li></ol><ol type="1" id="403ea86e-a9f4-4ef9-be15-49b57232b012" class="numbered-list" start="4"><li><strong>Error Handling</strong>: The project includes error handling mechanisms to deal with potential issues, such as failed API requests or invalid data responses. Students learn how to handle exceptions and provide appropriate error messages.</li></ol><ol type="1" id="2518e2d8-3713-4e20-9e2f-548c5b4d67fc" class="numbered-list" start="5"><li><strong>Email Integration</strong>: By incorporating email functionality, students gain experience in using Python libraries (such as smtplib) to send notifications and alerts programmatically.</li></ol><ol type="1" id="af47ab43-b57e-4622-a602-2c7fbea2a7d6" class="numbered-list" start="6"><li><strong>Automation</strong>: The project demonstrates how to create scripts that run continuously in the background, automating tasks and providing timely notifications when specific conditions are met. This reinforces the concept of automation in programming.</li></ol><ol type="1" id="9646d70c-8ac7-4a46-be2b-fab564d563fe" class="numbered-list" start="7"><li><strong>Customization and Configuration</strong>: Students learn how to parameterize their code to make it configurable and reusable for different scenarios. They can customize email settings, location coordinates, and other parameters to adapt the script to their needs.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Achievements</summary><div class="indented"><ul id="798f1926-0972-4d4a-b48e-7bec3fe18435" class="bulleted-list"><li style="list-style-type:disc">API Integration Skills</li></ul><ul id="47409f41-8180-447f-9483-b6b9d66455a2" class="bulleted-list"><li style="list-style-type:disc">Data Parsing Proficiency</li></ul><ul id="d40577f7-bc88-4e7a-8a02-355197dbe5b5" class="bulleted-list"><li style="list-style-type:disc">Conditional Logic Mastery</li></ul><ul id="3e6834e6-8858-47c5-9030-a4f057be579d" class="bulleted-list"><li style="list-style-type:disc">Error Handling Competence</li></ul><ul id="2b215934-7dbd-483c-a84c-7def3927c7de" class="bulleted-list"><li style="list-style-type:disc">Email Functionality Understanding</li></ul><ul id="e0e7677c-c6b5-48bd-b83f-b9560c766d2e" class="bulleted-list"><li style="list-style-type:disc">Automation Techniques</li></ul><ul id="b5ae2c22-c8a2-4b9e-91c1-4e38b3605d84" class="bulleted-list"><li style="list-style-type:disc">Customization and Configuration Practice</li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Python code</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">iss_overhead.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="475ab4d7-f894-438f-b776-2e31b955a981" class="code"><code class="language-Python">import requests
+from datetime import datetime
+import smtplib
+import time
+
+MY_EMAIL = &quot;___YOUR_EMAIL_HERE____&quot;
+MY_PASSWORD = &quot;___YOUR_PASSWORD_HERE___&quot;
+MY_LAT = 51.507351 # Your latitude
+MY_LONG = -0.127758 # Your longitude
+
+
+def is_iss_overhead():
+    response = requests.get(url=&quot;http://api.open-notify.org/iss-now.json&quot;)
+    response.raise_for_status()
+    data = response.json()
+
+    iss_latitude = float(data[&quot;iss_position&quot;][&quot;latitude&quot;])
+    iss_longitude = float(data[&quot;iss_position&quot;][&quot;longitude&quot;])
+
+    #Your position is within +5 or -5 degrees of the iss position.
+    if MY_LAT-5 &lt;= iss_latitude &lt;= MY_LAT+5 and MY_LONG-5 &lt;= iss_longitude &lt;= MY_LONG+5:
+        return True
+
+
+def is_night():
+    parameters = {
+        &quot;lat&quot;: MY_LAT,
+        &quot;lng&quot;: MY_LONG,
+        &quot;formatted&quot;: 0,
+    }
+    response = requests.get(&quot;https://api.sunrise-sunset.org/json&quot;, params=parameters)
+    response.raise_for_status()
+    data = response.json()
+    sunrise = int(data[&quot;results&quot;][&quot;sunrise&quot;].split(&quot;T&quot;)[1].split(&quot;:&quot;)[0])
+    sunset = int(data[&quot;results&quot;][&quot;sunset&quot;].split(&quot;T&quot;)[1].split(&quot;:&quot;)[0])
+
+    time_now = datetime.now().hour
+
+    if time_now &gt;= sunset or time_now &lt;= sunrise:
+        return True
+
+
+while True:
+    time.sleep(60)
+    if is_iss_overhead() and is_night():
+        connection = smtplib.SMTP(&quot;__YOUR_SMTP_ADDRESS_HERE___&quot;)
+        connection.starttls()
+        connection.login(MY_EMAIL, MY_PASSWORD)
+        connection.sendmail(
+            from_addr=MY_EMAIL,
+            to_addrs=MY_EMAIL,
+            msg=&quot;Subject:Look Up👆\n\nThe ISS is above you in the sky.&quot;
+        )</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Instructions for running the project</summary><div class="indented"><ol type="1" id="3bee865a-5007-43bf-853a-6e1cdb82da37" class="numbered-list" start="1"><li><strong>Install Dependencies</strong>: Ensure that you have Python installed on your system. Additionally, you need to install the required Python packages. You can install them using pip, the Python package manager. Run the following command in your terminal or command prompt:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a0017103-de2c-4c28-adf3-28a3805b50da" class="code"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">pip install requests</code></pre></li></ol><ol type="1" id="9e2dbe90-857f-4c5d-8d97-0572cfd084a5" class="numbered-list" start="2"><li><strong>Configure the Script</strong>: Open the <code><strong>iss_overhead.py</strong></code> file in a text editor. Replace the placeholder values with your email address (<code><strong>MY_EMAIL</strong></code>), email password (<code><strong>MY_PASSWORD</strong></code>), latitude (<code><strong>MY_LAT</strong></code>), and longitude (<code><strong>MY_LONG</strong></code>). You can also update the SMTP server address (<code><strong>__YOUR_SMTP_ADDRESS_HERE___</strong></code>) if necessary.</li></ol><ol type="1" id="72ca8a0f-d415-4bf4-8748-1072a456862c" class="numbered-list" start="3"><li><strong>Run the Script</strong>: Once you&#x27;ve configured the script with your information, save the changes and run the script. You can do this by executing the following command in your terminal or command prompt:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f6b44f53-83c3-4f8c-a192-19f912572d52" class="code"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">python iss_overhead.py</code></pre></li></ol><ol type="1" id="f9ed0207-5ac9-41ed-ba3e-e35f461a9d28" class="numbered-list" start="4"><li><strong>Keep the Script Running</strong>: The script will start executing and will continuously monitor the ISS&#x27;s position and nighttime conditions. It will send you an email notification when both conditions (<code><strong>is_iss_overhead()</strong></code> and <code><strong>is_night()</strong></code>) are met.</li></ol><ol type="1" id="62c057fa-e1bb-41e1-9c9c-886249708a4a" class="numbered-list" start="5"><li><strong>Stop the Script</strong>: To stop the script, you can press <code><strong>Ctrl + C</strong></code> in the terminal or command prompt where it is running.</li></ol></div></details><h1 id="7ef563d1-8bde-4552-95fb-e28f5031c72d" class="">Result</h1><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3974eee1-5dc4-4160-9fed-6764fd356ea0" class="code"><code class="language-Plain Text">Subject:Look Up👆
+
+The ISS is above you in the sky.</code></pre></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,803 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>18. Pong Game</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="fa180b50-29a5-48dc-9f44-f45c5f133c6e" class="page sans"><header><h1 class="page-title">18. Pong Game</h1><p class="page-description"></p></header><div class="page-body"><p id="2387cd07-2d4a-48dc-9cf3-4352ac789029" class="">
+</p><h1 id="8823ae78-e56f-4832-b27b-95013c811199" class="">Introduction</h1><p id="8dfd7360-aa41-459f-a9b3-00a008b7809e" class="">This project is a Python implementation of the classic arcade game Pong using the Turtle graphics library. Pong is a two-dimensional sports game that simulates table tennis, where players control paddles and use them to hit a ball back and forth across a playing field, attempting to score points against their opponent.</p><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Features</summary><div class="indented"><ol type="1" id="b422215b-68b0-4386-b5df-5bb4b74de4b4" class="numbered-list" start="1"><li><strong>Game Elements</strong>:<ul id="086407e3-5a97-4f03-b375-aac9fa010cdd" class="bulleted-list"><li style="list-style-type:disc"><strong>Paddles</strong>: There are two paddles, one for each player. Players control the paddles to hit the ball.</li></ul><ul id="e32d436c-e29a-45a8-bd10-3095de6dce1d" class="bulleted-list"><li style="list-style-type:disc"><strong>Ball</strong>: A ball moves between the paddles. Players must hit the ball with their paddle to prevent it from passing them.</li></ul><ul id="3ba9f519-e582-48f9-95a4-90fb5adb4664" class="bulleted-list"><li style="list-style-type:disc"><strong>Scoreboard</strong>: Keeps track of the score for each player.</li></ul></li></ol><ol type="1" id="c28f1d0f-3f2a-4cd5-b4a7-e30357e41095" class="numbered-list" start="2"><li><strong>Controls</strong>:<ul id="1a555a6b-3073-4f30-9abc-97ae43c6b0a9" class="bulleted-list"><li style="list-style-type:disc">The right player controls their paddle using the up and down arrow keys.</li></ul><ul id="5ce44432-15c4-4206-96ab-e30999b5799b" class="bulleted-list"><li style="list-style-type:disc">The left player controls their paddle using the &quot;w&quot; and &quot;s&quot; keys.</li></ul></li></ol><ol type="1" id="1cb2378c-a2f1-4496-90fa-c57f872a968f" class="numbered-list" start="3"><li><strong>Gameplay</strong>:<ul id="a4a2a62d-1933-4360-bf6d-0953f286aac6" class="bulleted-list"><li style="list-style-type:disc">The game starts with the ball in the center of the screen, and each player&#x27;s paddle on their respective side.</li></ul><ul id="a99fe540-33f0-4e70-adf9-93e370ec149c" class="bulleted-list"><li style="list-style-type:disc">Players use their paddles to hit the ball back and forth.</li></ul><ul id="4da4ce1b-c29f-4688-8462-702761439e21" class="bulleted-list"><li style="list-style-type:disc">If a player misses hitting the ball and it passes their paddle, the opposing player scores a point.</li></ul><ul id="51bd6087-638c-4a6a-b502-a6340294dcd7" class="bulleted-list"><li style="list-style-type:disc">The game continues until one player reaches a set score or until the players decide to end the game.</li></ul></li></ol><ol type="1" id="f9630a4d-ab70-4018-a50a-02c368b58d26" class="numbered-list" start="4"><li><strong>Winning</strong>:<ul id="52cf8c43-36c8-47df-b9a2-064843f19033" class="bulleted-list"><li style="list-style-type:disc">The game continues until the players decide to end it or until a predefined condition is met (e.g., reaching a certain score).</li></ul><ul id="8280a7d7-4c67-42f4-9ea5-d396f4456021" class="bulleted-list"><li style="list-style-type:disc">When the game ends, the player with the highest score wins.</li></ul></li></ol><ol type="1" id="bed0e1f7-ac87-483c-9356-74f79a56593e" class="numbered-list" start="5"><li><strong>Graphics</strong>:<ul id="b1b382aa-3193-42a0-8747-d6e3df8e4d64" class="bulleted-list"><li style="list-style-type:disc">The game is displayed on a graphical window using the Turtle graphics library.</li></ul><ul id="629e7534-1c5e-460c-8f47-bfcf5f88fbcd" class="bulleted-list"><li style="list-style-type:disc">Paddles and the ball are represented as graphical objects on the screen.</li></ul></li></ol><ol type="1" id="14f4b5a3-60d3-4d4e-a0b4-4d90c924c45d" class="numbered-list" start="6"><li><strong>Game Loop</strong>:<ul id="8fb2d2f9-a84d-450e-b1bd-a7432cac0442" class="bulleted-list"><li style="list-style-type:disc">The game runs within a continuous loop where events (such as paddle movements and ball updates) are processed.</li></ul><ul id="79359e7a-0084-4a00-91d3-f8157e5c0a1f" class="bulleted-list"><li style="list-style-type:disc">The loop continues until the game is ended by the players or by reaching a winning condition.</li></ul></li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">The aim of this project</summary><div class="indented"><ol type="1" id="162eaeab-d0ad-41ef-ade8-5452068c9f7c" class="numbered-list" start="1"><li><strong>Object-Oriented Programming (OOP)</strong>:<ul id="4129d54a-887f-4185-93f8-069c373f5f52" class="bulleted-list"><li style="list-style-type:disc">Understanding how to organize code into classes and objects.</li></ul><ul id="1a0815dc-4d8f-4775-ac2b-1251aa4007b7" class="bulleted-list"><li style="list-style-type:disc">Implementing inheritance, encapsulation, and polymorphism.</li></ul><ul id="d56ea8fb-8286-4cb5-b7f9-111c8ff8c6a2" class="bulleted-list"><li style="list-style-type:disc">Utilizing class attributes and methods to model real-world entities (e.g., paddles, ball, scoreboard).</li></ul></li></ol><ol type="1" id="79eafaec-060f-4cdf-9283-0d6dbd1f09ca" class="numbered-list" start="2"><li><strong>Event Handling</strong>:<ul id="b245815f-5194-414b-94a6-788fbeb60634" class="bulleted-list"><li style="list-style-type:disc">Learning how to handle user input events (e.g., keyboard events) to control game elements.</li></ul><ul id="6f8a8a9f-423a-4a48-87e0-862d188383df" class="bulleted-list"><li style="list-style-type:disc">Understanding how to use event listeners to respond to user actions.</li></ul></li></ol><ol type="1" id="f75dd89a-3f24-4524-8deb-c33659fd5a4c" class="numbered-list" start="3"><li><strong>Game Development Concepts</strong>:<ul id="e111ccfc-cf99-4bb3-9ebe-0217201466c0" class="bulleted-list"><li style="list-style-type:disc">Implementing game mechanics such as paddle movement, ball movement, collision detection, and scoring.</li></ul><ul id="af5b43b3-d4c3-4f97-a51c-6e6467966965" class="bulleted-list"><li style="list-style-type:disc">Gaining familiarity with game loops and game states to control the flow of the game.</li></ul></li></ol><ol type="1" id="fa16de3f-6144-4dc5-80ed-f6a332266d7b" class="numbered-list" start="4"><li><strong>Graphics and Visualization</strong>:<ul id="c8443acb-8505-4121-bc37-2e058788a087" class="bulleted-list"><li style="list-style-type:disc">Using a graphics library (Turtle) to create graphical elements such as paddles, ball, and scoreboard.</li></ul><ul id="d6c987dc-9132-4e44-ab9c-955f8953b0c4" class="bulleted-list"><li style="list-style-type:disc">Understanding coordinate systems and drawing shapes on the screen.</li></ul></li></ol><ol type="1" id="075ee059-21e9-405b-bba1-f4b25ca6d57f" class="numbered-list" start="5"><li><strong>Problem-Solving and Debugging</strong>:<ul id="4110f906-5c0f-427e-a3bb-c7b77ff06af5" class="bulleted-list"><li style="list-style-type:disc">Identifying and fixing errors (bugs) in the code.</li></ul><ul id="66ea05ff-b4ac-4462-a763-a59cf1ab29c7" class="bulleted-list"><li style="list-style-type:disc">Implementing algorithms to handle collisions and game logic.</li></ul></li></ol><ol type="1" id="151f72c0-2f39-4d8a-860c-eecc52b0b41f" class="numbered-list" start="6"><li><strong>Project Organization and Collaboration</strong>:<ul id="1510a1aa-556e-48e0-87d1-36ecbcd9bcbf" class="bulleted-list"><li style="list-style-type:disc">Structuring code into separate modules/files for better organization and modularity.</li></ul><ul id="97e2540e-4b48-49a9-840d-6398d544427c" class="bulleted-list"><li style="list-style-type:disc">Collaborating with others (if applicable) by dividing tasks and integrating code contributions.</li></ul></li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Achievements</summary><div class="indented"><ul id="962bd136-751f-41f6-85e2-44ce6c37061d" class="bulleted-list"><li style="list-style-type:disc">Understanding OOP principles</li></ul><ul id="fd624413-f322-42e4-8cbc-a3334a0d175d" class="bulleted-list"><li style="list-style-type:disc">Proficiency in event handling</li></ul><ul id="e729314e-5bd8-4cb6-8b66-ed483f727a54" class="bulleted-list"><li style="list-style-type:disc">Game development skills</li></ul><ul id="c59fba72-8396-4e0b-950b-9f7abe2afde8" class="bulleted-list"><li style="list-style-type:disc">Graphics and visualization techniques</li></ul><ul id="03658fd0-23b2-4d12-9f3f-551a772f1fe8" class="bulleted-list"><li style="list-style-type:disc">Problem-solving and debugging experience</li></ul><ul id="afbe77b5-f6e7-49e6-a7a2-a15ac3304476" class="bulleted-list"><li style="list-style-type:disc">Project organization and collaboration skills</li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Python code</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">pong_game.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="682167c5-9947-4b70-8da7-211b4ea6a27c" class="code"><code class="language-Python">from turtle import Screen, Turtle
+from paddle import Paddle
+from ball import Ball
+from scoreboard import Scoreboard
+import time
+
+
+screen = Screen()
+
+screen.title(&quot;Pong&quot;)
+screen.bgcolor(&quot;black&quot;)
+screen.setup(800, 600)
+screen.tracer(0)
+
+
+l_paddle = Paddle((-350, 0))
+r_paddle = Paddle((350, 0))
+ball = Ball()
+scoreboard = Scoreboard()
+
+
+screen.listen()
+screen.onkey(r_paddle.go_up, &quot;Up&quot;)
+screen.onkey(r_paddle.go_down, &quot;Down&quot;)
+screen.onkey(l_paddle.go_up, &quot;w&quot;)
+screen.onkey(l_paddle.go_down, &quot;s&quot;)
+
+
+game_is_on = True
+
+
+while game_is_on:
+    time.sleep(ball.move_speed)
+    screen.update()
+    ball.move()
+
+    # Detect collision with ball
+    if ball.ycor() &gt; 280 or ball.ycor() &lt; -280:
+        ball.bounce_y()
+
+    # Detect collision with paddle
+    if ball.distance(r_paddle) &lt; 50 and ball.xcor() &gt; 320 or ball.distance(l_paddle) &lt; 50 and ball.xcor() &lt; -320:
+        ball.bounce_x()
+
+    # Detect out of bounds
+    if ball.xcor() &gt; 380:
+        ball.reset_ball()
+        scoreboard.l_point()
+
+    if ball.xcor() &lt; -380:
+        ball.reset_ball()
+        scoreboard.r_point()
+
+screen.exitonclick()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">ball.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0e6c5804-7ee0-44c2-a025-01141d9940bf" class="code"><code class="language-Python">from turtle import Turtle
+
+
+class Ball(Turtle):
+    def __init__(self):
+        super().__init__()
+        self.shape(&quot;circle&quot;)
+        self.color(&quot;white&quot;)
+        self.penup()
+        self.x_move = 10
+        self.y_move = 10
+        self.move_speed = 0.1
+
+    def move(self):
+        self.goto(self.xcor() + self.x_move, self.ycor() + self.y_move)
+
+    def bounce_y(self):
+        self.y_move *= -1
+
+    def bounce_x(self):
+        self.x_move *= -1
+        self.move_speed *= 0.9
+
+    def reset_ball(self):
+        self.goto(0, 0)
+        self.move_speed = 0.1
+        self.x_move *= -1</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">paddle.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3c956f39-d694-4edf-92a6-59c0eec342b3" class="code"><code class="language-Python">from turtle import Turtle
+
+
+class Paddle(Turtle):
+    def __init__(self, position):
+        super().__init__()
+        self.shape(&quot;square&quot;)
+        self.shapesize(5, 1)
+        self.color(&quot;white&quot;)
+        self.penup()
+        self.goto(position)
+
+    def go_up(self):
+        self.goto(self.xcor(), self.ycor() + 20)
+
+    def go_down(self):
+        self.goto(self.xcor(), self.ycor() - 20)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">scoreboard.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="44d1be6d-9f1c-4c29-97fa-50664e689f45" class="code"><code class="language-Python">from turtle import Turtle
+
+class Scoreboard(Turtle):
+    def __init__(self):
+        super().__init__()
+        self. color(&quot;white&quot;)
+        self.penup()
+        self.hideturtle()
+        self.l_score = 0
+        self.r_score = 0
+        self.update_scoreboard()
+
+    def update_scoreboard(self):
+        self.clear()
+        self.goto(-100, 200)
+        self.write(self.l_score, align=&quot;center&quot;, font=(&quot;Courrier&quot;, 55, &quot;normal&quot;))
+        self.goto(100, 200)
+        self.write(self.r_score, align=&quot;center&quot;, font=(&quot;Courrier&quot;, 55, &quot;normal&quot;))
+
+    def l_point(self):
+        self.l_score += 1
+        self.update_scoreboard()
+
+    def r_point(self):
+        self.r_score += 1
+        self.update_scoreboard()</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Instructions for running the game</summary><div class="indented"><ol type="1" id="10f3827b-3399-4532-bbae-a292c66ea7fc" class="numbered-list" start="1"><li>Ensure you have Python installed on your system. You can download and install Python from the official Python website (<a href="https://www.python.org/">https://www.python.org/</a>) if you haven&#x27;t already.</li></ol><ol type="1" id="11299289-804d-4a1b-ab79-7e4ff479a4e6" class="numbered-list" start="2"><li>Make sure you have all the project files (<code><strong>pong_game.py</strong></code>, <code><strong>ball.py</strong></code>, <code><strong>paddle.py</strong></code>, <code><strong>scoreboard.py</strong></code>) in the same directory.</li></ol><ol type="1" id="24860d40-14b1-42f2-8008-b0eca945cb70" class="numbered-list" start="3"><li>Open a command-line interface (CLI) or terminal.</li></ol><ol type="1" id="bf6419d8-8b07-4bcb-8cb5-b3f185710538" class="numbered-list" start="4"><li>Navigate to the directory where the project files are located using the <code><strong>cd</strong></code> command. For example:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2a2d49d5-0c6e-49eb-9fca-262c46958b4c" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">bashCopy code
+cd path/to/pong_game_directory
+
+</code></pre></li></ol><ol type="1" id="5082680b-223c-4e22-9ebb-d06712eeb5ec" class="numbered-list" start="5"><li>Run the <code><strong>pong_game.py</strong></code> script by executing the following command:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="64e25337-7f76-4e3e-806c-e33355ec13a4" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">Copy code
+python pong_game.py
+
+</code></pre></li></ol><ol type="1" id="2c6b794b-e110-4bec-a873-f3f28cf912ef" class="numbered-list" start="6"><li>The Pong game window should appear, and you can start playing by using the arrow keys (up and down) for the right paddle and the &quot;w&quot; and &quot;s&quot; keys for the left paddle.</li></ol><ol type="1" id="3da9810a-0449-411a-813d-63cc921927d0" class="numbered-list" start="7"><li>Play the game until one player reaches the winning condition or until you decide to exit the game.</li></ol><ol type="1" id="51f8f8a2-9777-4014-a3b2-7ecea0f39b5d" class="numbered-list" start="8"><li>To exit the game, simply close the game window or press Ctrl+C in the terminal where the game is running.</li></ol></div></details><h1 id="fea7649c-84ca-4e9e-b967-84b3fd73c385" class="">Result</h1><figure id="2ed817d0-81b8-4146-8b26-bba7733d1a8c" class="image"><a href="18%20Pong%20Game%20fa180b5029a548dc9f44f45c5f133c6e/Screenshot_2024-02-17_at_22.50.11.png"><img style="width:1544px" src="18%20Pong%20Game%20fa180b5029a548dc9f44f45c5f133c6e/Screenshot_2024-02-17_at_22.50.11.png"/></a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,735 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>36. Instagram Follower</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="dccfb5bc-e603-4c3f-b674-944018a9d9b6" class="page sans"><header><h1 class="page-title">36. Instagram Follower</h1><p class="page-description"></p></header><div class="page-body"><p id="c22ddfc5-e282-4888-81cc-7b2c80cbb1fd" class="">
+</p><h1 id="e50321ff-2bfe-4f7d-bb77-1dcdb471b93b" class="">Introduction</h1><p id="94849a26-c2c2-481c-ad51-17284793d0ca" class="">This Python script designed to automate the process of following users on Instagram based on the followers of a specified account. Let&#x27;s break down its functionality:</p><ol type="1" id="f859c699-924f-48e8-a4c1-00c1b9587320" class="numbered-list" start="1"><li><strong>Imports and Setup</strong>:<ul id="91c90755-fbd7-49e1-a9cb-00e01d03c19a" class="bulleted-list"><li style="list-style-type:disc">The script imports necessary modules from the Selenium library for web automation in Python.</li></ul><ul id="1a9b283a-c759-4228-9041-7dc705ef3a65" class="bulleted-list"><li style="list-style-type:disc">It defines constants such as <code><strong>CHROME_DRIVER_PATH</strong></code> (path to the Chrome WebDriver), <code><strong>SIMILAR_ACCOUNT</strong></code> (the Instagram account whose followers will be targeted), <code><strong>USERNAME</strong></code>, and <code><strong>PASSWORD</strong></code> (your Instagram credentials).</li></ul></li></ol><ol type="1" id="40791962-2947-4238-8771-ff9d06485273" class="numbered-list" start="2"><li><strong>Class Definition - </strong><code><strong>InstaFollower</strong></code>:<ul id="869bf94d-090b-466f-b3b1-ff701094e1bf" class="bulleted-list"><li style="list-style-type:disc">This class encapsulates methods for logging in to Instagram, finding followers of a specified account, and following those followers.</li></ul><ul id="78ae89b2-8c9a-4908-bd4f-fc87b7d05e67" class="bulleted-list"><li style="list-style-type:disc">The constructor initializes a Chrome WebDriver instance using the provided driver path.</li></ul></li></ol><ol type="1" id="be12cc17-5987-4a7c-8d4f-ac9a14abc34c" class="numbered-list" start="3"><li><strong>Login Functionality</strong>:<ul id="45404e14-9a58-466e-873d-e5cc80350d02" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>login()</strong></code> method navigates to the Instagram login page, enters the provided username and password, and submits the form to log in.</li></ul></li></ol><ol type="1" id="d6f22c54-02f6-45be-9458-55e996d89eb6" class="numbered-list" start="4"><li><strong>Finding Followers</strong>:<ul id="5113b6e9-6654-4f9f-9732-b57938cf6c74" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>find_followers()</strong></code> method navigates to the profile of the specified account (<code><strong>SIMILAR_ACCOUNT</strong></code>), locates the followers button, and clicks on it to open the followers modal.</li></ul><ul id="72f58013-1a61-43bf-b6c4-74aa7b97dcb0" class="bulleted-list"><li style="list-style-type:disc">It then scrolls through the modal to load more followers. Currently, it scrolls 10 times, which can be adjusted as needed.</li></ul></li></ol><ol type="1" id="d47bff8e-be84-4676-b96e-f3287e687eb9" class="numbered-list" start="5"><li><strong>Following Users</strong>:<ul id="543e0974-d18a-4fd4-923c-5857b67dd89f" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>follow()</strong></code> method finds all follow buttons on the page and attempts to click them one by one.</li></ul><ul id="c4e44b2d-f102-4201-aff4-af11717f3263" class="bulleted-list"><li style="list-style-type:disc">If an &quot;ElementClickInterceptedException&quot; occurs, it likely means that the button is not clickable, possibly due to a pop-up. In such cases, it attempts to close the pop-up by finding and clicking the cancel button.</li></ul></li></ol><ol type="1" id="dfa89d82-9b79-4e9b-b8af-fad9c0111066" class="numbered-list" start="6"><li><strong>Execution</strong>:<ul id="6d570c80-a2d0-4e03-862b-1d196a6899fb" class="bulleted-list"><li style="list-style-type:disc">Finally, an instance of <code><strong>InstaFollower</strong></code> is created with the Chrome WebDriver path provided.</li></ul><ul id="29e2de6b-9a70-4c2e-b523-5e9b2cb7ace7" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>login()</strong></code>, <code><strong>find_followers()</strong></code>, and <code><strong>follow()</strong></code> methods are called sequentially to execute the automation process.</li></ul></li></ol><p id="e8844294-c45c-4fe2-b0c6-5386d16c44f6" class=""><strong>Note</strong>:</p><ul id="b8601988-42e0-49d1-87b9-fa36ad82af29" class="bulleted-list"><li style="list-style-type:disc">Before running the script, you need to provide the path to your Chrome WebDriver (<code><strong>CHROME_DRIVER_PATH</strong></code>), your Instagram username (<code><strong>USERNAME</strong></code>), and your Instagram password (<code><strong>PASSWORD</strong></code>).</li></ul><ul id="3c6eb407-0a29-4883-a4a8-86463c02a720" class="bulleted-list"><li style="list-style-type:disc">Also, ensure that you&#x27;ve installed the necessary packages (<code><strong>selenium</strong></code>) and have the Chrome WebDriver installed and configured correctly.</li></ul><ul id="f40a1cc5-ea19-417b-ae22-7cd89fa7c560" class="bulleted-list"><li style="list-style-type:disc">Automating interactions with Instagram may violate its terms of service, and aggressive automation could lead to your account being banned or restricted. Use such scripts with caution and responsibility.</li></ul><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Features</summary><div class="indented"><ol type="1" id="8f9f797b-ad6f-421e-b3ec-2177625a1603" class="numbered-list" start="1"><li><strong>Login Automation</strong>: The script automates the login process to Instagram by entering the provided username and password, allowing for seamless authentication.</li></ol><ol type="1" id="c8626492-b585-4066-9166-7394c2dbda77" class="numbered-list" start="2"><li><strong>Follower Discovery</strong>: It navigates to the profile of a specified account and retrieves the list of followers by clicking on the followers button and scrolling through the modal to load more followers.</li></ol><ol type="1" id="e9341a01-da0f-436e-a6ed-8255917e003d" class="numbered-list" start="3"><li><strong>Following Automation</strong>: The script automates the process of following users by clicking on the follow buttons of the retrieved followers.</li></ol><ol type="1" id="548cb851-7644-4255-9338-f8087b6bf75c" class="numbered-list" start="4"><li><strong>Error Handling</strong>: It includes error handling for potential issues such as ElementClickInterceptedException, which may occur when trying to click follow buttons. The script attempts to handle such exceptions by clicking on the cancel button if a pop-up interferes with the follow action.</li></ol><ol type="1" id="c0e10556-6d6e-4586-a84e-0fe152ad12a0" class="numbered-list" start="5"><li><strong>Customizable Parameters</strong>: Certain parameters such as the Chrome WebDriver path, Instagram username, password, and the target account whose followers will be followed can be easily customized according to user preferences.</li></ol><ol type="1" id="336f0321-d2cb-41b6-a45a-996b1196cd4d" class="numbered-list" start="6"><li><strong>Scalability</strong>: The script can be easily modified to adjust the number of times it scrolls through the followers modal to load more followers or to add additional functionalities such as unfollowing users or liking posts.</li></ol><ol type="1" id="210d2457-4851-4918-8904-4981c028e7e7" class="numbered-list" start="7"><li><strong>Automation Efficiency</strong>: By automating the process of following users based on a specified account&#x27;s followers, the script saves time and effort compared to manual interaction, especially for accounts with a large number of followers.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">The aim of this project</summary><div class="indented"><ol type="1" id="bebfd2d2-e5b1-4150-ba95-4641c26d42b0" class="numbered-list" start="1"><li><strong>Understanding Web Automation</strong>: Learners will grasp the concept of automating interactions with web pages, including navigating through pages, interacting with elements, and handling various events and errors.</li></ol><ol type="1" id="e8618f07-187d-4756-9f82-dbaba16cfa50" class="numbered-list" start="2"><li><strong>Familiarity with Selenium</strong>: The project helps learners become acquainted with the Selenium library, which is widely used for web automation. They will learn how to set up Selenium, work with web elements, and execute actions like clicking buttons and entering text.</li></ol><ol type="1" id="16ddab10-9384-44c2-894d-bb3c7db04d12" class="numbered-list" start="3"><li><strong>Handling Dynamic Content</strong>: Through this project, learners will encounter scenarios where web pages contain dynamic content that requires scrolling or additional actions to interact with fully. They will learn techniques to handle such dynamic content effectively.</li></ol><ol type="1" id="479c8518-2ba1-4583-b50f-96bd92032d67" class="numbered-list" start="4"><li><strong>Error Handling and Debugging</strong>: Learners will practice error handling techniques, such as try-except blocks, to deal with common issues encountered during web automation. They will also learn how to debug their code to identify and resolve errors efficiently.</li></ol><ol type="1" id="f32f1f2b-aaa1-446c-9796-1e62cda5218b" class="numbered-list" start="5"><li><strong>Practical Application of Programming Concepts</strong>: This project reinforces programming concepts such as loops, conditional statements, and method calls in a real-world scenario. Learners will apply these concepts to automate repetitive tasks efficiently.</li></ol><ol type="1" id="3911f9af-0536-4f1e-b037-c45c69f65648" class="numbered-list" start="6"><li><strong>Ethical Considerations</strong>: Learners will develop an understanding of ethical considerations related to automation, such as respecting terms of service and avoiding actions that could potentially harm websites or violate user privacy.</li></ol><ol type="1" id="ce531b86-6cb5-45e5-897a-4ddaf320366f" class="numbered-list" start="7"><li><strong>Customization and Extension</strong>: The project encourages learners to customize the automation script according to their requirements and to extend its functionality. This fosters creativity and problem-solving skills as learners experiment with different features and improvements.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Achievements</summary><div class="indented"><ol type="1" id="5a22d499-bc94-43af-ba2d-9c547e5248b7" class="numbered-list" start="1"><li>Practical implementation of Selenium.</li></ol><ol type="1" id="6aed1b22-17ad-4b40-9a91-adc2a4aaf1e7" class="numbered-list" start="2"><li>Understanding web page structure through XPath and CSS selectors.</li></ol><ol type="1" id="88f17711-abea-4ab3-a8e1-e0293e610b68" class="numbered-list" start="3"><li>Error handling techniques, including ElementClickInterceptedException.</li></ol><ol type="1" id="0c9b2fd9-6e1d-4411-8cc8-d419a6088c99" class="numbered-list" start="4"><li>Handling dynamic content such as infinite scrolling.</li></ol><ol type="1" id="fff67f51-15fd-4ec5-bb69-e80d0fdd91d5" class="numbered-list" start="5"><li>Customization and parameterization of automation scripts.</li></ol><ol type="1" id="d2df5697-3f30-4595-8899-26aa42d87ea8" class="numbered-list" start="6"><li>Considerations of ethics in automation practices.</li></ol><ol type="1" id="715ef175-1795-4417-9b5e-3d69af354946" class="numbered-list" start="7"><li>Application of programming concepts like loops and conditional statements.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Python code</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">instagram_follower.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bfef6eac-65ea-4e1c-b7b7-1ef722ec36f2" class="code"><code class="language-Python">from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import ElementClickInterceptedException
+import time
+
+CHROME_DRIVER_PATH = &#x27;YOUR CHROM DRIVER PATH&#x27;
+SIMILAR_ACCOUNT = &quot;buzzfeedtasty&quot;
+USERNAME = &#x27;YOUR INSTAGRAM USERNAME&#x27;
+PASSWORD = &#x27;YOUR INSTAGRAM PASSWORD&#x27;
+
+
+class InstaFollower:
+
+    def __init__(self, path):
+        self.driver = webdriver.Chrome(executable_path=path)
+
+    def login(self):
+        self.driver.get(&quot;https://www.instagram.com/accounts/login/&quot;)
+        time.sleep(5)
+
+        username = self.driver.find_element(By.NAME, &quot;username&quot;)
+        password = self.driver.find_element(By.NAME, &quot;password&quot;)
+
+        username.send_keys(USERNAME)
+        password.send_keys(PASSWORD)
+
+        time.sleep(2)
+        password.send_keys(Keys.ENTER)
+
+    def find_followers(self):
+        time.sleep(5)
+        self.driver.get(f&quot;https://www.instagram.com/{SIMILAR_ACCOUNT}&quot;)
+
+        time.sleep(2)
+        followers = self.driver.find_element(By.XPATH, &#x27;//*[@id=&quot;react-root&quot;]/section/main/div/header/section/ul/li[2]/a&#x27;)
+        followers.click()
+
+        time.sleep(2)
+        modal = self.driver.find_element(By.XPATH, &#x27;/html/body/div[4]/div/div/div[2]&#x27;)
+        for i in range(10):
+            self.driver.execute_script(&quot;arguments[0].scrollTop = arguments[0].scrollHeight&quot;, modal)
+            time.sleep(2)
+
+    def follow(self):
+        all_buttons = self.driver.find_elements(By.CSS_SELECTOR, &quot;li button&quot;)
+        for button in all_buttons:
+            try:
+                button.click()
+                time.sleep(1)
+            except ElementClickInterceptedException:
+                cancel_button = self.driver.find_element(By.XPATH, &#x27;/html/body/div[5]/div/div/div/div[3]/button[2]&#x27;)
+                cancel_button.click()
+
+
+bot = InstaFollower(CHROME_DRIVER_PATH)
+bot.login()
+bot.find_followers()
+bot.follow()</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Instructions for running the project</summary><div class="indented"><ol type="1" id="17d9348e-bcaa-48d4-9747-f5b982ed34db" class="numbered-list" start="1"><li><strong>Install Dependencies</strong>:<ul id="c945b201-1485-4ec7-a3ba-e012c68b9061" class="bulleted-list"><li style="list-style-type:disc">Ensure you have Python installed on your system.</li></ul><ul id="bc460dac-80f9-43ed-8349-f7880192aefc" class="bulleted-list"><li style="list-style-type:disc">Install the Selenium library using pip if you haven&#x27;t already:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d3b92610-dee5-4110-a533-531e918f5b05" class="code"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">pip install selenium</code></pre></li></ul></li></ol><ol type="1" id="d2f38d6a-c325-46a9-a8c5-5fe384622d7c" class="numbered-list" start="2"><li><strong>Download Chrome WebDriver</strong>:<ul id="dd10ed48-5d74-4649-8b3c-6eabf63961a9" class="bulleted-list"><li style="list-style-type:disc">Download the Chrome WebDriver compatible with your Chrome browser version from the official website: Chrome WebDriver Downloads.</li></ul><ul id="c4f53806-5ae6-4c70-8787-424fbcbcce8b" class="bulleted-list"><li style="list-style-type:disc">Make sure to download the WebDriver corresponding to your Chrome browser version and operating system.</li></ul><ul id="1460a853-59f4-4a0b-ab38-db949d07dd65" class="bulleted-list"><li style="list-style-type:disc">Extract the downloaded WebDriver executable file.</li></ul></li></ol><ol type="1" id="604d5773-3cfc-455b-b678-cbe3d1a35554" class="numbered-list" start="3"><li><strong>Set Up Project Files</strong>:<ul id="2e2cdb0f-465c-4bba-8cf9-7f7c213d366e" class="bulleted-list"><li style="list-style-type:disc">Download the <code><strong>instagram_follower.py</strong></code> script.</li></ul><ul id="e488cca3-1b10-4958-9e33-8f80300aabc7" class="bulleted-list"><li style="list-style-type:disc">Open the script in a text editor and replace placeholders with your Instagram username, password, and the path to the Chrome WebDriver executable (<code><strong>CHROME_DRIVER_PATH</strong></code>).</li></ul></li></ol><ol type="1" id="a0890d7c-4920-4d80-9149-12e43722b019" class="numbered-list" start="4"><li><strong>Run the Script</strong>:<ul id="340f0a7d-83b8-4a49-90b4-71dc6db9bab6" class="bulleted-list"><li style="list-style-type:disc">Open a terminal or command prompt.</li></ul><ul id="eec53af0-a32c-4063-9aad-aea1e7e103c0" class="bulleted-list"><li style="list-style-type:disc">Navigate to the directory containing the <code><strong>instagram_follower.py</strong></code> script.</li></ul><ul id="8a1505ca-4aa1-4e00-8250-d67ccd9bb944" class="bulleted-list"><li style="list-style-type:disc">Run the script using Python:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="09a022ac-23b3-4671-b297-1d6e7f64ba9e" class="code"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">python instagram_follower.py</code></pre></li></ul></li></ol><ol type="1" id="564e86e1-a665-42d5-b557-449389714007" class="numbered-list" start="5"><li><strong>Execution</strong>:<ul id="b9bf0812-52c4-46db-a522-609ab61fcd98" class="bulleted-list"><li style="list-style-type:disc">The script will launch a Chrome browser instance controlled by Selenium.</li></ul><ul id="50a42b8c-2245-4662-9b00-059c1755cb8a" class="bulleted-list"><li style="list-style-type:disc">It will log in to your Instagram account, navigate to the specified account&#x27;s profile, retrieve followers, and follow them.</li></ul><ul id="4c287476-06b7-49c7-9c84-738ee0f97c60" class="bulleted-list"><li style="list-style-type:disc">Monitor the terminal or command prompt for any errors or prompts.</li></ul><ul id="d39c629b-e558-489d-bc96-a78baf30760e" class="bulleted-list"><li style="list-style-type:disc">Once the script completes execution, you can verify the followers you&#x27;ve followed on Instagram.</li></ul></li></ol><ol type="1" id="1def0b61-9aa7-40c1-9b20-5aabb60df543" class="numbered-list" start="6"><li><strong>Caveats and Caution</strong>:<ul id="44224cf8-6299-47dc-896e-278d4a512cb4" class="bulleted-list"><li style="list-style-type:disc">Ensure that you use this script responsibly and in compliance with Instagram&#x27;s terms of service.</li></ul><ul id="160bd9a2-78d9-4e7e-8a26-eb6c511ec59d" class="bulleted-list"><li style="list-style-type:disc">Avoid aggressive automation that could lead to your account being banned or restricted.</li></ul><ul id="d3f8d175-3351-4a07-8a77-9d7ba5a0f26f" class="bulleted-list"><li style="list-style-type:disc">Regularly review and update the script as Instagram&#x27;s website structure or policies may change over time.</li></ul><ul id="7dbdb0f7-0f59-4401-88a7-ddd547293813" class="bulleted-list"><li style="list-style-type:disc">Exercise caution when providing your Instagram credentials in the script.</li></ul></li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

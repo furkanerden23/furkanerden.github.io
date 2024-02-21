@@ -1,0 +1,749 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>30. Exercise Tracker</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="e3ad8f76-f8b4-4a43-a1d8-f47092f3eda2" class="page sans"><header><h1 class="page-title">30. Exercise Tracker</h1><p class="page-description"></p></header><div class="page-body"><p id="4a6af7cc-60d7-44ab-a400-1904128f4831" class="">
+</p><h1 id="684aa1d2-3fd6-49c1-83f3-4beedb0c3f22" class="">Introduction</h1><p id="4b46e2ac-8b90-4aee-a90a-395dde51c554" class="">This project, <code><strong>exercise_tracker.py</strong></code>, is a Python script designed to help users track their exercise routines and record them in a spreadsheet. Here&#x27;s a basic introduction:</p><p id="99b296ee-ed21-475d-8f0e-c2a58a19e33e" class="">The script starts by importing necessary libraries including <code><strong>requests</strong></code> for making HTTP requests and <code><strong>datetime</strong></code> for handling date and time information. It also imports <code><strong>os</strong></code> for interacting with the operating system.</p><p id="4df6bb19-bb78-4cc1-98eb-f24b752873df" class="">Next, there are several constants defined such as <code><strong>GENDER</strong></code>, <code><strong>WEIGHT_KG</strong></code>, <code><strong>HEIGHT_CM</strong></code>, and <code><strong>AGE</strong></code>, which represent user-specific information.</p><p id="3e67062b-4a63-4fe2-bea9-713e200e240a" class="">The script requires environment variables <code><strong>YOUR_APP_ID</strong></code>, <code><strong>YOUR_API_KEY</strong></code>, and <code><strong>YOUR_SHEET_ENDPOINT</strong></code> to be set, which are used for authentication and API endpoints.</p><p id="d27e181f-17bb-4718-843e-b8e6495d4b47" class="">The user is prompted to input a description of exercises they performed.</p><p id="d2b3f995-3a75-4d1e-9bb5-3dbe61e602eb" class="">The script then constructs a request payload with exercise details including the query, gender, weight, height, and age. It sends a POST request to the Nutritionix API to obtain information about the exercises entered.</p><p id="68ced133-a365-42e3-8b9e-c0b33023ba81" class="">The obtained exercise data is parsed and printed.</p><p id="c0362fb1-b36f-4a5d-89d4-480309d52195" class="">Next, the script records the exercise data into a spreadsheet. It demonstrates three different methods of authentication: no authentication, basic authentication, and bearer token authentication.</p><ul id="c83706bd-fdca-4583-9657-f8da0974f1ea" class="bulleted-list"><li style="list-style-type:disc">For no authentication, it simply sends the request.</li></ul><ul id="ccabf875-978b-4ce8-a36b-dca1f48058e6" class="bulleted-list"><li style="list-style-type:disc">For basic authentication, it includes the username and password obtained from environment variables.</li></ul><ul id="a8eedcf2-b132-40d7-bee3-fc03a5540bf5" class="bulleted-list"><li style="list-style-type:disc">For bearer token authentication, it includes a token obtained from environment variables.</li></ul><p id="64e3cc0f-2878-4fc4-8efc-0323f3a6f260" class="">Finally, the script prints the response from the spreadsheet API.</p><p id="e8c3d1ef-e457-4228-a89b-42073a5a6d8e" class="">This script provides a basic framework for users to track their exercises and store the data in a spreadsheet using various authentication methods.</p><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Features</summary><div class="indented"><ol type="1" id="50e94c58-5498-4ac5-b91b-bf6df107b155" class="numbered-list" start="1"><li><strong>Exercise Tracking</strong>: Users can input descriptions of exercises they performed, and the script sends this information to the Nutritionix API to retrieve details about those exercises, including duration and calories burned.</li></ol><ol type="1" id="e0ed869d-f0e2-4266-bf17-2c69ab709650" class="numbered-list" start="2"><li><strong>Authentication Support</strong>: The script supports multiple authentication methods for interacting with the spreadsheet API, including:<ul id="a98615c4-55b5-4fbe-aa77-92187d20c6dc" class="bulleted-list"><li style="list-style-type:disc">No authentication</li></ul><ul id="25f08c45-efe7-4379-8e69-1aa0862b7d63" class="bulleted-list"><li style="list-style-type:disc">Basic authentication using a username and password</li></ul><ul id="5fcc00fe-0f20-4fbc-8688-f64933a42a00" class="bulleted-list"><li style="list-style-type:disc">Bearer token authentication</li></ul></li></ol><ol type="1" id="cb7ea062-488b-4a0f-b31c-17527a8fd7cb" class="numbered-list" start="3"><li><strong>Dynamic Date and Time Recording</strong>: The script captures the current date and time when the exercises are logged and includes this information in the recorded data.</li></ol><ol type="1" id="5326ae32-b01d-41ec-ad21-b9b1bf9fec47" class="numbered-list" start="4"><li><strong>Integration with External APIs</strong>: The script integrates with the Nutritionix API to retrieve exercise information and with a spreadsheet API to record exercise data.</li></ol><ol type="1" id="ab023edf-d58b-464b-aa5e-f158e3131eff" class="numbered-list" start="5"><li><strong>Flexibility</strong>: Users can customize their gender, weight, height, and age to receive more accurate exercise data from the Nutritionix API.</li></ol><ol type="1" id="77116eb1-fb52-469e-9b7c-144e240e6a16" class="numbered-list" start="6"><li><strong>Error Handling</strong>: While not explicitly shown in the provided code snippet, robust error handling could be implemented to handle cases where API requests fail or environment variables are not properly set.</li></ol><ol type="1" id="c9734830-9a80-4de1-9ff3-22f62b0a815a" class="numbered-list" start="7"><li><strong>Feedback and Logging</strong>: The script provides feedback to the user by printing exercise details and responses from the spreadsheet API. Additionally, logging functionality could be added to maintain a record of executed tasks and potential errors for debugging purposes.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">The aim of this project</summary><div class="indented"><ol type="1" id="0e277938-987e-454d-9539-686985615d1b" class="numbered-list" start="1"><li><strong>API Integration</strong>: Users learn how to integrate with external APIs (such as the Nutritionix API) to fetch data relevant to their application. They gain insights into making HTTP requests, handling responses, and parsing JSON data.</li></ol><ol type="1" id="b3a2cec0-1459-411c-9ee9-a0e16e435fe3" class="numbered-list" start="2"><li><strong>Authentication Methods</strong>: By implementing different authentication methods (no authentication, basic authentication, and bearer token authentication), learners understand how to securely interact with APIs that require authentication. They gain knowledge about the importance of API keys, usernames, passwords, and bearer tokens in authenticating requests.</li></ol><ol type="1" id="942b9c83-190e-4707-9106-200c384b7e7a" class="numbered-list" start="3"><li><strong>Data Handling</strong>: The project involves processing and manipulating data obtained from external APIs. Learners practice data parsing, extraction, and transformation techniques to extract relevant information and format it appropriately for further use.</li></ol><ol type="1" id="88b11770-9450-4886-a826-0180e9a99cef" class="numbered-list" start="4"><li><strong>Environment Variables</strong>: Through the use of environment variables for sensitive data (such as API keys and authentication credentials), learners understand best practices for securely storing and accessing sensitive information in their applications.</li></ol><ol type="1" id="1780b2c9-805a-4ea9-989b-97c43baa0cd7" class="numbered-list" start="5"><li><strong>Error Handling</strong>: While not explicitly shown in the provided code, learners can implement error handling mechanisms to gracefully handle potential issues such as failed API requests or incorrect environment variable configurations. This helps them understand how to troubleshoot and debug their applications effectively.</li></ol><ol type="1" id="daee7a44-5a49-46b5-a12b-0185a12e0db1" class="numbered-list" start="6"><li><strong>Feedback Mechanisms</strong>: By providing feedback to the user through printed messages and logging, learners understand the importance of communication in software development. They learn how to provide informative feedback to users and maintain logs for tracking application behavior.</li></ol><ol type="1" id="d7a39658-a282-43ef-810f-7c2c88dc6216" class="numbered-list" start="7"><li><strong>Integration with External Services</strong>: The project involves integrating with external services (such as a spreadsheet API) to store and manage data. Learners gain insights into how to interact with various services and utilize their functionalities within their applications.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Achievements</summary><div class="indented"><ol type="1" id="e221e9a3-a60d-464a-aadb-fede386575a1" class="numbered-list" start="1"><li>API Integration</li></ol><ol type="1" id="64c0b87f-7704-4b88-af63-4caa5bf59849" class="numbered-list" start="2"><li>Authentication Methods</li></ol><ol type="1" id="363ef0b7-202d-4d86-be0c-2f72858f5fa6" class="numbered-list" start="3"><li>Handling Sensitive Information</li></ol><ol type="1" id="7298dc53-4a65-40aa-995a-7a24ad638f10" class="numbered-list" start="4"><li>Data Manipulation Techniques</li></ol><ol type="1" id="bd4353a7-3e13-4bc9-8258-8cdcc16cd47f" class="numbered-list" start="5"><li>Error Handling Strategies</li></ol><ol type="1" id="75729ece-ae05-447f-8180-dbbf17aca4a5" class="numbered-list" start="6"><li>Feedback Mechanisms</li></ol><ol type="1" id="9f3f422b-036d-47ef-a417-5770e2a6028b" class="numbered-list" start="7"><li>Integration with External Services</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Python code</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">exercise_tracker.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="df79a8cb-c41d-45fd-9f16-e101bf947027" class="code"><code class="language-Python">import requests
+from datetime import datetime
+import os
+
+GENDER = &#x27;YOUR GENDER&#x27;
+WEIGHT_KG = &#x27;YOUR WEIGHT&#x27;
+HEIGHT_CM = &#x27;YOUR HEIGHT&#x27;
+AGE = &#x27;YOUR AGE&#x27;
+
+APP_ID = os.environ[&quot;YOUR_APP_ID&quot;]
+API_KEY = os.environ[&quot;YOUR_API_KEY&quot;]
+
+exercise_endpoint = &quot;https://trackapi.nutritionix.com/v2/natural/exercise&quot;
+sheet_endpoint = os.environ[&quot;YOUR_SHEET_ENDPOINT&quot;]
+
+exercise_text = input(&quot;Tell me which exercises you did: &quot;)
+
+headers = {
+    &quot;x-app-id&quot;: APP_ID,
+    &quot;x-app-key&quot;: API_KEY,
+}
+
+parameters = {
+    &quot;query&quot;: exercise_text,
+    &quot;gender&quot;: GENDER,
+    &quot;weight_kg&quot;: WEIGHT_KG,
+    &quot;height_cm&quot;: HEIGHT_CM,
+    &quot;age&quot;: AGE
+}
+
+response = requests.post(exercise_endpoint, json=parameters, headers=headers)
+result = response.json()
+print(result)
+
+today_date = datetime.now().strftime(&quot;%d/%m/%Y&quot;)
+now_time = datetime.now().strftime(&quot;%X&quot;)
+
+for exercise in result[&quot;exercises&quot;]:
+    sheet_inputs = {
+        &quot;workout&quot;: {
+            &quot;date&quot;: today_date,
+            &quot;time&quot;: now_time,
+            &quot;exercise&quot;: exercise[&quot;name&quot;].title(),
+            &quot;duration&quot;: exercise[&quot;duration_min&quot;],
+            &quot;calories&quot;: exercise[&quot;nf_calories&quot;]
+        }
+    }
+
+    #No Auth
+    sheet_response = requests.post(sheet_endpoint, json=sheet_inputs)
+
+
+    #Basic Auth
+    sheet_response = requests.post(
+        sheet_endpoint, 
+        json=sheet_inputs, 
+        auth=(
+            os.environ[&quot;USERNAME&quot;], 
+            os.environ[&quot;PASSWORD&quot;],
+        )
+    )
+
+    #Bearer Token
+    bearer_headers = {
+    &quot;Authorization&quot;: f&quot;Bearer {os.environ[&#x27;TOKEN&#x27;]}&quot;
+    }
+    sheet_response = requests.post(
+        sheet_endpoint, 
+        json=sheet_inputs, 
+        headers=bearer_headers
+    )
+
+    print(sheet_response.text)</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Instructions for running the project</summary><div class="indented"><ol type="1" id="d8a3b152-2512-4a42-987b-1b58a1d4bf66" class="numbered-list" start="1"><li>Ensure you have Python installed on your system. You can download it from the official Python website and follow the installation instructions.</li></ol><ol type="1" id="67868a5f-2367-456f-a421-8048264129e5" class="numbered-list" start="2"><li>Install the required dependencies by running:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="74a1e05c-32f0-4ca6-b988-bb69f287f510" class="code"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">pip install requests</code></pre></li></ol><ol type="1" id="52025c14-7f0f-465c-954e-ad82261cad9a" class="numbered-list" start="3"><li>Set up environment variables:<ul id="f7e90dfa-409b-4c8f-93cb-b6c17f7dc427" class="bulleted-list"><li style="list-style-type:disc">Set <code><strong>YOUR_APP_ID</strong></code>, <code><strong>YOUR_API_KEY</strong></code>, and <code><strong>YOUR_SHEET_ENDPOINT</strong></code> with appropriate values. These are required for authentication and API endpoints.</li></ul><ul id="2a6ff616-1dfc-4b81-8adc-4d3a7c70b41d" class="bulleted-list"><li style="list-style-type:disc">Optionally, set <code><strong>USERNAME</strong></code>, <code><strong>PASSWORD</strong></code>, and <code><strong>TOKEN</strong></code> if you plan to use basic authentication or bearer token authentication.</li></ul></li></ol><ol type="1" id="0da7feaf-683a-49d6-8042-d724dc51da1a" class="numbered-list" start="4"><li>Execute the script by running:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6a97d0c3-e2f4-4769-837d-b7df2efe8c68" class="code"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">python exercise_tracker.py</code></pre></li></ol><ol type="1" id="5d683ba9-17cd-459e-bd2a-d9222f906e1c" class="numbered-list" start="5"><li>Follow the prompts to input the exercises you performed.</li></ol><ol type="1" id="c6ab5366-3eb1-4f0e-bc85-0d296118024f" class="numbered-list" start="6"><li>The script will fetch exercise details from the Nutritionix API and print the results.</li></ol><ol type="1" id="992e6812-0565-47df-b8f3-f273e7cfabc1" class="numbered-list" start="7"><li>Exercise data will be recorded in a spreadsheet using the specified authentication method.</li></ol></div></details><h1 id="0e7f83dc-8816-422f-a311-97ee2ae62ad3" class="">Result</h1><p id="e39caca3-a86c-4a33-a231-116c672f0714" class="">Result is going to appear on spreadsheet</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

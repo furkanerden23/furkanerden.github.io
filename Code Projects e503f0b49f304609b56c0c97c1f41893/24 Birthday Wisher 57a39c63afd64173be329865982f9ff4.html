@@ -1,0 +1,730 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>24. Birthday Wisher</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="57a39c63-afd6-4173-be32-9865982f9ff4" class="page sans"><header><h1 class="page-title">24. Birthday Wisher</h1><p class="page-description"></p></header><div class="page-body"><p id="1cf65952-2781-46aa-b4ac-57ff9cf67c77" class="">
+</p><h1 id="ea702f46-04ce-45f3-8260-bce959826bb2" class="">Introduction</h1><p id="ad66fafb-409b-4d53-8aa8-aa6d10f074a2" class="">The &quot;Birthday Wisher&quot; project is a Python script designed to automate the process of sending birthday wishes to individuals via email. It utilizes data stored in a CSV file to identify birthdays and personalized letter templates to craft heartfelt messages. The script leverages Python&#x27;s libraries for handling dates, reading CSV files, and sending emails via SMTP to streamline the birthday wishing process.</p><p id="fa8bb43b-0b34-4c73-8369-e2ad1a855eca" class=""><strong>Functionality:</strong></p><ol type="1" id="f15ab84c-f134-44a2-911a-41a821b78875" class="numbered-list" start="1"><li><strong>Data Retrieval:</strong> The script reads birthday data from a CSV file named &quot;birthdays.csv&quot;. This file contains information such as the name, email address, and date of birth (month and day) for individuals.</li></ol><ol type="1" id="c08e8c3f-f123-401e-89fc-9b2c999cedd3" class="numbered-list" start="2"><li><strong>Birthday Detection:</strong> Using the current date, the script compares it with the birthday data from the CSV file to identify if any birthdays match the current date.</li></ol><ol type="1" id="0fc45b60-5a37-492f-95fc-c08e12ad8f71" class="numbered-list" start="3"><li><strong>Template Selection:</strong> Once a birthday match is found, the script randomly selects one of the available letter templates (e.g., &quot;letter_1.txt&quot;, &quot;letter_2.txt&quot;, etc.) from the &quot;letter_templates&quot; directory.</li></ol><ol type="1" id="09f2534c-dc38-46d2-89c9-46f4bbca10d5" class="numbered-list" start="4"><li><strong>Personalization:</strong> The selected letter template contains placeholders (e.g., &quot;[NAME]&quot;) which are replaced with the name of the birthday person retrieved from the CSV file, creating a personalized message for each recipient.</li></ol><ol type="1" id="1cc8d302-9e3a-48b7-b0b8-00f4156f8b17" class="numbered-list" start="5"><li><strong>Email Sending:</strong> After personalizing the message, the script establishes a connection to an SMTP server (using the email sender&#x27;s credentials provided in the script) and sends the birthday email to the recipient&#x27;s email address. The email subject is set to &quot;Happy Birthday!&quot; and includes the personalized message generated from the selected letter template.</li></ol><p id="23d53e31-bc45-47ee-88d9-c529eb655459" class=""><strong>Purpose:</strong><br/>The purpose of the &quot;Birthday Wisher&quot; project is to automate the task of sending birthday wishes to friends, family members, or colleagues. By automating this process, the script ensures that birthday greetings are sent promptly and consistently, eliminating the need for manual intervention and reducing the risk of forgetting to send wishes to loved ones. Additionally, the use of personalized letter templates adds a thoughtful touch to the birthday messages, enhancing the overall experience for the recipients.<br/></p><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Features</summary><div class="indented"><ol type="1" id="5c868795-0786-4480-ba20-f8cbcd7bae0f" class="numbered-list" start="1"><li><strong>Automated Birthday Detection:</strong> The script automatically detects if there are any birthdays on the current date by comparing it with the birthday data stored in the CSV file.</li></ol><ol type="1" id="bddaeeca-3418-4efe-b0c8-70c1286620fc" class="numbered-list" start="2"><li><strong>Customizable Letter Templates:</strong> Users can create and customize letter templates according to their preferences. The script randomly selects one of these templates to generate a personalized birthday message for each recipient.</li></ol><ol type="1" id="6ab75361-e9e7-40e5-a296-cdeb865fb449" class="numbered-list" start="3"><li><strong>Personalized Messages:</strong> Each birthday email is personalized with the recipient&#x27;s name, retrieved from the CSV file, ensuring that the wishes feel genuine and heartfelt.</li></ol><ol type="1" id="0282d214-9706-4cf5-9b60-86190a86bbd4" class="numbered-list" start="4"><li><strong>Dynamic Email Content:</strong> The content of the birthday emails dynamically changes based on the selected letter template and the name of the recipient, creating a unique message for each person.</li></ol><ol type="1" id="29dcacd3-6985-469b-8260-427d12b9c1cf" class="numbered-list" start="5"><li><strong>SMTP Email Sending:</strong> The script utilizes SMTP (Simple Mail Transfer Protocol) to send birthday emails directly from the user&#x27;s email account. This feature ensures that the emails are sent securely and reliably.</li></ol><ol type="1" id="53fd7c2c-8f6c-46ff-b754-44e714bac6ca" class="numbered-list" start="6"><li><strong>Easy Configuration:</strong> Users can easily configure the script by providing their email address, password, and SMTP server address. These details enable the script to send emails on behalf of the user.</li></ol><ol type="1" id="ca1d95c5-61db-4645-ae65-0e5ec2e1ef71" class="numbered-list" start="7"><li><strong>CSV Data Management:</strong> The project allows users to manage birthday data efficiently using a CSV file. Users can add, update, or remove birthday entries as needed, simplifying the management of birthday information.</li></ol><ol type="1" id="caebf6c9-2699-4895-8e33-612e41caae5a" class="numbered-list" start="8"><li><strong>Scalability:</strong> The script can handle a large number of birthday entries, making it suitable for personal or professional use where there are multiple birthdays to track and celebrate.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">The aim of this project</summary><div class="indented"><ol type="1" id="b05de616-7991-4163-965f-d6d077f3204c" class="numbered-list" start="1"><li><strong>File Handling:</strong> Understanding how to read data from CSV files and manipulate it within a Python script. This includes parsing CSV data, extracting relevant information, and using it to perform tasks.</li></ol><ol type="1" id="c271091c-d040-47fb-96b3-ba9c53228eb4" class="numbered-list" start="2"><li><strong>Date and Time Operations:</strong> Learning how to work with dates and times in Python, including retrieving the current date, comparing dates, and extracting specific components (such as month and day) from dates.</li></ol><ol type="1" id="cad38f72-1133-490f-a9f1-3a62dad11a5a" class="numbered-list" start="3"><li><strong>String Manipulation:</strong> Practicing string manipulation techniques to customize and personalize messages. This includes replacing placeholders in templates with dynamic content and formatting strings for email messages.</li></ol><ol type="1" id="41267e55-e0ff-45c4-b6b8-6757cee467d6" class="numbered-list" start="4"><li><strong>Email Sending:</strong> Gaining familiarity with sending emails programmatically using SMTP in Python. This involves configuring SMTP server settings, establishing a connection, and sending emails with customized content.</li></ol><ol type="1" id="1abb8faf-b616-4f16-8c86-f4d02c3b76c0" class="numbered-list" start="5"><li><strong>Randomization:</strong> Utilizing randomization techniques to add variability and diversity to the birthday messages. This includes randomly selecting letter templates to provide a unique experience for each recipient.</li></ol><ol type="1" id="38862f74-6cef-4ed9-a42d-c77e59931e3d" class="numbered-list" start="6"><li><strong>Security Considerations:</strong> Understanding the importance of handling sensitive information securely, such as email credentials, and exploring best practices for securely storing and using credentials within a script.</li></ol><ol type="1" id="b0f196fd-f845-45e6-9642-85f826d9729e" class="numbered-list" start="7"><li><strong>Project Organization:</strong> Learning how to structure a Python project with multiple files and directories, including organizing data files, templates, and script files in a logical and accessible manner.</li></ol><ol type="1" id="c9f529cb-fe27-4165-9330-1a2599039f2d" class="numbered-list" start="8"><li><strong>Documentation and Comments:</strong> Practicing good documentation and commenting practices to improve code readability and maintainability. This includes adding comments to explain the purpose of functions, variables, and sections of code.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Achievements</summary><div class="indented"><ul id="113c8fd3-5327-4ae6-a78e-6f92872296e7" class="bulleted-list"><li style="list-style-type:disc">Data handling: Reading data from CSV files and extracting relevant information.</li></ul><ul id="80621c32-8d80-4830-91b9-0bddf38d250c" class="bulleted-list"><li style="list-style-type:disc">Date and time operations: Working with dates and times in Python, including comparing dates and extracting date components.</li></ul><ul id="1eb7b8d3-0519-4789-b7cf-dc640ace5c4d" class="bulleted-list"><li style="list-style-type:disc">String manipulation: Customizing and personalizing messages through string manipulation techniques.</li></ul><ul id="a5581c46-72ce-4091-8ab3-d1ef681a3beb" class="bulleted-list"><li style="list-style-type:disc">Email sending: Sending emails programmatically using SMTP in Python, configuring server settings, and sending customized messages.</li></ul><ul id="7ac2b1e3-8473-4b1f-b352-b4a0ea9c4970" class="bulleted-list"><li style="list-style-type:disc">Randomization: Incorporating randomization techniques to add variability to messages, such as randomly selecting letter templates.</li></ul><ul id="6737561a-3261-4edf-b4b5-45cb6be06306" class="bulleted-list"><li style="list-style-type:disc">Security awareness: Handling sensitive information securely, such as email credentials, and practicing best security practices.</li></ul><ul id="b041a222-b34a-4d1d-be71-fe99645fa79e" class="bulleted-list"><li style="list-style-type:disc">Project organization: Structuring Python projects with multiple files and directories in a logical manner.</li></ul><ul id="b01022cd-964c-49d8-9c18-b68d18c62753" class="bulleted-list"><li style="list-style-type:disc">Documentation and comments: Documenting code and adding comments to improve code readability and maintainability.</li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Python code</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">birthday_wisher.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3fa00859-ab2b-4246-9b5d-da97e516c4de" class="code"><code class="language-Python">from datetime import datetime
+import pandas
+import random
+import smtplib
+
+MY_EMAIL = &quot;YOUR EMAIL&quot;
+MY_PASSWORD = &quot;YOUR PASSWORD&quot;
+
+today = datetime.now()
+today_tuple = (today.month, today.day)
+
+data = pandas.read_csv(&quot;birthdays.csv&quot;)
+birthdays_dict = {(data_row[&quot;month&quot;], data_row[&quot;day&quot;]): data_row for (index, data_row) in data.iterrows()}
+if today_tuple in birthdays_dict:
+    birthday_person = birthdays_dict[today_tuple]
+    file_path = f&quot;letter_templates/letter_{random.randint(1,3)}.txt&quot;
+    with open(file_path) as letter_file:
+        contents = letter_file.read()
+        contents = contents.replace(&quot;[NAME]&quot;, birthday_person[&quot;name&quot;])
+
+    with smtplib.SMTP(&quot;YOUR EMAIL PROVIDER SMTP SERVER ADDRESS&quot;) as connection:
+        connection.starttls()
+        connection.login(MY_EMAIL, MY_PASSWORD)
+        connection.sendmail(
+            from_addr=MY_EMAIL,
+            to_addrs=birthday_person[&quot;email&quot;],
+            msg=f&quot;Subject:Happy Birthday!\n\n{contents}&quot;
+        )</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">birthdays.csv</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="33003eba-c874-4926-b5f4-c424e4b147e5" class="code"><code class="language-Plain Text">name,email,year,month,day
+Test,test@email.com,1961,12,21
+[Fill this in!]</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">letter_templates/letter_1.txt</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9d2c85c2-7329-4c8b-9569-2995e4084598" class="code"><code class="language-Plain Text">Dear [NAME],
+
+Happy birthday!
+
+All the best for the year!
+
+Furkan</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">letter_templates/letter_2.txt</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a36a2c52-b060-4d2d-ae58-996f1e883b0e" class="code"><code class="language-Plain Text">Hey [NAME],
+
+Happy birthday! Have a wonderful time today and eat lots of cake!
+
+Lots of love,
+
+Furkan</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">letter_templates/letter_3.txt</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3138a54f-4b80-4e31-b0b6-85ea90b5f9f5" class="code"><code class="language-Plain Text">Dear [NAME],
+
+It&#x27;s your birthday! Have a great day!
+
+All my love,
+
+Furkan</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Instructions for running the project</summary><div class="indented"><ol type="1" id="a82392dd-c9e6-4326-a99e-323194b6abf3" class="numbered-list" start="1"><li><strong>Set Up Environment:</strong><ul id="95685e48-b7cb-4c6f-9eca-3f19d775883c" class="bulleted-list"><li style="list-style-type:disc">Ensure you have Python installed on your system. You can download it from the official Python website if you haven&#x27;t already.</li></ul></li></ol><ol type="1" id="4d09fa2a-c40c-4b05-8f08-461a1c41e4ce" class="numbered-list" start="2"><li><strong>Install Required Libraries:</strong><ul id="26a74268-dce9-4425-9700-0edb0edf735b" class="bulleted-list"><li style="list-style-type:disc">Make sure you have the required libraries installed. This project relies on the <code><strong>pandas</strong></code> library for handling CSV files and the <code><strong>smtplib</strong></code> library for sending emails. You can install these libraries using pip:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="28c518a2-c864-4a0f-bc7e-57a7f452e83e" class="code"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">pip install pandas</code></pre></li></ul></li></ol><ol type="1" id="2ddefe06-34a8-4153-a358-fc429e95245f" class="numbered-list" start="3"><li><strong>Prepare Data and Templates:</strong><ul id="fb287510-ab72-42f5-9236-b88b9222f356" class="bulleted-list"><li style="list-style-type:disc">Create a CSV file named &quot;birthdays.csv&quot; containing the birthday data in the format specified in the script (name, email, year, month, day).</li></ul><ul id="e9aedd77-56d0-43de-ad8f-0721ab7b2a76" class="bulleted-list"><li style="list-style-type:disc">Create letter templates (e.g., &quot;letter_1.txt&quot;, &quot;letter_2.txt&quot;, etc.) in the &quot;letter_templates&quot; directory. Ensure each template contains placeholders like &quot;[NAME]&quot; for personalized messages.</li></ul></li></ol><ol type="1" id="300db613-bb33-4e66-9dab-131f36aaa1c4" class="numbered-list" start="4"><li><strong>Update Script:</strong><ul id="693bcef3-d43f-4ba7-bdbc-1b84b37248a6" class="bulleted-list"><li style="list-style-type:disc">Open the &quot;birthday_wisher.py&quot; script in a text editor.</li></ul><ul id="9d008621-2ee7-4495-a290-7d5ad4b0eef5" class="bulleted-list"><li style="list-style-type:disc">Replace the placeholders in the script:<ul id="b462474b-42b5-473d-b084-18385dfecd39" class="bulleted-list"><li style="list-style-type:circle">Replace <code><strong>&quot;YOUR EMAIL&quot;</strong></code> with your email address.</li></ul><ul id="617c0546-829a-4e91-bc1a-996686de1224" class="bulleted-list"><li style="list-style-type:circle">Replace <code><strong>&quot;YOUR PASSWORD&quot;</strong></code> with your email password. (Note: Storing passwords directly in scripts is not recommended for security reasons. Use environment variables or a more secure method in production.)</li></ul><ul id="aee00f36-c32e-4638-ba22-34e4669e99fe" class="bulleted-list"><li style="list-style-type:circle">Replace <code><strong>&quot;YOUR EMAIL PROVIDER SMTP SERVER ADDRESS&quot;</strong></code> with the SMTP server address provided by your email service provider.</li></ul></li></ul></li></ol><ol type="1" id="4972fc7b-2557-4816-b454-8291d270bd5a" class="numbered-list" start="5"><li><strong>Run the Script:</strong><ul id="322d6c8c-443c-485e-bae6-0e913df1f64e" class="bulleted-list"><li style="list-style-type:disc">Open a terminal or command prompt.</li></ul><ul id="cb24f0e1-316b-47c8-a730-cd8b9cafadaa" class="bulleted-list"><li style="list-style-type:disc">Navigate to the directory containing the &quot;birthday_wisher.py&quot; script.</li></ul><ul id="b2332530-c823-42b8-adbd-267d80edc35b" class="bulleted-list"><li style="list-style-type:disc">Run the script using the following command:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a6630ee1-48f2-40d8-8399-b35233241e37" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">python birthday_wisher.py</code></pre></li></ul></li></ol><ol type="1" id="6ceae467-32d7-448d-8830-2ea98c0571b5" class="numbered-list" start="6"><li><strong>Follow Prompts:</strong><ul id="13e13899-e60c-4b54-883b-a0ae4017eebd" class="bulleted-list"><li style="list-style-type:disc">If today is someone&#x27;s birthday listed in the CSV file, the script will select a random letter template, personalize the message, and send an email to the birthday person&#x27;s email address.</li></ul><ul id="703f0e91-2cbb-4f22-8857-d6a396448848" class="bulleted-list"><li style="list-style-type:disc">Follow any prompts or messages displayed in the terminal/command prompt during script execution.</li></ul></li></ol><ol type="1" id="6fbd2f7e-a9a5-4045-82da-e3ff55afa8f1" class="numbered-list" start="7"><li><strong>Review Sent Emails:</strong><ul id="84a9360c-db79-4992-9fef-6ee06d0fbc5b" class="bulleted-list"><li style="list-style-type:disc">Check your email account to ensure that the birthday emails were sent successfully and that they contain the expected personalized messages.</li></ul></li></ol><ol type="1" id="54cfe08d-d143-4df7-a992-cc2585642d6c" class="numbered-list" start="8"><li><strong>Automation:</strong><ul id="8b925f7b-36b8-4016-9f4c-9b4ca47369f3" class="bulleted-list"><li style="list-style-type:disc">For automation, you can schedule the script to run daily using tools like cron (on Unix-based systems) or Task Scheduler (on Windows). This ensures that birthday wishes are sent automatically without manual intervention.</li></ul></li></ol></div></details><h1 id="71b4cd22-d856-4064-9050-85b977d52fb0" class="">Result</h1><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="52ec6adf-280b-4bfd-b54a-dd0288510dae" class="code"><code class="language-Plain Text">Dear Ali,
+
+It&#x27;s your birthday! Have a great day!
+
+All my love,
+
+Furkan</code></pre></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

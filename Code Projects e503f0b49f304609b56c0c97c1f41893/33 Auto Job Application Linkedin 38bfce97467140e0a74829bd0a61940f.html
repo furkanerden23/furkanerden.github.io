@@ -1,0 +1,741 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>33. Auto Job Application Linkedin</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="38bfce97-4671-40e0-a748-29bd0a61940f" class="page sans"><header><h1 class="page-title">33. Auto Job Application Linkedin</h1><p class="page-description"></p></header><div class="page-body"><p id="495a51f9-d3f2-48ab-8b30-5077bbb24e9a" class="">
+</p><h1 id="fb376ccd-f55f-4a1f-a96b-e5059be571c7" class="">Introduction</h1><p id="953ec6e8-75ce-4cb5-b02a-f2f8234ab556" class="">This Python script, <code><strong>auto_job_application_linkedin.py</strong></code>, is designed to automate the process of applying to job listings on LinkedIn. Here&#x27;s a basic overview of how it works:</p><ol type="1" id="37b67b07-f6ae-45ae-ab27-888310b6eda6" class="numbered-list" start="1"><li>The script uses the Selenium library to interact with the LinkedIn website. Selenium is a tool for automating web browsers.</li></ol><ol type="1" id="86277f70-669d-4b42-b230-2e4c5c23786d" class="numbered-list" start="2"><li>It begins by setting up some constants such as your LinkedIn account email, password, phone number, and the path to your Chrome driver.</li></ol><ol type="1" id="fcd62c0e-1f1c-4ae0-a454-50d4844bddba" class="numbered-list" start="3"><li>It then opens a specific LinkedIn job search page related to marketing intern positions in London, England.</li></ol><ol type="1" id="cc1e90f7-f4dd-4195-95f6-7deb9ddc1c21" class="numbered-list" start="4"><li>The script locates the &quot;Sign in&quot; button and performs the sign-in process using your provided credentials.</li></ol><ol type="1" id="02ed0010-932f-41e2-a2d9-92ce03560e50" class="numbered-list" start="5"><li>After signing in, it searches for job listings on the page and iterates through each listing.</li></ol><ol type="1" id="9d375003-4509-43ea-b86c-8c96ac0c6051" class="numbered-list" start="6"><li>For each listing, it clicks on the listing to view more details.</li></ol><ol type="1" id="325fa190-76e3-4a5f-9cc0-b72dcf9a3d97" class="numbered-list" start="7"><li>It attempts to locate and click the &quot;Apply&quot; button on the job listing.</li></ol><ol type="1" id="695f1bad-ea12-466b-8e8e-0ab6785540e4" class="numbered-list" start="8"><li>If the &quot;Apply&quot; button is found, it fills in the phone number field with the provided phone number and proceeds to submit the application.</li></ol><ol type="1" id="0a70a14e-bba2-4133-9c0c-7ba30a464490" class="numbered-list" start="9"><li>If the application process involves multiple steps, it handles those steps accordingly.</li></ol><ol type="1" id="0b0a4e72-1524-462c-9f36-0b9cdc539964" class="numbered-list" start="10"><li>If no &quot;Apply&quot; button is found for a listing, it skips that listing.</li></ol><ol type="1" id="305d7ed7-226d-4748-8dae-35e738ab25ef" class="numbered-list" start="11"><li>After applying to all eligible listings, the script quits the browser.</li></ol><p id="6c05a776-12dd-442d-83c8-e6252a36f47c" class="">This script automates the repetitive task of applying to multiple job listings on LinkedIn, saving time and effort for users. However, it&#x27;s important to use such automation scripts responsibly and ethically, ensuring compliance with LinkedIn&#x27;s terms of service and respecting the integrity of the job application process.</p><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Features</summary><div class="indented"><ol type="1" id="5c514d47-ca80-4cf1-93ce-c5820386e06f" class="numbered-list" start="1"><li><strong>Automated Job Search</strong>: The script opens a specific LinkedIn job search page and retrieves job listings based on predefined search criteria, in this case, marketing intern positions in London, England.</li></ol><ol type="1" id="dbfb40ef-8b46-45be-8ad7-43df5b181753" class="numbered-list" start="2"><li><strong>User Authentication</strong>: It automates the sign-in process using provided LinkedIn account credentials (email and password).</li></ol><ol type="1" id="ae4e1a09-ac3f-44e0-ad97-2ab2576f25cd" class="numbered-list" start="3"><li><strong>Dynamic Interaction with Web Elements</strong>: Utilizing Selenium, the script locates and interacts with various web elements such as buttons, input fields, and links on the LinkedIn website.</li></ol><ol type="1" id="3a14f1eb-7f73-411b-a942-4a7318faf38e" class="numbered-list" start="4"><li><strong>Iterative Job Application</strong>: It iterates through each job listing, clicks on the listing to view details, and applies to eligible listings automatically.</li></ol><ol type="1" id="4abdea0f-b556-4039-8c5f-c4402023d8e2" class="numbered-list" start="5"><li><strong>Handling Application Process</strong>: The script handles the application process, including filling in the phone number field and submitting applications. It also manages multi-step application processes, skipping complex applications if necessary.</li></ol><ol type="1" id="b2613a36-f779-44f5-984b-bfc2ba5b0cfc" class="numbered-list" start="6"><li><strong>Error Handling</strong>: The script includes error handling mechanisms such as catching NoSuchElementException to handle cases where certain elements are not found on the page.</li></ol><ol type="1" id="bd505808-0a07-408f-8cbb-e0e7b1a2c80d" class="numbered-list" start="7"><li><strong>Output and Logging</strong>: It provides basic console output, printing messages indicating the status of each job application process, such as whether an application was successful or if it was skipped.</li></ol><ol type="1" id="1fda050b-77a0-4138-8ae7-57aaa0076056" class="numbered-list" start="8"><li><strong>Browser Management</strong>: The script manages the web browser lifecycle, opening and closing the browser as needed.</li></ol><ol type="1" id="613dd818-2590-4376-8032-a1df81fb977d" class="numbered-list" start="9"><li><strong>Customization</strong>: Users can customize parameters such as their LinkedIn account credentials, phone number, and Chrome driver path to adapt the script to their specific needs.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">The aim of this project</summary><div class="indented"><ol type="1" id="437b63ca-5df7-41d8-8706-bf4e082acf7f" class="numbered-list" start="1"><li><strong>Web Scraping Techniques</strong>: Students will learn how to extract data from web pages using libraries like Selenium. This includes navigating web pages, locating specific HTML elements, and interacting with them programmatically.</li></ol><ol type="1" id="91b18d2e-573d-42de-9b7f-950859029169" class="numbered-list" start="2"><li><strong>Handling User Authentication</strong>: The project involves automating the sign-in process on LinkedIn, which introduces learners to handling authentication mechanisms on websites.</li></ol><ol type="1" id="8f5c7c0d-f03e-4bb0-98d3-5d206142862c" class="numbered-list" start="3"><li><strong>Error Handling and Troubleshooting</strong>: Learners will encounter various potential errors during the automation process, such as element not found exceptions or unexpected page structures. They&#x27;ll need to implement error handling techniques to ensure the script runs smoothly and troubleshoot issues effectively.</li></ol><ol type="1" id="3335176f-02da-4a08-8e33-837b4925a42c" class="numbered-list" start="4"><li><strong>Understanding DOM Structure</strong>: By inspecting and interacting with elements on the LinkedIn website, students will gain a better understanding of the Document Object Model (DOM) and how web pages are structured.</li></ol><ol type="1" id="323ff61d-59f8-4d87-a65d-dc428b58e7b4" class="numbered-list" start="5"><li><strong>Script Customization</strong>: The project allows for customization of parameters such as login credentials and search criteria, encouraging learners to experiment with different settings and adapt the script to their needs.</li></ol><ol type="1" id="2da7b2af-8d08-4de3-88d6-353ead8aa036" class="numbered-list" start="6"><li><strong>Ethical Considerations</strong>: Through discussions or guidance, students can explore the ethical implications of web scraping and automation, such as respecting website terms of service, data privacy concerns, and maintaining integrity in job application processes.</li></ol><ol type="1" id="c07bea7f-ca98-463f-8f41-a6516e3f46c0" class="numbered-list" start="7"><li><strong>Project Management</strong>: Depending on the complexity of the project and the learning environment, students may need to plan and organize their work, break down tasks into manageable steps, and iterate on their code as they encounter challenges.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Achievements</summary><div class="indented"><ol type="1" id="f3c609ce-adfc-4dc9-9c74-08487ccc9198" class="numbered-list" start="1"><li>Practical Application of Web Scraping</li></ol><ol type="1" id="1a0160e5-e510-4da9-8aa9-b3781d69d865" class="numbered-list" start="2"><li>Understanding User Authentication</li></ol><ol type="1" id="f257b644-54c3-4461-878d-a0f74cb5aba7" class="numbered-list" start="3"><li>Error Handling Skills</li></ol><ol type="1" id="fb844d9c-870d-4fc6-88b0-f67940eb73ba" class="numbered-list" start="4"><li>Deepened Understanding of DOM Structure</li></ol><ol type="1" id="1b760955-a7d0-44e3-bc19-efe377552335" class="numbered-list" start="5"><li>Customization and Parameterization</li></ol><ol type="1" id="256c3fe0-19aa-4a81-9b1b-fb721b3f5f14" class="numbered-list" start="6"><li>Exploration of Ethical Considerations</li></ol><ol type="1" id="a0b571fc-a858-41c8-b8d0-2f2a032d5100" class="numbered-list" start="7"><li>Project Management and Iterative Development</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Python code</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">auto_job_application_linkedin.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b7591de0-9835-4c67-be48-0868954f78b7" class="code"><code class="language-Python">from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
+import time
+
+ACCOUNT_EMAIL = &#x27;YOUR LOGIN EMAIL&#x27;
+ACCOUNT_PASSWORD = &#x27;YOUR LOGIN PASSWORD&#x27;
+PHONE = &#x27;YOUR PHONE NUMBER&#x27;
+
+chrome_driver_path = &#x27;YOUR CHROME DRIVER PATH&#x27;
+driver = webdriver.Chrome(chrome_driver_path)
+driver.get(&quot;https://www.linkedin.com/jobs/search/?f_LF=f_AL&amp;geoId=102257491&amp;keywords=marketing%20intern&amp;location=London%2C%20England%2C%20United%20Kingdom&amp;redirect=false&amp;position=1&amp;pageNum=0&quot;)
+
+time.sleep(2)
+sign_in_button = driver.find_element(By.LINK_TEXT, &quot;Sign in&quot;)
+sign_in_button.click()
+
+time.sleep(5)
+email_field = driver.find_element(By.ID, &quot;username&quot;)
+email_field.send_keys(ACCOUNT_EMAIL)
+password_field = driver.find_element(By.ID, &quot;password&quot;)
+password_field.send_keys(ACCOUNT_PASSWORD)
+password_field.send_keys(Keys.ENTER)
+
+time.sleep(5)
+
+all_listings = driver.find_elements(By.CSS_SELECTOR, &quot;.job-card-container--clickable&quot;)
+
+for listing in all_listings:
+    print(&quot;called&quot;)
+    listing.click()
+    time.sleep(2)
+    try:
+        apply_button = driver.find_element(By.CSS_SELECTOR, &quot;.jobs-s-apply button&quot;)
+        apply_button.click()
+
+        time.sleep(5)
+        phone = driver.find_element(By.CLASS_NAME, &quot;fb-single-line-text__input&quot;)
+        if phone.text == &quot;&quot;:
+            phone.send_keys(PHONE)
+        
+        submit_button = driver.find_element(By.CSS_SELECTOR, &quot;footer button&quot;)
+        if submit_button.get_attribute(&quot;data-control-name&quot;) == &quot;continue_unify&quot;:
+            close_button = driver.find_element(By.CLASS_NAME, &quot;artdeco-modal__dismiss&quot;)
+            close_button.click()
+            
+            time.sleep(2)
+            discard_button = driver.find_elements(By.CLASS_NAME, &quot;artdeco-modal__confirm-dialog-btn&quot;)[1]
+            discard_button.click()
+            print(&quot;Complex application, skipped.&quot;)
+            continue
+        else:
+            submit_button.click()
+
+        time.sleep(2)
+        close_button = driver.find_element(By.CLASS_NAME, &quot;artdeco-modal__dismiss&quot;)
+        close_button.click()
+
+    except NoSuchElementException:
+        print(&quot;No application button, skipped.&quot;)
+        continue
+
+time.sleep(5)
+driver.quit()</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Instructions for running the project</summary><div class="indented"><ol type="1" id="5b052de7-612f-42a0-8bd0-9c14706759cd" class="numbered-list" start="1"><li>Ensure you have Python installed on your system. You can download and install Python from the official website: https://www.python.org/downloads/</li></ol><ol type="1" id="67966586-6b24-483f-9ba5-f228c7209633" class="numbered-list" start="2"><li>Install the required Python packages by running the following command in your terminal or command prompt:</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="db1d860f-5136-4916-af80-9c15494e4d5a" class="code"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">pip install selenium</code></pre><ol type="1" id="bc25da8a-d6e1-4b00-bb4f-a75d45de1502" class="numbered-list" start="3"><li>Download the Chrome WebDriver that matches your Chrome browser version from the official ChromeDriver website: https://sites.google.com/a/chromium.org/chromedriver/downloads</li></ol><ol type="1" id="a17ea4fb-ddcf-477a-a43f-7d2596b09e75" class="numbered-list" start="4"><li>Extract the downloaded Chrome WebDriver and note down the path to the chromedriver executable.</li></ol><ol type="1" id="89f78e77-f313-43aa-8bde-48dc96b30f42" class="numbered-list" start="5"><li>Open the <code><strong>auto_job_application_linkedin.py</strong></code> file in a text editor.</li></ol><ol type="1" id="f31ba0ed-e751-4da8-8039-e63708d8b858" class="numbered-list" start="6"><li>Replace the placeholders in the script with your LinkedIn account email, password, phone number, and the path to the chromedriver executable.</li></ol><ol type="1" id="63aee20e-cade-4e68-81ce-bb95b0e1deaa" class="numbered-list" start="7"><li>Save the changes to the script.</li></ol><ol type="1" id="aab25953-82b4-45dc-bf69-d298dc2528d7" class="numbered-list" start="8"><li>Open your terminal or command prompt and navigate to the directory containing the <code><strong>auto_job_application_linkedin.py</strong></code> file.</li></ol><ol type="1" id="e7d0973b-64f8-4a80-aeb6-a9bd70a2ad54" class="numbered-list" start="9"><li>Run the script by executing the following command:</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d35ca92a-c87b-4478-a4f3-54ba205d87e4" class="code"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">python auto_job_application_linkedin.py</code></pre><ol type="1" id="f009d024-894c-4bba-8713-c44a5824761c" class="numbered-list" start="10"><li>The script will launch a Chrome browser window, navigate to the LinkedIn job search page, sign in to your LinkedIn account, and start applying to job listings automatically.</li></ol><ol type="1" id="099cd689-f70f-4dbe-8d4f-7129a2f53132" class="numbered-list" start="11"><li>Monitor the terminal/command prompt for status messages indicating the progress of the job application process.</li></ol><ol type="1" id="0f9eecb2-86a3-4b28-9f13-2c39488c16ad" class="numbered-list" start="12"><li>Once the script has applied to all eligible job listings, it will close the browser window automatically.</li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

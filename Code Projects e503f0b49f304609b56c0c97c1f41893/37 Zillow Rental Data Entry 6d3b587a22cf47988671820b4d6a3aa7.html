@@ -1,0 +1,745 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>37. Zillow Rental Data Entry</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="6d3b587a-22cf-4798-8671-820b4d6a3aa7" class="page sans"><header><h1 class="page-title">37. Zillow Rental Data Entry</h1><p class="page-description"></p></header><div class="page-body"><p id="2647e53c-cc88-45eb-be01-5cb59d815cdb" class="">
+</p><h1 id="3c076b5d-7bf6-4d5b-9207-663d6c380226" class="">Introduction</h1><p id="cf48dd47-eea9-4493-99b5-13865ee0bbf4" class="">This project designed to scrape rental property data from Zillow for a specific location, here specified as San Francisco, CA. The script utilizes web scraping techniques with Python libraries like BeautifulSoup and Selenium.</p><p id="e20c9272-b420-4211-9db7-e8f8c70b8a8d" class="">Here&#x27;s a basic breakdown of what the script does:</p><ol type="1" id="70c96c66-c70f-497e-b496-4e2c22575e34" class="numbered-list" start="1"><li>It sends a request to Zillow&#x27;s website with predefined headers to retrieve the HTML content of the page listing rental properties in San Francisco.</li></ol><ol type="1" id="14772148-4913-4a30-8c6c-edf8a8dbadf8" class="numbered-list" start="2"><li>It parses the HTML content using BeautifulSoup to extract relevant information such as property links, addresses, and prices.</li></ol><ol type="1" id="2381180d-dcdb-48ed-bbb5-0a9cc9ce66df" class="numbered-list" start="3"><li>It formats the extracted data into lists (<code><strong>all_links</strong></code>, <code><strong>all_addresses</strong></code>, and <code><strong>all_prices</strong></code>) for further processing.</li></ol><ol type="1" id="5bb69534-c361-4bb9-9e66-78f9e9e16f73" class="numbered-list" start="4"><li>It utilizes Selenium, a web automation tool, to fill out a Google Form with the scraped data. This requires specifying the path to the Chrome WebDriver (<code><strong>chrome_driver_path</strong></code>) and the URL of the Google Form (<code><strong>URL_TO_YOUR_GOOGLE_FORM</strong></code>).</li></ol><ol type="1" id="8724529f-21a3-49ae-8cb5-159611cdafae" class="numbered-list" start="5"><li>For each property, it fills out the form fields (address, price, and link) and submits the form.</li></ol><p id="a2ad4ee3-6bff-4d8c-9f85-8bdaa3b964b3" class="">Some key points to note:</p><ul id="8d43254a-f1ac-43c4-9ac2-a4520b04dc71" class="bulleted-list"><li style="list-style-type:disc">The script assumes a specific structure of the Zillow webpage for extracting data. Changes in the webpage structure might require modifications to the scraping logic.</li></ul><ul id="d880eadc-164d-49a7-988f-e91fc37942ff" class="bulleted-list"><li style="list-style-type:disc">It&#x27;s important to replace placeholders like <code><strong>YOUR_PATH_HERE</strong></code> with the actual path to the Chrome WebDriver and <code><strong>URL_TO_YOUR_GOOGLE_FORM</strong></code> with the URL of the Google Form you intend to use.</li></ul><ul id="25641a41-dbc6-4d37-a626-01b5dab3158a" class="bulleted-list"><li style="list-style-type:disc">Web scraping can be subject to legal and ethical considerations, and it&#x27;s important to review and comply with the terms of service of the websites you are scraping data from.</li></ul><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Features</summary><div class="indented"><ol type="1" id="beb59fb4-46ce-4a38-84e9-16c6750d2fdf" class="numbered-list" start="1"><li><strong>Web Scraping</strong>: The script utilizes web scraping techniques to extract rental property data from Zillow&#x27;s website. It fetches property links, addresses, and prices from the HTML content of the webpage.</li></ol><ol type="1" id="7f762abc-a322-40d0-a99e-710b9c022bbc" class="numbered-list" start="2"><li><strong>Libraries</strong>: It makes use of various Python libraries:<ul id="1d0454ca-9ab7-4162-b68f-b7164dc81c00" class="bulleted-list"><li style="list-style-type:disc">BeautifulSoup: For parsing HTML content and extracting data.</li></ul><ul id="998cfe84-b162-4f2b-af23-42ec488073ec" class="bulleted-list"><li style="list-style-type:disc">Requests: For sending HTTP requests to Zillow&#x27;s website and retrieving HTML content.</li></ul><ul id="9651c89b-6f95-45fd-892b-bb4a7329e429" class="bulleted-list"><li style="list-style-type:disc">Selenium: For automating interactions with the Google Form, enabling the script to fill out form fields and submit data.</li></ul></li></ol><ol type="1" id="1b36ab4c-ca86-4f4f-8510-d052cd278355" class="numbered-list" start="3"><li><strong>Dynamic Data Handling</strong>: It employs dynamic data handling techniques to deal with variations in the HTML structure of the webpage. For example, it handles cases where prices are displayed differently for single listings and multiple listings.</li></ol><ol type="1" id="301adb47-737a-4134-9a4c-f18242b19a77" class="numbered-list" start="4"><li><strong>Google Form Integration</strong>: The script integrates with a Google Form to input the scraped data. It fills out form fields for address, price, and link for each property and submits the form.</li></ol><ol type="1" id="abbfa857-eaf5-4266-b5fc-ddcdd6c3666e" class="numbered-list" start="5"><li><strong>Customization</strong>: The script allows for customization by providing placeholders for the Chrome WebDriver path and the URL of the Google Form. This enables users to adapt the script to their specific environment and requirements.</li></ol><ol type="1" id="e6b353aa-6d83-45cb-b0b0-d991da9f5b55" class="numbered-list" start="6"><li><strong>Error Handling</strong>: While not explicitly stated, error handling can be considered a feature of this script. It could be expanded upon to handle various exceptions that might occur during web scraping or form submission, ensuring robustness and reliability.</li></ol><ol type="1" id="a6491b05-169b-47c6-b50b-62d60a2ff352" class="numbered-list" start="7"><li><strong>Scalability</strong>: The script can be scaled to scrape data from different locations by modifying the URL parameters to target different regions on Zillow&#x27;s website.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">The aim of this project</summary><div class="indented"><ol type="1" id="a808216f-ebf9-4d35-89af-e8bb9f6938d9" class="numbered-list" start="1"><li><strong>Web Scraping Skills</strong>: The project aims to teach the learner how to scrape data from websites using Python libraries like BeautifulSoup and Requests. It provides hands-on experience in extracting specific information from HTML content.</li></ol><ol type="1" id="d4af4a41-eb43-44f8-a85b-847cb812de45" class="numbered-list" start="2"><li><strong>Understanding HTML Structure</strong>: By dissecting the structure of the Zillow webpage and extracting data from it, the project helps learners understand how web pages are constructed using HTML and how to navigate through different elements to locate desired information.</li></ol><ol type="1" id="4dd40be5-9ec3-4c0d-b6c0-53e0f511773d" class="numbered-list" start="3"><li><strong>Introduction to Automation</strong>: Through the integration of Selenium, the project introduces learners to the concept of automation in web interactions. They learn how to programmatically interact with web elements, such as filling out forms and clicking buttons.</li></ol><ol type="1" id="3735ef8b-e461-42ba-b1f1-81b8808e5ccb" class="numbered-list" start="4"><li><strong>Data Handling and Processing</strong>: The project involves processing the extracted data, such as cleaning and formatting it for further use. This teaches learners important data handling skills, including parsing, filtering, and organizing information.</li></ol><ol type="1" id="15f9c530-e3c0-4a54-b2e7-ca5575a48c28" class="numbered-list" start="5"><li><strong>Integration with External Services</strong>: By incorporating Google Forms, the project demonstrates how to integrate Python scripts with external services for data input and collection. This teaches learners how to leverage APIs or automation tools to interact with other platforms and services.</li></ol><ol type="1" id="75f79e2e-2ec9-422e-baa9-c77a97e1456e" class="numbered-list" start="6"><li><strong>Error Handling and Troubleshooting</strong>: While not explicitly implemented in the provided code, learners can explore error handling techniques and troubleshoot common issues encountered during web scraping and automation tasks. This fosters problem-solving skills and resilience in dealing with unexpected challenges.</li></ol><ol type="1" id="f783e588-4b62-4325-8aaf-161fa1a927c9" class="numbered-list" start="7"><li><strong>Ethical Considerations</strong>: Through discussions around web scraping ethics and legality, learners gain awareness of the ethical considerations involved in accessing and using web data. This includes understanding terms of service, respecting website policies, and ensuring data privacy and consent.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Achievements</summary><div class="indented"><ol type="1" id="eeac8df5-0452-4159-bda1-2d5782dc7eed" class="numbered-list" start="1"><li>Web Scraping Proficiency</li></ol><ol type="1" id="f68776e8-00dc-47f1-9806-e6501b94d72e" class="numbered-list" start="2"><li>Understanding HTML Structure</li></ol><ol type="1" id="c31397d7-5f0d-493f-b996-837ad7cdd309" class="numbered-list" start="3"><li>Automation Skills</li></ol><ol type="1" id="0d9f9cd9-d15c-4c88-8c7a-cc896be9534f" class="numbered-list" start="4"><li>Data Handling Techniques</li></ol><ol type="1" id="83fb6c06-f1d4-4d44-a17e-859459635bef" class="numbered-list" start="5"><li>Integration with External Services</li></ol><ol type="1" id="1fe72587-8b1c-438b-8a01-6cfaecf73fac" class="numbered-list" start="6"><li>Error Handling Strategies</li></ol><ol type="1" id="33a83eb6-0532-455e-8d4e-e6cb42a1fd63" class="numbered-list" start="7"><li>Ethical Awareness</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Python code</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">zillow_rental_data_entry.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10ad7532-e950-48c8-8c26-236800a09e2b" class="code"><code class="language-Python">from bs4 import BeautifulSoup
+import requests
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
+
+header = {
+    &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36&quot;,
+    &quot;Accept-Language&quot;: &quot;en-GB,en-US;q=0.9,en;q=0.8&quot;
+}
+
+response = requests.get(
+    &quot;https://www.zillow.com/homes/San-Francisco,-CA_rb/?searchQueryState=%7B%22pagination%22%3A%7B%7D%2C%22usersSearchTerm%22%3A%22San%20Francisco%2C%20CA%22%2C%22mapBounds%22%3A%7B%22west%22%3A-122.55177535009766%2C%22east%22%3A-122.31488264990234%2C%22south%22%3A37.69926912019228%2C%22north%22%3A37.851235694487485%7D%2C%22regionSelection%22%3A%5B%7B%22regionId%22%3A20330%2C%22regionType%22%3A6%7D%5D%2C%22isMapVisible%22%3Atrue%2C%22filterState%22%3A%7B%22fr%22%3A%7B%22value%22%3Atrue%7D%2C%22fsba%22%3A%7B%22value%22%3Afalse%7D%2C%22fsbo%22%3A%7B%22value%22%3Afalse%7D%2C%22nc%22%3A%7B%22value%22%3Afalse%7D%2C%22cmsn%22%3A%7B%22value%22%3Afalse%7D%2C%22auc%22%3A%7B%22value%22%3Afalse%7D%2C%22fore%22%3A%7B%22value%22%3Afalse%7D%2C%22pmf%22%3A%7B%22value%22%3Afalse%7D%2C%22pf%22%3A%7B%22value%22%3Afalse%7D%2C%22mp%22%3A%7B%22max%22%3A3000%7D%2C%22price%22%3A%7B%22max%22%3A872627%7D%2C%22beds%22%3A%7B%22min%22%3A1%7D%7D%2C%22isListVisible%22%3Atrue%2C%22mapZoom%22%3A12%7D&quot;,
+    headers=header)
+
+data = response.text
+soup = BeautifulSoup(data, &quot;html.parser&quot;)
+
+all_link_elements = soup.select(&quot;.list-card-top a&quot;)
+
+all_links = []
+for link in all_link_elements:
+    href = link[&quot;href&quot;]
+    print(href)
+    if &quot;http&quot; not in href:
+        all_links.append(f&quot;https://www.zillow.com{href}&quot;)
+    else:
+        all_links.append(href)
+
+all_address_elements = soup.select(&quot;.list-card-info address&quot;)
+all_addresses = [address.get_text().split(&quot; | &quot;)[-1] for address in all_address_elements]
+
+all_price_elements = soup.select(&quot;.list-card-heading&quot;)
+all_prices = []
+for element in all_price_elements:
+    # Get the prices. Single and multiple listings have different tag &amp; class structures
+    try:
+        # Price with only one listing
+        price = element.select(&quot;.list-card-price&quot;)[0].contents[0]
+    except IndexError:
+        print(&#x27;Multiple listings for the card&#x27;)
+        # Price with multiple listings
+        price = element.select(&quot;.list-card-details li&quot;)[0].contents[0]
+    finally:
+        all_prices.append(price)
+
+
+# Create Spreadsheet using Google Form
+# Substitute your own path here 👇
+chrome_driver_path = &#x27;YOUR_PATH_HERE&#x27;
+driver = webdriver.Chrome(executable_path=chrome_driver_path)
+
+for n in range(len(all_links)):
+    # Substitute your own Google Form URL here 👇
+    driver.get(&#x27;URL_TO_YOUR_GOOGLE_FORM&#x27;)
+
+    time.sleep(2)
+    address = driver.find_element(By.XPATH, 
+        &#x27;//*[@id=&quot;mG61Hd&quot;]/div[2]/div/div[2]/div[1]/div/div/div[2]/div/div[1]/div/div[1]/input&#x27;)
+    price = driver.find_element(By.XPATH, 
+        &#x27;//*[@id=&quot;mG61Hd&quot;]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div/div[1]/input&#x27;)
+    link = driver.find_element(By.XPATH, 
+        &#x27;//*[@id=&quot;mG61Hd&quot;]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div/div[1]/input&#x27;)
+    submit_button = driver.find_element(By.XPATH, &#x27;//*[@id=&quot;mG61Hd&quot;]/div[2]/div/div[3]/div[1]/div/div&#x27;)
+
+    address.send_keys(all_addresses[n])
+    price.send_keys(all_prices[n])
+    link.send_keys(all_links[n])
+    submit_button.click()</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Instructions for running the project</summary><div class="indented"><ol type="1" id="9134f5a3-4b6f-4752-9d77-bd5491b7af63" class="numbered-list" start="1"><li>Install necessary dependencies:<ul id="73064202-3694-42c3-a766-aa2e66b3a04b" class="bulleted-list"><li style="list-style-type:disc">Make sure you have Python installed on your system.</li></ul><ul id="f3c895be-3cd7-42df-8f16-22182e3f75ff" class="bulleted-list"><li style="list-style-type:disc">Install required Python libraries using pip:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a1d1ac79-1241-4215-a7da-94319ffbed29" class="code"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">pip install beautifulsoup4 requests selenium</code></pre></li></ul></li></ol><ol type="1" id="fa3e1f62-7664-4a29-8c93-647c0c3fd7d9" class="numbered-list" start="2"><li>Download a compatible Chrome WebDriver:<ul id="a8ee56bf-a200-449f-a9b3-1f9c0c60664a" class="bulleted-list"><li style="list-style-type:disc">Download the appropriate Chrome WebDriver compatible with your Chrome browser version. You can find the WebDriver here: https://sites.google.com/a/chromium.org/chromedriver/downloads</li></ul><ul id="d2891f67-b4eb-4dca-9bad-572cf100d6b8" class="bulleted-list"><li style="list-style-type:disc">Extract the WebDriver executable and note down its file path.</li></ul></li></ol><ol type="1" id="c35cf788-6944-4d01-adcf-b7868f0d70b3" class="numbered-list" start="3"><li>Update the script with WebDriver path and Google Form URL:<ul id="90416de1-e42c-4e57-8084-03e3c61bbf54" class="bulleted-list"><li style="list-style-type:disc">Replace <code><strong>&#x27;YOUR_PATH_HERE&#x27;</strong></code> with the actual path to the Chrome WebDriver executable.</li></ul><ul id="b3ce9292-dd4b-4f88-b343-e42c460a5059" class="bulleted-list"><li style="list-style-type:disc">Substitute <code><strong>&#x27;URL_TO_YOUR_GOOGLE_FORM&#x27;</strong></code> with the URL of the Google Form where you want to input the scraped data.</li></ul></li></ol><ol type="1" id="8c636b3c-c2b3-4679-9e5b-b47a3d8e1004" class="numbered-list" start="4"><li>Run the script:<ul id="2f55565a-bbcb-4fc6-b23a-591f76009272" class="bulleted-list"><li style="list-style-type:disc">Open a terminal or command prompt.</li></ul><ul id="6f0515bb-c48e-44ed-9699-61d9e9113b80" class="bulleted-list"><li style="list-style-type:disc">Navigate to the directory containing <code><strong>zillow_rental_data_entry.py</strong></code>.</li></ul><ul id="d9fc3a3f-473d-411c-b01f-1af21f733768" class="bulleted-list"><li style="list-style-type:disc">Run the script using the following command:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ba321359-a2fe-4d2a-b38c-b0c50808c5f4" class="code"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">python zillow_rental_data_entry.py</code></pre></li></ul></li></ol><ol type="1" id="5357a78f-28f4-42e7-86cc-372689b2e59b" class="numbered-list" start="5"><li>Monitor the execution:<ul id="bd9cd837-1bdf-45db-bf80-75cdd2615bea" class="bulleted-list"><li style="list-style-type:disc">The script will start executing and will print out the URLs of the rental properties it scrapes from Zillow.</li></ul><ul id="49818216-3c97-455c-b23e-0f7be8a47b59" class="bulleted-list"><li style="list-style-type:disc">It will then attempt to fill out the Google Form with the scraped data.</li></ul></li></ol><ol type="1" id="26310b65-4a7f-478b-a722-552f8165d5c9" class="numbered-list" start="6"><li>Verify the results:<ul id="0914f19f-3fb5-4c6b-9043-2c7c244f831a" class="bulleted-list"><li style="list-style-type:disc">Check the Google Form to ensure that the data has been successfully submitted.</li></ul></li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

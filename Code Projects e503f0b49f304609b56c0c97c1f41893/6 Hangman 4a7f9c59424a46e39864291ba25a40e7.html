@@ -1,0 +1,1653 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Hangman</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="4a7f9c59-424a-46e3-9864-291ba25a40e7" class="page sans"><header><h1 class="page-title">Hangman</h1><p class="page-description"></p></header><div class="page-body"><p id="b4d98ab0-cc0b-4175-9599-9744af37eaa0" class="">
+</p><h1 id="3d566865-adff-4e0f-8754-e8d41b913e93" class="">Introduction</h1><p id="dd0fea27-d6df-4211-98ba-c0a76c0f15b0" class="">Remember the good days when we used to play hangman at school? I think that could be cool to code this game. Let’s do it!</p><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">The aim of this project</summary><div class="indented"><p id="89582f44-60cf-4ca0-8d03-b8211ccaca2f" class="">First of all, you should use different python files together to make everything easier. Then, choose a random word from the words file. You gotta be able to display ‘_’ character for every single letter of the target word. Get a letter guess from the player, compare it with the letters of the target word. If the player out of guess, game over. If they find the word, that’s a win!</p></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Achievements</summary><div class="indented"><ul id="4429922d-bb4e-4274-be6d-79dcd297d931" class="bulleted-list"><li style="list-style-type:disc">import your own file</li></ul><ul id="116f2b11-7f1e-4584-82b4-465709d1a7bf" class="bulleted-list"><li style="list-style-type:disc">Choice a random item from list</li></ul><ul id="aa5aafa4-ed6e-4776-a9d2-5debc65a6528" class="bulleted-list"><li style="list-style-type:disc">While/for loops</li></ul><ul id="b77c7676-0f79-4839-b47c-f94e50ad3c3c" class="bulleted-list"><li style="list-style-type:disc">If statements</li></ul><ul id="6ecd7bb5-1aa0-43da-a2f5-50ccbea6ad54" class="bulleted-list"><li style="list-style-type:disc">Length of text</li></ul><ul id="af3bb567-5c02-4d32-b8ab-fb40cd64489a" class="bulleted-list"><li style="list-style-type:disc">Input function usage</li></ul><ul id="d30ffd92-d1d3-4c9d-8717-8bf3bd94becd" class="bulleted-list"><li style="list-style-type:disc">Store data in variables</li></ul><ul id="aaceb1a6-4a48-478d-b8bc-2c709c61571d" class="bulleted-list"><li style="list-style-type:disc">Print information with F string</li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Python code</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">main.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="84d733a3-a197-476b-82b0-c9ed958a4738" class="code"><code class="language-Python">import random
+from hangman_art import stages, logo
+from hangman_words import word_list
+
+game_is_finished = False
+lives = len(stages) - 1
+
+chosen_word = random.choice(word_list)
+word_length = len(chosen_word)
+
+display = []
+for _ in range(word_length):
+    display += &quot;_&quot;
+
+while not game_is_finished:
+    guess = input(&quot;Guess a letter: &quot;).lower()
+
+    if guess in display:
+        print(f&quot;You&#x27;ve already guessed {guess}&quot;)
+
+    for position in range(word_length):
+        letter = chosen_word[position]
+        if letter == guess:
+            display[position] = letter
+    print(f&quot;{&#x27; &#x27;.join(display)}&quot;)
+
+    if guess not in chosen_word:
+        print(f&quot;You guessed {guess}, that&#x27;s not in the word. You lose a life.&quot;)
+        lives -= 1
+        if lives == 0:
+            game_is_finished = True
+            print(f&#x27;{chosen_word} was the word!&#x27;)
+            print(&quot;You lose.&quot;)
+    
+    if not &quot;_&quot; in display:
+        game_is_finished = True
+        print(&quot;You win.&quot;)
+
+    print(stages[lives])</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">words.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fdb925f2-9a12-4f48-97a1-90c0e1ad4f0f" class="code"><code class="language-Python">word_list = [
+&#x27;abruptly&#x27;, 
+&#x27;absurd&#x27;, 
+&#x27;abyss&#x27;, 
+&#x27;affix&#x27;, 
+&#x27;askew&#x27;, 
+&#x27;avenue&#x27;, 
+&#x27;awkward&#x27;, 
+&#x27;axiom&#x27;, 
+&#x27;azure&#x27;, 
+&#x27;bagpipes&#x27;, 
+&#x27;bandwagon&#x27;, 
+&#x27;banjo&#x27;, 
+&#x27;bayou&#x27;, 
+&#x27;beekeeper&#x27;, 
+&#x27;bikini&#x27;, 
+&#x27;blitz&#x27;, 
+&#x27;blizzard&#x27;, 
+&#x27;boggle&#x27;, 
+&#x27;bookworm&#x27;, 
+&#x27;boxcar&#x27;, 
+&#x27;boxful&#x27;, 
+&#x27;buckaroo&#x27;, 
+&#x27;buffalo&#x27;, 
+&#x27;buffoon&#x27;, 
+&#x27;buxom&#x27;, 
+&#x27;buzzard&#x27;, 
+&#x27;buzzing&#x27;, 
+&#x27;buzzwords&#x27;, 
+&#x27;caliph&#x27;, 
+&#x27;cobweb&#x27;, 
+&#x27;cockiness&#x27;, 
+&#x27;croquet&#x27;, 
+&#x27;crypt&#x27;, 
+&#x27;curacao&#x27;, 
+&#x27;cycle&#x27;, 
+&#x27;daiquiri&#x27;, 
+&#x27;dirndl&#x27;, 
+&#x27;disavow&#x27;, 
+&#x27;dizzying&#x27;, 
+&#x27;duplex&#x27;, 
+&#x27;dwarves&#x27;, 
+&#x27;embezzle&#x27;, 
+&#x27;equip&#x27;, 
+&#x27;espionage&#x27;, 
+&#x27;euouae&#x27;, 
+&#x27;exodus&#x27;, 
+&#x27;faking&#x27;, 
+&#x27;fishhook&#x27;, 
+&#x27;fixable&#x27;, 
+&#x27;fjord&#x27;, 
+&#x27;flapjack&#x27;, 
+&#x27;flopping&#x27;, 
+&#x27;fluffiness&#x27;, 
+&#x27;flyby&#x27;, 
+&#x27;foxglove&#x27;, 
+&#x27;frazzled&#x27;, 
+&#x27;frizzled&#x27;, 
+&#x27;fuchsia&#x27;, 
+&#x27;funny&#x27;, 
+&#x27;gabby&#x27;, 
+&#x27;galaxy&#x27;, 
+&#x27;galvanize&#x27;, 
+&#x27;gazebo&#x27;, 
+&#x27;giaour&#x27;, 
+&#x27;gizmo&#x27;, 
+&#x27;glowworm&#x27;, 
+&#x27;glyph&#x27;, 
+&#x27;gnarly&#x27;, 
+&#x27;gnostic&#x27;, 
+&#x27;gossip&#x27;, 
+&#x27;grogginess&#x27;, 
+&#x27;haiku&#x27;, 
+&#x27;haphazard&#x27;, 
+&#x27;hyphen&#x27;, 
+&#x27;iatrogenic&#x27;, 
+&#x27;icebox&#x27;, 
+&#x27;injury&#x27;, 
+&#x27;ivory&#x27;, 
+&#x27;ivy&#x27;, 
+&#x27;jackpot&#x27;, 
+&#x27;jaundice&#x27;, 
+&#x27;jawbreaker&#x27;, 
+&#x27;jaywalk&#x27;, 
+&#x27;jazziest&#x27;, 
+&#x27;jazzy&#x27;, 
+&#x27;jelly&#x27;, 
+&#x27;jigsaw&#x27;, 
+&#x27;jinx&#x27;, 
+&#x27;jiujitsu&#x27;, 
+&#x27;jockey&#x27;, 
+&#x27;jogging&#x27;, 
+&#x27;joking&#x27;, 
+&#x27;jovial&#x27;, 
+&#x27;joyful&#x27;, 
+&#x27;juicy&#x27;, 
+&#x27;jukebox&#x27;, 
+&#x27;jumbo&#x27;, 
+&#x27;kayak&#x27;, 
+&#x27;kazoo&#x27;, 
+&#x27;keyhole&#x27;, 
+&#x27;khaki&#x27;, 
+&#x27;kilobyte&#x27;, 
+&#x27;kiosk&#x27;, 
+&#x27;kitsch&#x27;, 
+&#x27;kiwifruit&#x27;, 
+&#x27;klutz&#x27;, 
+&#x27;knapsack&#x27;, 
+&#x27;larynx&#x27;, 
+&#x27;lengths&#x27;, 
+&#x27;lucky&#x27;, 
+&#x27;luxury&#x27;, 
+&#x27;lymph&#x27;, 
+&#x27;marquis&#x27;, 
+&#x27;matrix&#x27;, 
+&#x27;megahertz&#x27;, 
+&#x27;microwave&#x27;, 
+&#x27;mnemonic&#x27;, 
+&#x27;mystify&#x27;, 
+&#x27;naphtha&#x27;, 
+&#x27;nightclub&#x27;, 
+&#x27;nowadays&#x27;, 
+&#x27;numbskull&#x27;, 
+&#x27;nymph&#x27;, 
+&#x27;onyx&#x27;, 
+&#x27;ovary&#x27;, 
+&#x27;oxidize&#x27;, 
+&#x27;oxygen&#x27;, 
+&#x27;pajama&#x27;, 
+&#x27;peekaboo&#x27;, 
+&#x27;phlegm&#x27;, 
+&#x27;pixel&#x27;, 
+&#x27;pizazz&#x27;, 
+&#x27;pneumonia&#x27;, 
+&#x27;polka&#x27;, 
+&#x27;pshaw&#x27;, 
+&#x27;psyche&#x27;, 
+&#x27;puppy&#x27;, 
+&#x27;puzzling&#x27;, 
+&#x27;quartz&#x27;, 
+&#x27;queue&#x27;, 
+&#x27;quips&#x27;, 
+&#x27;quixotic&#x27;, 
+&#x27;quiz&#x27;, 
+&#x27;quizzes&#x27;, 
+&#x27;quorum&#x27;, 
+&#x27;razzmatazz&#x27;, 
+&#x27;rhubarb&#x27;, 
+&#x27;rhythm&#x27;, 
+&#x27;rickshaw&#x27;, 
+&#x27;schnapps&#x27;, 
+&#x27;scratch&#x27;, 
+&#x27;shiv&#x27;, 
+&#x27;snazzy&#x27;, 
+&#x27;sphinx&#x27;, 
+&#x27;spritz&#x27;, 
+&#x27;squawk&#x27;, 
+&#x27;staff&#x27;, 
+&#x27;strength&#x27;, 
+&#x27;strengths&#x27;, 
+&#x27;stretch&#x27;, 
+&#x27;stronghold&#x27;, 
+&#x27;stymied&#x27;, 
+&#x27;subway&#x27;, 
+&#x27;swivel&#x27;, 
+&#x27;syndrome&#x27;, 
+&#x27;thriftless&#x27;, 
+&#x27;thumbscrew&#x27;, 
+&#x27;topaz&#x27;, 
+&#x27;transcript&#x27;, 
+&#x27;transgress&#x27;, 
+&#x27;transplant&#x27;, 
+&#x27;triphthong&#x27;, 
+&#x27;twelfth&#x27;, 
+&#x27;twelfths&#x27;, 
+&#x27;unknown&#x27;, 
+&#x27;unworthy&#x27;, 
+&#x27;unzip&#x27;, 
+&#x27;uptown&#x27;, 
+&#x27;vaporize&#x27;, 
+&#x27;vixen&#x27;, 
+&#x27;vodka&#x27;, 
+&#x27;voodoo&#x27;, 
+&#x27;vortex&#x27;, 
+&#x27;voyeurism&#x27;, 
+&#x27;walkway&#x27;, 
+&#x27;waltz&#x27;, 
+&#x27;wave&#x27;, 
+&#x27;wavy&#x27;, 
+&#x27;waxy&#x27;, 
+&#x27;wellspring&#x27;, 
+&#x27;wheezy&#x27;, 
+&#x27;whiskey&#x27;, 
+&#x27;whizzing&#x27;, 
+&#x27;whomever&#x27;, 
+&#x27;wimpy&#x27;, 
+&#x27;witchcraft&#x27;, 
+&#x27;wizard&#x27;, 
+&#x27;woozy&#x27;, 
+&#x27;wristwatch&#x27;, 
+&#x27;wyvern&#x27;, 
+&#x27;xylophone&#x27;, 
+&#x27;yachtsman&#x27;, 
+&#x27;yippee&#x27;, 
+&#x27;yoked&#x27;, 
+&#x27;youthful&#x27;, 
+&#x27;yummy&#x27;, 
+&#x27;zephyr&#x27;, 
+&#x27;zigzag&#x27;, 
+&#x27;zigzagging&#x27;, 
+&#x27;zilch&#x27;, 
+&#x27;zipper&#x27;, 
+&#x27;zodiac&#x27;, 
+&#x27;zombie&#x27;
+]</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">art.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a38156a3-5329-4c57-ade9-5ea91a4388f6" class="code"><code class="language-Python">stages = [&#x27;&#x27;&#x27;
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========
+&#x27;&#x27;&#x27;, &#x27;&#x27;&#x27;
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========
+&#x27;&#x27;&#x27;, &#x27;&#x27;&#x27;
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========
+&#x27;&#x27;&#x27;, &#x27;&#x27;&#x27;
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========&#x27;&#x27;&#x27;, &#x27;&#x27;&#x27;
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+&#x27;&#x27;&#x27;, &#x27;&#x27;&#x27;
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+&#x27;&#x27;&#x27;, &#x27;&#x27;&#x27;
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+&#x27;&#x27;&#x27;]</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Javascript code</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="107bf0e4-5495-4706-8f5f-44be9dbd7988" class="code"><code class="language-JavaScript">const stages = [
+  `
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========
+`,
+  `
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========
+`,
+  `
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========
+`,
+  `
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========`,
+  `
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+`,
+  `
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+`,
+  `
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+`
+];
+
+
+const wordList = [
+&#x27;abruptly&#x27;, 
+&#x27;absurd&#x27;, 
+&#x27;abyss&#x27;, 
+&#x27;affix&#x27;, 
+&#x27;askew&#x27;, 
+&#x27;avenue&#x27;, 
+&#x27;awkward&#x27;, 
+&#x27;axiom&#x27;, 
+&#x27;azure&#x27;, 
+&#x27;bagpipes&#x27;, 
+&#x27;bandwagon&#x27;, 
+&#x27;banjo&#x27;, 
+&#x27;bayou&#x27;, 
+&#x27;beekeeper&#x27;, 
+&#x27;bikini&#x27;, 
+&#x27;blitz&#x27;, 
+&#x27;blizzard&#x27;, 
+&#x27;boggle&#x27;, 
+&#x27;bookworm&#x27;, 
+&#x27;boxcar&#x27;, 
+&#x27;boxful&#x27;, 
+&#x27;buckaroo&#x27;, 
+&#x27;buffalo&#x27;, 
+&#x27;buffoon&#x27;, 
+&#x27;buxom&#x27;, 
+&#x27;buzzard&#x27;, 
+&#x27;buzzing&#x27;, 
+&#x27;buzzwords&#x27;, 
+&#x27;caliph&#x27;, 
+&#x27;cobweb&#x27;, 
+&#x27;cockiness&#x27;, 
+&#x27;croquet&#x27;, 
+&#x27;crypt&#x27;, 
+&#x27;curacao&#x27;, 
+&#x27;cycle&#x27;, 
+&#x27;daiquiri&#x27;, 
+&#x27;dirndl&#x27;, 
+&#x27;disavow&#x27;, 
+&#x27;dizzying&#x27;, 
+&#x27;duplex&#x27;, 
+&#x27;dwarves&#x27;, 
+&#x27;embezzle&#x27;, 
+&#x27;equip&#x27;, 
+&#x27;espionage&#x27;, 
+&#x27;euouae&#x27;, 
+&#x27;exodus&#x27;, 
+&#x27;faking&#x27;, 
+&#x27;fishhook&#x27;, 
+&#x27;fixable&#x27;, 
+&#x27;fjord&#x27;, 
+&#x27;flapjack&#x27;, 
+&#x27;flopping&#x27;, 
+&#x27;fluffiness&#x27;, 
+&#x27;flyby&#x27;, 
+&#x27;foxglove&#x27;, 
+&#x27;frazzled&#x27;, 
+&#x27;frizzled&#x27;, 
+&#x27;fuchsia&#x27;, 
+&#x27;funny&#x27;, 
+&#x27;gabby&#x27;, 
+&#x27;galaxy&#x27;, 
+&#x27;galvanize&#x27;, 
+&#x27;gazebo&#x27;, 
+&#x27;giaour&#x27;, 
+&#x27;gizmo&#x27;, 
+&#x27;glowworm&#x27;, 
+&#x27;glyph&#x27;, 
+&#x27;gnarly&#x27;, 
+&#x27;gnostic&#x27;, 
+&#x27;gossip&#x27;, 
+&#x27;grogginess&#x27;, 
+&#x27;haiku&#x27;, 
+&#x27;haphazard&#x27;, 
+&#x27;hyphen&#x27;, 
+&#x27;iatrogenic&#x27;, 
+&#x27;icebox&#x27;, 
+&#x27;injury&#x27;, 
+&#x27;ivory&#x27;, 
+&#x27;ivy&#x27;, 
+&#x27;jackpot&#x27;, 
+&#x27;jaundice&#x27;, 
+&#x27;jawbreaker&#x27;, 
+&#x27;jaywalk&#x27;, 
+&#x27;jazziest&#x27;, 
+&#x27;jazzy&#x27;, 
+&#x27;jelly&#x27;, 
+&#x27;jigsaw&#x27;, 
+&#x27;jinx&#x27;, 
+&#x27;jiujitsu&#x27;, 
+&#x27;jockey&#x27;, 
+&#x27;jogging&#x27;, 
+&#x27;joking&#x27;, 
+&#x27;jovial&#x27;, 
+&#x27;joyful&#x27;, 
+&#x27;juicy&#x27;, 
+&#x27;jukebox&#x27;, 
+&#x27;jumbo&#x27;, 
+&#x27;kayak&#x27;, 
+&#x27;kazoo&#x27;, 
+&#x27;keyhole&#x27;, 
+&#x27;khaki&#x27;, 
+&#x27;kilobyte&#x27;, 
+&#x27;kiosk&#x27;, 
+&#x27;kitsch&#x27;, 
+&#x27;kiwifruit&#x27;, 
+&#x27;klutz&#x27;, 
+&#x27;knapsack&#x27;, 
+&#x27;larynx&#x27;, 
+&#x27;lengths&#x27;, 
+&#x27;lucky&#x27;, 
+&#x27;luxury&#x27;, 
+&#x27;lymph&#x27;, 
+&#x27;marquis&#x27;, 
+&#x27;matrix&#x27;, 
+&#x27;megahertz&#x27;, 
+&#x27;microwave&#x27;, 
+&#x27;mnemonic&#x27;, 
+&#x27;mystify&#x27;, 
+&#x27;naphtha&#x27;, 
+&#x27;nightclub&#x27;, 
+&#x27;nowadays&#x27;, 
+&#x27;numbskull&#x27;, 
+&#x27;nymph&#x27;, 
+&#x27;onyx&#x27;, 
+&#x27;ovary&#x27;, 
+&#x27;oxidize&#x27;, 
+&#x27;oxygen&#x27;, 
+&#x27;pajama&#x27;, 
+&#x27;peekaboo&#x27;, 
+&#x27;phlegm&#x27;, 
+&#x27;pixel&#x27;, 
+&#x27;pizazz&#x27;, 
+&#x27;pneumonia&#x27;, 
+&#x27;polka&#x27;, 
+&#x27;pshaw&#x27;, 
+&#x27;psyche&#x27;, 
+&#x27;puppy&#x27;, 
+&#x27;puzzling&#x27;, 
+&#x27;quartz&#x27;, 
+&#x27;queue&#x27;, 
+&#x27;quips&#x27;, 
+&#x27;quixotic&#x27;, 
+&#x27;quiz&#x27;, 
+&#x27;quizzes&#x27;, 
+&#x27;quorum&#x27;, 
+&#x27;razzmatazz&#x27;, 
+&#x27;rhubarb&#x27;, 
+&#x27;rhythm&#x27;, 
+&#x27;rickshaw&#x27;, 
+&#x27;schnapps&#x27;, 
+&#x27;scratch&#x27;, 
+&#x27;shiv&#x27;, 
+&#x27;snazzy&#x27;, 
+&#x27;sphinx&#x27;, 
+&#x27;spritz&#x27;, 
+&#x27;squawk&#x27;, 
+&#x27;staff&#x27;, 
+&#x27;strength&#x27;, 
+&#x27;strengths&#x27;, 
+&#x27;stretch&#x27;, 
+&#x27;stronghold&#x27;, 
+&#x27;stymied&#x27;, 
+&#x27;subway&#x27;, 
+&#x27;swivel&#x27;, 
+&#x27;syndrome&#x27;, 
+&#x27;thriftless&#x27;, 
+&#x27;thumbscrew&#x27;, 
+&#x27;topaz&#x27;, 
+&#x27;transcript&#x27;, 
+&#x27;transgress&#x27;, 
+&#x27;transplant&#x27;, 
+&#x27;triphthong&#x27;, 
+&#x27;twelfth&#x27;, 
+&#x27;twelfths&#x27;, 
+&#x27;unknown&#x27;, 
+&#x27;unworthy&#x27;, 
+&#x27;unzip&#x27;, 
+&#x27;uptown&#x27;, 
+&#x27;vaporize&#x27;, 
+&#x27;vixen&#x27;, 
+&#x27;vodka&#x27;, 
+&#x27;voodoo&#x27;, 
+&#x27;vortex&#x27;, 
+&#x27;voyeurism&#x27;, 
+&#x27;walkway&#x27;, 
+&#x27;waltz&#x27;, 
+&#x27;wave&#x27;, 
+&#x27;wavy&#x27;, 
+&#x27;waxy&#x27;, 
+&#x27;wellspring&#x27;, 
+&#x27;wheezy&#x27;, 
+&#x27;whiskey&#x27;, 
+&#x27;whizzing&#x27;, 
+&#x27;whomever&#x27;, 
+&#x27;wimpy&#x27;, 
+&#x27;witchcraft&#x27;, 
+&#x27;wizard&#x27;, 
+&#x27;woozy&#x27;, 
+&#x27;wristwatch&#x27;, 
+&#x27;wyvern&#x27;, 
+&#x27;xylophone&#x27;, 
+&#x27;yachtsman&#x27;, 
+&#x27;yippee&#x27;, 
+&#x27;yoked&#x27;, 
+&#x27;youthful&#x27;, 
+&#x27;yummy&#x27;, 
+&#x27;zephyr&#x27;, 
+&#x27;zigzag&#x27;, 
+&#x27;zigzagging&#x27;, 
+&#x27;zilch&#x27;, 
+&#x27;zipper&#x27;, 
+&#x27;zodiac&#x27;, 
+&#x27;zombie&#x27;
+];
+
+let gameIsFinished = false;
+let lives = stages.length - 1;
+
+const chosenWord = wordList[Math.floor(Math.random() * wordList.length)];
+const wordLength = chosenWord.length;
+
+const display = Array(wordLength).fill(&#x27;_&#x27;);
+
+while (!gameIsFinished) {
+  const guess = prompt(&#x27;Guess a letter: &#x27;).toLowerCase();
+
+  if (display.includes(guess)) {
+    alert(`You&#x27;ve already guessed ${guess}`);
+  }
+
+  for (let position = 0; position &lt; wordLength; position++) {
+    const letter = chosenWord[position];
+    if (letter === guess) {
+      display[position] = letter;
+    }
+  }
+
+  alert(display.join(&#x27; &#x27;));
+
+  if (!chosenWord.includes(guess)) {
+    alert(`You guessed ${guess}, that&#x27;s not in the word. You lose a life.`);
+    lives--;
+    if (lives === 0) {
+      gameIsFinished = true;
+      alert(`${chosenWord} was the word!\nYou lose.`);
+    }
+  }
+
+  if (!display.includes(&#x27;_&#x27;)) {
+    gameIsFinished = true;
+    alert(&#x27;You win.&#x27;);
+  }
+
+  alert(stages[lives]);
+}</code></pre></div></details><h1 id="f54aa64c-f4d7-4502-8acc-e52946df99e1" class="">Run the code</h1><p id="6946d314-0e1e-4cde-a005-b547e385c59c" class="">You can run the JavaScript version of the code in your browser</p><p id="dbac64fb-f899-44b8-8464-52699d53f701" class=""><div id="code-text-box"><textarea id="code" rows="10" cols="50">const stages = [
+`
+	+---+
+	|   |
+	O   |
+   /|\\  |
+   / \\  |
+		|
+  =========
+  `,
+	`
+	+---+
+	|   |
+	O   |
+   /|\\  |
+   /    |
+		|
+  =========
+  `,
+	`
+	+---+
+	|   |
+	O   |
+   /|\\  |
+		|
+		|
+  =========
+  `,
+	`
+	+---+
+	|   |
+	O   |
+   /|   |
+		|
+		|
+  =========`,
+	`
+	+---+
+	|   |
+	O   |
+	|   |
+		|
+		|
+  =========
+  `,
+	`
+	+---+
+	|   |
+	O   |
+		|
+		|
+		|
+  =========
+  `,
+	`
+	+---+
+	|   |
+		|
+		|
+		|
+		|
+  =========
+  `
+  ];
+  
+  const wordList = [
+  'abruptly', 
+  'absurd', 
+  'abyss', 
+  'affix', 
+  'askew', 
+  'avenue', 
+  'awkward', 
+  'axiom', 
+  'azure', 
+  'bagpipes', 
+  'bandwagon', 
+  'banjo', 
+  'bayou', 
+  'beekeeper', 
+  'bikini', 
+  'blitz', 
+  'blizzard', 
+  'boggle', 
+  'bookworm', 
+  'boxcar', 
+  'boxful', 
+  'buckaroo', 
+  'buffalo', 
+  'buffoon', 
+  'buxom', 
+  'buzzard', 
+  'buzzing', 
+  'buzzwords', 
+  'caliph', 
+  'cobweb', 
+  'cockiness', 
+  'croquet', 
+  'crypt', 
+  'curacao', 
+  'cycle', 
+  'daiquiri', 
+  'dirndl', 
+  'disavow', 
+  'dizzying', 
+  'duplex', 
+  'dwarves', 
+  'embezzle', 
+  'equip', 
+  'espionage', 
+  'euouae', 
+  'exodus', 
+  'faking', 
+  'fishhook', 
+  'fixable', 
+  'fjord', 
+  'flapjack', 
+  'flopping', 
+  'fluffiness', 
+  'flyby', 
+  'foxglove', 
+  'frazzled', 
+  'frizzled', 
+  'fuchsia', 
+  'funny', 
+  'gabby', 
+  'galaxy', 
+  'galvanize', 
+  'gazebo', 
+  'giaour', 
+  'gizmo', 
+  'glowworm', 
+  'glyph', 
+  'gnarly', 
+  'gnostic', 
+  'gossip', 
+  'grogginess', 
+  'haiku', 
+  'haphazard', 
+  'hyphen', 
+  'iatrogenic', 
+  'icebox', 
+  'injury', 
+  'ivory', 
+  'ivy', 
+  'jackpot', 
+  'jaundice', 
+  'jawbreaker', 
+  'jaywalk', 
+  'jazziest', 
+  'jazzy', 
+  'jelly', 
+  'jigsaw', 
+  'jinx', 
+  'jiujitsu', 
+  'jockey', 
+  'jogging', 
+  'joking', 
+  'jovial', 
+  'joyful', 
+  'juicy', 
+  'jukebox', 
+  'jumbo', 
+  'kayak', 
+  'kazoo', 
+  'keyhole', 
+  'khaki', 
+  'kilobyte', 
+  'kiosk', 
+  'kitsch', 
+  'kiwifruit', 
+  'klutz', 
+  'knapsack', 
+  'larynx', 
+  'lengths', 
+  'lucky', 
+  'luxury', 
+  'lymph', 
+  'marquis', 
+  'matrix', 
+  'megahertz', 
+  'microwave', 
+  'mnemonic', 
+  'mystify', 
+  'naphtha', 
+  'nightclub', 
+  'nowadays', 
+  'numbskull', 
+  'nymph', 
+  'onyx', 
+  'ovary', 
+  'oxidize', 
+  'oxygen', 
+  'pajama', 
+  'peekaboo', 
+  'phlegm', 
+  'pixel', 
+  'pizazz', 
+  'pneumonia', 
+  'polka', 
+  'pshaw', 
+  'psyche', 
+  'puppy', 
+  'puzzling', 
+  'quartz', 
+  'queue', 
+  'quips', 
+  'quixotic', 
+  'quiz', 
+  'quizzes', 
+  'quorum', 
+  'razzmatazz', 
+  'rhubarb', 
+  'rhythm', 
+  'rickshaw', 
+  'schnapps', 
+  'scratch', 
+  'shiv', 
+  'snazzy', 
+  'sphinx', 
+  'spritz', 
+  'squawk', 
+  'staff', 
+  'strength', 
+  'strengths', 
+  'stretch', 
+  'stronghold', 
+  'stymied', 
+  'subway', 
+  'swivel', 
+  'syndrome', 
+  'thriftless', 
+  'thumbscrew', 
+  'topaz', 
+  'transcript', 
+  'transgress', 
+  'transplant', 
+  'triphthong', 
+  'twelfth', 
+  'twelfths', 
+  'unknown', 
+  'unworthy', 
+  'unzip', 
+  'uptown', 
+  'vaporize', 
+  'vixen', 
+  'vodka', 
+  'voodoo', 
+  'vortex', 
+  'voyeurism', 
+  'walkway', 
+  'waltz', 
+  'wave', 
+  'wavy', 
+  'waxy', 
+  'wellspring', 
+  'wheezy', 
+  'whiskey', 
+  'whizzing', 
+  'whomever', 
+  'wimpy', 
+  'witchcraft', 
+  'wizard', 
+  'woozy', 
+  'wristwatch', 
+  'wyvern', 
+  'xylophone', 
+  'yachtsman', 
+  'yippee', 
+  'yoked', 
+  'youthful', 
+  'yummy', 
+  'zephyr', 
+  'zigzag', 
+  'zigzagging', 
+  'zilch', 
+  'zipper', 
+  'zodiac', 
+  'zombie'
+  ];
+  
+  let gameIsFinished = false;
+  let lives = stages.length - 1;
+  
+  const chosenWord = wordList[Math.floor(Math.random() * wordList.length)];
+  const wordLength = chosenWord.length;
+  
+  const display = Array(wordLength).fill('_');
+  
+  while (!gameIsFinished) {
+	const guess = prompt('Guess a letter: ').toLowerCase();
+  
+	if (display.includes(guess)) {
+	  alert(`You've already guessed ${guess}`);
+	}
+  
+	for (let position = 0; position < wordLength; position++) {
+	  const letter = chosenWord[position];
+	  if (letter === guess) {
+		display[position] = letter;
+	  }
+	}
+  
+	alert(display.join(' '));
+  
+	if (!chosenWord.includes(guess)) {
+	  alert(`You guessed ${guess}, that's not in the word. You lose a life.`);
+	  lives--;
+	  if (lives === 0) {
+		gameIsFinished = true;
+		alert(`${chosenWord} was the word!\nYou lose.`);
+	  }
+	}
+  
+	if (!display.includes('_')) {
+	  gameIsFinished = true;
+	  alert('You win.');
+	}
+  
+	alert(stages[lives]);
+  }
+  
+
+</textarea>
+<button onclick="runCode()">Run Code</button>
+<div id="output"></div>
+</div>
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span><script id="code-runner-script">
+	function runCode() {
+		var code = document.getElementById("code").value;
+		try {
+			// Redirect console.log output to a function
+			var logs = [];
+			var oldLog = console.log;
+			console.log = function (message) {
+				logs.push(message);
+			};
+			
+			// Execute the code
+			eval(code);
+			
+			// Restore console.log
+			console.log = oldLog;
+			
+		} catch (error) {
+			document.getElementById("output").innerHTML = "Error: " + error.message;
+		}
+	}
+</script></body></html>

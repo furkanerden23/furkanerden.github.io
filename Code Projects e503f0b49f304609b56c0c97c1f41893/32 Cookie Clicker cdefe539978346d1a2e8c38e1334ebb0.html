@@ -1,0 +1,743 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>32. Cookie Clicker</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="cdefe539-9783-46d1-a2e8-c38e1334ebb0" class="page sans"><header><h1 class="page-title">32. Cookie Clicker</h1><p class="page-description"></p></header><div class="page-body"><p id="3d640268-1279-4974-808f-e25503ec4173" class="">
+</p><h1 id="a4f576f8-edd1-4f45-b7ba-c1ea628da12c" class="">Introduction</h1><p id="d6ca34d7-0a78-410b-aef0-9ae1a554d930" class="">This Python script is designed to automate gameplay in a web-based clicking game called Cookie Clicker. It uses Selenium, a tool for automating web browsers, to interact with the game interface.</p><p id="176514e5-f639-4396-b423-0696d5ebfc86" class="">Here&#x27;s a breakdown of what the script does:</p><ol type="1" id="d0d32c38-6838-48a2-9e14-9d2c03631dd3" class="numbered-list" start="1"><li><strong>Importing Libraries</strong>: The script begins by importing necessary modules from Selenium for web automation and time for time-related operations.</li></ol><ol type="1" id="b67faf57-3599-470f-bba4-27120669904b" class="numbered-list" start="2"><li><strong>Setting up WebDriver</strong>: It initializes a Chrome WebDriver instance using a path to the Chrome driver executable.</li></ol><ol type="1" id="40807686-6b3a-4a91-b767-9dd815ca055f" class="numbered-list" start="3"><li><strong>Accessing the Game Page</strong>: The WebDriver navigates to the URL of the Cookie Clicker game.</li></ol><ol type="1" id="2cf14145-59b1-45a3-879c-672e7937b9b0" class="numbered-list" start="4"><li><strong>Finding Elements</strong>: It locates the main clickable element (the cookie) and the upgrade items available for purchase.</li></ol><ol type="1" id="cd1bcf5c-efb5-44f6-8671-8476ebbd0f50" class="numbered-list" start="5"><li><strong>Automated Gameplay Loop</strong>: The script enters a continuous loop where it clicks on the cookie element repeatedly.</li></ol><ol type="1" id="29c465d2-d704-487c-a72c-0eab94fd2b1c" class="numbered-list" start="6"><li><strong>Upgrade Purchasing Logic</strong>: Every 5 seconds, it evaluates the available upgrades, checks the player&#x27;s cookie count, and purchases the most expensive affordable upgrade.</li></ol><ol type="1" id="64ad991b-894e-44a7-bb56-0b04c5385685" class="numbered-list" start="7"><li><strong>Timeout Management</strong>: It keeps track of time to ensure that the upgrade checking and purchasing occur at appropriate intervals.</li></ol><ol type="1" id="b5f54811-0fd3-4e93-92f9-25c5c296a128" class="numbered-list" start="8"><li><strong>Stopping Condition</strong>: After 5 minutes (300 seconds), the script stops the gameplay loop, retrieves the cookies per second (cps) count, and then terminates.</li></ol><p id="7706d50e-4261-4530-bcec-0c50cee13b8d" class="">This script essentially plays the Cookie Clicker game automatically, aiming to optimize the purchase of upgrades within a given timeframe.</p><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Features</summary><div class="indented"><ol type="1" id="6a514878-bbc2-4be1-9168-71d2a10edb2f" class="numbered-list" start="1"><li><strong>Automated Gameplay</strong>: The script automates gameplay in the Cookie Clicker game by clicking the cookie and purchasing upgrades without user intervention.</li></ol><ol type="1" id="81340984-1d10-4dd6-b060-a5529f9fef9d" class="numbered-list" start="2"><li><strong>Upgrade Purchasing Logic</strong>: It implements a strategy to purchase the most expensive affordable upgrade available every 5 seconds, based on the player&#x27;s current cookie count.</li></ol><ol type="1" id="55f59bf1-1661-4ebf-9cc5-53f950ea9898" class="numbered-list" start="3"><li><strong>Dynamic Element Detection</strong>: The script dynamically detects elements such as the cookie and upgrade items on the webpage using Selenium&#x27;s methods.</li></ol><ol type="1" id="804d144e-9ed3-44c1-a67a-943e0e8378f1" class="numbered-list" start="4"><li><strong>Timeout Management</strong>: It manages timing intervals to control when to click the cookie, check for upgrades, and stop the script after a specified duration (5 minutes).</li></ol><ol type="1" id="6561d1f6-a937-4a9c-b818-b4732d4349ce" class="numbered-list" start="5"><li><strong>Output Display</strong>: During execution, the script prints relevant information, such as the cost of the purchased upgrade and the cookies per second count at the end of the gameplay session.</li></ol><ol type="1" id="335e11ac-822d-41a5-8a78-53f1d983c906" class="numbered-list" start="6"><li><strong>Scalability</strong>: The script&#x27;s structure allows for potential modifications or extensions, such as adding more sophisticated upgrade purchasing strategies or implementing error handling for various scenarios.</li></ol><ol type="1" id="3a2ea1b6-7642-4636-bb04-2c9d7c735d64" class="numbered-list" start="7"><li><strong>Flexibility</strong>: Users can easily adapt the script to work with different browser drivers or adjust parameters such as the timeout interval or the duration of gameplay.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">The aim of this project</summary><div class="indented"><ol type="1" id="3811a1aa-795c-48db-ae76-cdfc63fe796a" class="numbered-list" start="1"><li><strong>Understanding Web Automation</strong>: Learners can gain a practical understanding of how to automate interactions with web applications using Selenium WebDriver. They learn how to locate elements on a webpage, simulate user actions (such as clicking), and extract information from the page.</li></ol><ol type="1" id="848d0437-58d7-4c8a-b19b-3e9e16947be4" class="numbered-list" start="2"><li><strong>Applied Programming Skills</strong>: The project involves writing Python code to implement automation logic, handle timing, and perform calculations. Learners can improve their programming skills by working on real-world tasks and solving problems encountered during automation.</li></ol><ol type="1" id="e1f12703-c5e8-467f-8576-6e6db9455091" class="numbered-list" start="3"><li><strong>Algorithmic Thinking</strong>: The upgrade purchasing logic in the script requires algorithmic thinking to determine the most efficient strategy for selecting upgrades based on available funds. Learners can practice problem-solving and algorithm development in a practical context.</li></ol><ol type="1" id="0cbefdb8-9335-42b3-a448-885d9e9970d3" class="numbered-list" start="4"><li><strong>Time Management and Optimization</strong>: Managing timeouts and optimizing upgrade purchases within a time constraint (5 minutes) teach learners about time management and optimization strategies. They learn how to balance resource allocation (cookies) with time constraints to achieve the best outcome.</li></ol><ol type="1" id="f43706de-fe4a-49d9-ac99-0a0777d03939" class="numbered-list" start="5"><li><strong>Debugging and Troubleshooting</strong>: As learners work on the project, they may encounter errors or unexpected behavior. Debugging and troubleshooting these issues help them develop problem-solving skills and learn to interpret error messages to identify and fix issues in their code.</li></ol><ol type="1" id="2059f01f-2314-4808-9a77-6976292dc27a" class="numbered-list" start="6"><li><strong>Project Structuring and Documentation</strong>: Structuring the code into functions and documenting the functionality help learners organize their code effectively and communicate its purpose and usage. They learn best practices for code organization and documentation.</li></ol><ol type="1" id="0cdb4cae-8df3-4657-b571-28efa0f0746b" class="numbered-list" start="7"><li><strong>Experimentation and Exploration</strong>: Learners have the opportunity to experiment with different strategies for upgrade purchasing and timing intervals. They can explore how changes to the code affect gameplay and performance, fostering curiosity and experimentation.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Achievements</summary><div class="indented"><ol type="1" id="5ffa8ae2-dea5-4c64-bf90-0bf887fc532e" class="numbered-list" start="1"><li>Hands-on web automation using Selenium WebDriver.</li></ol><ol type="1" id="a7d2897f-2e15-4a11-a018-1ff235f19048" class="numbered-list" start="2"><li>Applied Python programming for automation logic and data extraction.</li></ol><ol type="1" id="eee43b5c-026b-42b5-b169-4deccfccd12d" class="numbered-list" start="3"><li>Algorithmic problem-solving for upgrade optimization.</li></ol><ol type="1" id="23416201-ecc4-4727-8de2-81993497105f" class="numbered-list" start="4"><li>Time management skills in balancing resource allocation.</li></ol><ol type="1" id="b957afaa-2899-4eaf-bc78-caec83445c0c" class="numbered-list" start="5"><li>Debugging and troubleshooting during script development.</li></ol><ol type="1" id="b578e821-730c-41c3-bd7d-10d54416d074" class="numbered-list" start="6"><li>Project structuring into functions with documentation.</li></ol><ol type="1" id="c83c6668-0b88-433b-8d9d-17cf34a7a346" class="numbered-list" start="7"><li>Experimentation with different strategies for optimization.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Python code</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">cookie_clicker.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c654e4bf-c0e4-4b84-b7dc-385936326cb2" class="code"><code class="language-Python">from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
+
+chrome_driver_path = &#x27;YOUR CHROME DRIVER PATH&#x27;
+driver = webdriver.Chrome(chrome_driver_path)
+driver.get(&quot;http://orteil.dashnet.org/experiments/cookie/&quot;)
+
+#Get cookie to click on.
+cookie = driver.find_element(By.ID, &quot;cookie&quot;)
+
+#Get upgrade item ids.
+items = driver.find_elements(By.CSS_SELECTOR, &quot;#store div&quot;)
+item_ids = [item.get_attribute(&quot;id&quot;) for item in items]
+
+timeout = time.time() + 5
+five_min = time.time() + 60*5 # 5minutes
+
+while True:
+    cookie.click()
+
+    #Every 5 seconds:
+    if time.time() &gt; timeout:
+
+        #Get all upgrade &lt;b&gt; tags
+        all_prices = driver.find_elements(By.CSS_SELECTOR, &quot;#store b&quot;)
+        item_prices = []
+
+        #Convert &lt;b&gt; text into an integer price.
+        for price in all_prices:
+            element_text = price.text
+            if element_text != &quot;&quot;:
+                cost = int(element_text.split(&quot;-&quot;)[1].strip().replace(&quot;,&quot;, &quot;&quot;))
+                item_prices.append(cost)
+
+        #Create dictionary of store items and prices
+        cookie_upgrades = {}
+        for n in range(len(item_prices)):
+            cookie_upgrades[item_prices[n]] = item_ids[n]
+
+        #Get current cookie count
+        money_element = driver.find_element(By.ID, &quot;money&quot;).text
+        if &quot;,&quot; in money_element:
+            money_element = money_element.replace(&quot;,&quot;, &quot;&quot;)
+        cookie_count = int(money_element)
+
+        #Find upgrades that we can currently afford
+        affordable_upgrades = {}
+        for cost, id in cookie_upgrades.items():
+            if cookie_count &gt; cost:
+                 affordable_upgrades[cost] = id
+
+        #Purchase the most expensive affordable upgrade
+        highest_price_affordable_upgrade = max(affordable_upgrades)
+        print(highest_price_affordable_upgrade)
+        to_purchase_id = affordable_upgrades[highest_price_affordable_upgrade]
+
+        driver.find_element(By.ID, to_purchase_id).click()
+        
+        #Add another 5 seconds until the next check
+        timeout = time.time() + 5
+
+    #After 5 minutes stop the bot and check the cookies per second count.
+    if time.time() &gt; five_min:
+        cookie_per_s = driver.find_element(By.ID, &quot;cps&quot;).text
+        print(cookie_per_s)
+        break</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Instructions for running the game</summary><div class="indented"><ol type="1" id="8587431b-0ada-4cf5-a88f-cf3ea8a8d3c6" class="numbered-list" start="1"><li><strong>Install Python</strong>: Ensure you have Python installed on your system. You can download it from the official Python website and follow the installation instructions.</li></ol><ol type="1" id="0b444f3f-508f-4ca0-ad8f-acdbdf760e2d" class="numbered-list" start="2"><li><strong>Install Selenium</strong>: Install the Selenium package using pip, the Python package manager. You can do this by running the following command in your terminal or command prompt:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0939b6e6-e952-4354-806d-f800350c1fe0" class="code"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">pip install selenium</code></pre></li></ol><ol type="1" id="0a4f852f-19e7-4575-ac0b-69c30807599a" class="numbered-list" start="3"><li><strong>Download Chrome Driver</strong>: Download the Chrome Driver executable compatible with your Chrome browser version. Ensure you place the Chrome Driver executable in the same directory as your Python script or specify its path in the script (<code><strong>chrome_driver_path</strong></code> variable).</li></ol><ol type="1" id="2e82b517-117e-4963-b515-db83c6517985" class="numbered-list" start="4"><li><strong>Open Cookie Clicker Game</strong>: Open your web browser and navigate to the Cookie Clicker game at the following URL: <a href="http://orteil.dashnet.org/experiments/cookie/">http://orteil.dashnet.org/experiments/cookie/</a></li></ol><ol type="1" id="df1aa3ae-1423-40cb-b217-699dd46fa1f1" class="numbered-list" start="5"><li><strong>Update Chrome Driver Path</strong>: If you haven&#x27;t placed the Chrome Driver executable in the same directory as the Python script, update the <code><strong>chrome_driver_path</strong></code> variable in the script with the correct path to the Chrome Driver executable.</li></ol><ol type="1" id="ce961256-445d-42d5-8e19-921425ab2edd" class="numbered-list" start="6"><li><strong>Run the Script</strong>: Execute the Python script &quot;cookie_clicker.py&quot; using your preferred Python interpreter. You can do this by navigating to the directory containing the script in your terminal or command prompt and running the following command:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5d9a436f-3c65-4898-9dfb-4b33abb7944c" class="code"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">python cookie_clicker.py</code></pre></li></ol><ol type="1" id="ef38f4b8-c512-4c53-9241-ec414ab823d8" class="numbered-list" start="7"><li><strong>Observe Output</strong>: The script will begin automating gameplay in the Cookie Clicker game. It will print relevant information, such as the cost of purchased upgrades, to the console.</li></ol><ol type="1" id="b65bff00-f970-4e13-8498-2efcc0a39ff2" class="numbered-list" start="8"><li><strong>Terminate Execution</strong>: The script will automatically stop after 5 minutes. Once execution completes, the cookies per second (cps) count will be displayed, and the script will terminate.</li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,795 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>26. Quizzler</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="b4fc5985-3c74-41b3-ab6f-51bd6fa9ffde" class="page sans"><header><h1 class="page-title">26. Quizzler</h1><p class="page-description"></p></header><div class="page-body"><p id="6d47fe28-317e-43f2-b12d-c7455de3b4b4" class="">
+</p><h1 id="8b4d5f25-87a5-4a06-99a2-2e2fd63c8926" class="">Introduction</h1><p id="26552e05-ad03-4721-aa57-b21091acc1f0" class="">This project is a simple quiz application implemented in Python. It allows users to take a quiz consisting of true/false questions. The questions are fetched from an external API, and the user interacts with the quiz through a graphical user interface (GUI) built using the Tkinter library. The application provides immediate feedback on the correctness of the user&#x27;s answers and keeps track of the user&#x27;s score throughout the quiz. It offers an engaging and interactive way for users to test their knowledge on different topics.</p><p id="2ded76e1-72c1-4d46-8b83-3cf26625b6bc" class="">The quiz application consists of several components:</p><ol type="1" id="a48fbaa0-b00e-4838-a9ad-30d4c7a253bc" class="numbered-list" start="1"><li><strong>Question Data Retrieval (</strong><code><strong>data.py</strong></code><strong>):</strong><ul id="e1b6f569-c63f-4f1f-b4ca-8cd964ea6624" class="bulleted-list"><li style="list-style-type:disc">This part of the project fetches quiz questions from an external API (Open Trivia Database) using the <code><strong>requests</strong></code> module.</li></ul><ul id="2d5c4aa1-03b1-4d7e-ab34-756b76eb7836" class="bulleted-list"><li style="list-style-type:disc">It retrieves a set number of questions with a specified type (in this case, boolean).</li></ul></li></ol><ol type="1" id="8dc70a5c-e8ba-4c25-a4d7-223bb3d26a94" class="numbered-list" start="2"><li><strong>Question Model (</strong><code><strong>question_model.py</strong></code><strong>):</strong><ul id="73270192-2c43-469d-ae09-4bc69c52a658" class="bulleted-list"><li style="list-style-type:disc">Defines the <code><strong>Question</strong></code> class to encapsulate individual questions.</li></ul><ul id="e471b41d-b5bb-4c04-8802-7d881e6e3a34" class="bulleted-list"><li style="list-style-type:disc">Each question object contains the text of the question and its correct answer.</li></ul></li></ol><ol type="1" id="01e817b5-59d4-4a70-9782-650c93564625" class="numbered-list" start="3"><li><strong>Quiz Brain (</strong><code><strong>quiz_brain.py</strong></code><strong>):</strong><ul id="edfd0656-7d1a-4fb9-a153-929846e8a774" class="bulleted-list"><li style="list-style-type:disc">Implements the core logic of the quiz.</li></ul><ul id="4ed0b39d-0b87-4d3e-83fd-a12190458c41" class="bulleted-list"><li style="list-style-type:disc">Manages the question list, tracks the current question number, and keeps score.</li></ul><ul id="baeb46f5-384e-4ad4-a061-b5f12360bd09" class="bulleted-list"><li style="list-style-type:disc">Provides methods for checking answers and determining if there are more questions.</li></ul></li></ol><ol type="1" id="5e933cd6-afe8-45dc-96cb-c3f2a2def999" class="numbered-list" start="4"><li><strong>User Interface (</strong><code><strong>ui.py</strong></code><strong>):</strong><ul id="0c738192-dab0-44be-bbaa-42652a609586" class="bulleted-list"><li style="list-style-type:disc">Uses the Tkinter library to create a graphical user interface (GUI) for the quiz.</li></ul><ul id="e2bfac5e-0ea6-45b8-bf99-8e8ad6c64e4f" class="bulleted-list"><li style="list-style-type:disc">Displays the quiz question and score.</li></ul><ul id="58babce8-5cc6-448c-aa3d-42f936021adf" class="bulleted-list"><li style="list-style-type:disc">Provides buttons for users to select true or false as their answer.</li></ul><ul id="6093e759-e6b8-46ca-b60a-70d717db4d66" class="bulleted-list"><li style="list-style-type:disc">Gives visual feedback on the correctness of the user&#x27;s answer.</li></ul></li></ol><p id="2d2e6d05-5006-4de7-aece-a0145d43740c" class="">Overall, this project offers an engaging way for users to test their knowledge on various topics through a simple and interactive quiz application.</p><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0"><strong>How it works</strong></summary><div class="indented"><ol type="1" id="c9ab76e5-4558-48ca-aad1-13d97803553c" class="numbered-list" start="1"><li>When the application starts, it retrieves quiz questions from the Open Trivia Database API.</li></ol><ol type="1" id="95010628-387d-448e-97fa-6b0e4d6a46ca" class="numbered-list" start="2"><li>It then presents the first question to the user along with buttons to select true or false.</li></ol><ol type="1" id="8c666c48-5073-43db-ac27-02d5dde1080a" class="numbered-list" start="3"><li>After the user selects an answer, the application provides immediate feedback on whether the answer was correct or not.</li></ol><ol type="1" id="7c16bed7-a6b4-4f89-ac8d-850ff65cc873" class="numbered-list" start="4"><li>The application proceeds to the next question, updating the score and displaying the next question text.</li></ol><ol type="1" id="f66fc9a9-4aaa-4950-8d6e-d4f749dd6ae8" class="numbered-list" start="5"><li>This process continues until the user completes all the questions or decides to exit the quiz.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Features</summary><div class="indented"><ol type="1" id="69e81c51-fcd2-44b4-859f-28cae368a9e2" class="numbered-list" start="1"><li><strong>Question Retrieval</strong>: Questions are fetched from an external API (Open Trivia Database), providing a dynamic pool of questions for users to answer.</li></ol><ol type="1" id="c74720e5-bb3f-483f-895c-14040fdd7fec" class="numbered-list" start="2"><li><strong>Question Model</strong>: Questions are encapsulated using a <code><strong>Question</strong></code> class, allowing for easy management and organization of question data.</li></ol><ol type="1" id="c8ade979-1a90-4a35-91ab-433f141995a1" class="numbered-list" start="3"><li><strong>Quiz Logic</strong>: The <code><strong>QuizBrain</strong></code> class manages the core logic of the quiz, including tracking the current question, checking user answers, and updating the score.</li></ol><ol type="1" id="ba8239d0-24eb-4c0f-878f-6460407966df" class="numbered-list" start="4"><li><strong>User Interface</strong>: The application provides a graphical user interface (GUI) using the Tkinter library, making it easy and intuitive for users to interact with the quiz.</li></ol><ol type="1" id="e6a4663a-c046-4fec-958d-59d4978b4037" class="numbered-list" start="5"><li><strong>Feedback</strong>: Users receive immediate feedback on the correctness of their answers, with the application changing the background color to green for correct answers and red for incorrect ones.</li></ol><ol type="1" id="b271dccd-afaf-426c-97c3-487d3af974e9" class="numbered-list" start="6"><li><strong>Score Tracking</strong>: The application keeps track of the user&#x27;s score throughout the quiz, displaying it prominently on the interface.</li></ol><ol type="1" id="bf202337-5d79-4b0c-9cd2-dbe96e9137fe" class="numbered-list" start="7"><li><strong>Dynamic Content</strong>: The quiz can contain a variable number of questions fetched from the API, providing flexibility and variety for users.</li></ol><ol type="1" id="42f2d5aa-c439-4bfd-857a-c5a48115b823" class="numbered-list" start="8"><li><strong>True/False Answer Selection</strong>: Users can select their answers by clicking on true/false buttons, simplifying the interaction process.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">The aim of this project</summary><div class="indented"><ol type="1" id="6c98bf45-fce0-48cc-94bc-992e4eed3f21" class="numbered-list" start="1"><li><strong>Practice Integration of External APIs</strong>: By fetching quiz questions from an external API, developers gain experience in working with web APIs and handling API responses in their Python applications.</li></ol><ol type="1" id="9261a00e-e43b-4925-a07e-995436b94f13" class="numbered-list" start="2"><li><strong>Implement Object-Oriented Programming (OOP) Concepts</strong>: The project involves defining classes such as <code><strong>Question</strong></code>, <code><strong>QuizBrain</strong></code>, and <code><strong>QuizInterface</strong></code>, which helps developers practice OOP principles like encapsulation, inheritance, and polymorphism.</li></ol><ol type="1" id="4d371641-2ca7-47ef-aac8-8c77f4ad802a" class="numbered-list" start="3"><li><strong>Understand GUI Development with Tkinter</strong>: Building a graphical user interface (GUI) using Tkinter introduces developers to GUI programming concepts and helps them understand how to create interactive applications with buttons, labels, and canvas elements.</li></ol><ol type="1" id="d28ae2cd-1580-4754-8015-3d7722495726" class="numbered-list" start="4"><li><strong>Practice Event Handling</strong>: Handling user interactions such as button clicks and updating the UI based on user input teaches developers how to handle events in GUI applications effectively.</li></ol><ol type="1" id="8d5fadb9-a173-4a02-bd43-94ab863d2f59" class="numbered-list" start="5"><li><strong>Reinforce Core Python Concepts</strong>: Writing Python code to manage quiz logic, handle HTTP requests, parse JSON responses, and manipulate GUI elements reinforces fundamental Python programming concepts.</li></ol><ol type="1" id="218d4898-a898-4ef8-8148-d31baf335fa2" class="numbered-list" start="6"><li><strong>Learn about Asynchronous Programming</strong>: While not explicitly present in the provided code, handling asynchronous tasks such as making API requests asynchronously using libraries like <code><strong>asyncio</strong></code> or <code><strong>aiohttp</strong></code> could be an advanced learning extension for developers interested in exploring asynchronous programming in Python.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Achievements</summary><div class="indented"><ul id="81a190d4-9733-43c5-a1c5-218e505b6aa1" class="bulleted-list"><li style="list-style-type:disc">API Integration</li></ul><ul id="52ac3764-1233-4fd8-a779-8bd83c88cd5a" class="bulleted-list"><li style="list-style-type:disc">Object-Oriented Programming (OOP)</li></ul><ul id="adb88215-7b6b-45db-b9f5-d1de8f879768" class="bulleted-list"><li style="list-style-type:disc">Graphical User Interface (GUI) Development</li></ul><ul id="807ca668-32a4-4729-98e7-eab42d295c74" class="bulleted-list"><li style="list-style-type:disc">Event Handling</li></ul><ul id="701e2148-fa1d-4f7a-9611-2ba1cc2b4465" class="bulleted-list"><li style="list-style-type:disc">HTTP Requests and JSON Parsing</li></ul><ul id="647ed946-6467-4985-9560-29939846433a" class="bulleted-list"><li style="list-style-type:disc">Feedback Mechanisms</li></ul><ul id="3cfb713e-7c39-4b8f-a41f-094f227ec213" class="bulleted-list"><li style="list-style-type:disc">Error Handling</li></ul><ul id="653720dc-b83e-462e-b935-9159ba140770" class="bulleted-list"><li style="list-style-type:disc">Asynchronous Programming (Potential Extension)</li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Python code</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">quizzler_app.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="81ff0dc1-1701-4586-8f9e-d9f0aea9f60b" class="code"><code class="language-Python">from question_model import Question
+from data import question_data
+from quiz_brain import QuizBrain
+from ui import QuizInterface
+
+question_bank = []
+for question in question_data:
+    question_text = question[&quot;question&quot;]
+    question_answer = question[&quot;correct_answer&quot;]
+    new_question = Question(question_text, question_answer)
+    question_bank.append(new_question)
+
+
+quiz = QuizBrain(question_bank)
+quiz_ui = QuizInterface(quiz)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">quiz_brain.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a59c3e69-0871-4774-a4f5-2ac9337095cd" class="code"><code class="language-Python">import html
+
+
+class QuizBrain:
+
+    def __init__(self, q_list):
+        self.question_number = 0
+        self.score = 0
+        self.question_list = q_list
+        self.current_question = None
+
+    def still_has_questions(self):
+        return self.question_number &lt; len(self.question_list)
+
+    def next_question(self):
+        self.current_question = self.question_list[self.question_number]
+        self.question_number += 1
+        q_text = html.unescape(self.current_question.text)
+        return f&quot;Q.{self.question_number}: {q_text}&quot;
+
+    def check_answer(self, user_answer):
+        correct_answer = self.current_question.answer
+        if user_answer.lower() == correct_answer.lower():
+            self.score += 1
+            return True
+        else:
+            return False</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">question_mdoel.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3b79b461-6ce7-4966-b3d8-c06fb382e48e" class="code"><code class="language-Python">class Question:
+
+    def __init__(self, q_text, q_answer):
+        self.text = q_text
+        self.answer = q_answer</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">data.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="eb3a94b8-7ad7-466a-b205-5dee9495ad5e" class="code"><code class="language-Python">import requests
+
+parameters = {
+    &quot;amount&quot;: 10,
+    &quot;type&quot;: &quot;boolean&quot;,
+}
+
+response = requests.get(&quot;https://opentdb.com/api.php&quot;, params=parameters)
+response.raise_for_status()
+data = response.json()
+question_data = data[&quot;results&quot;]</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">ui.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="648b4a62-4cc6-475f-a876-b86ead80d0d0" class="code"><code class="language-Python">from tkinter import *
+from quiz_brain import QuizBrain
+
+THEME_COLOR = &quot;#375362&quot;
+
+
+class QuizInterface:
+
+    def __init__(self, quiz_brain: QuizBrain):
+        self.quiz = quiz_brain
+
+        self.window = Tk()
+        self.window.title(&quot;Quizzler&quot;)
+        self.window.config(padx=20, pady=20, bg=THEME_COLOR)
+
+        self.score_label = Label(text=&quot;Score: 0&quot;, fg=&quot;white&quot;, bg=THEME_COLOR)
+        self.score_label.grid(row=0, column=1)
+
+        self.canvas = Canvas(width=300, height=250, bg=&quot;white&quot;)
+        self.question_text = self.canvas.create_text(
+            150,
+            125,
+            width=280,
+            text=&quot;Some Question Text&quot;,
+            fill=THEME_COLOR,
+            font=(&quot;Arial&quot;, 20, &quot;italic&quot;)
+        )
+        self.canvas.grid(row=1, column=0, columnspan=2, pady=50)
+
+        true_image = PhotoImage(file=&quot;images/true.png&quot;)
+        self.true_button = Button(image=true_image, highlightthickness=0, command=self.true_pressed)
+        self.true_button.grid(row=2, column=0)
+
+        false_image = PhotoImage(file=&quot;images/false.png&quot;)
+        self.false_button = Button(image=false_image, highlightthickness=0, command=self.false_pressed)
+        self.false_button.grid(row=2, column=1)
+
+        self.get_next_question()
+
+        self.window.mainloop()
+
+    def get_next_question(self):
+        self.canvas.config(bg=&quot;white&quot;)
+        if self.quiz.still_has_questions():
+            self.score_label.config(text=f&quot;Score: {self.quiz.score}&quot;)
+            q_text = self.quiz.next_question()
+            self.canvas.itemconfig(self.question_text, text=q_text)
+        else:
+            self.canvas.itemconfig(self.question_text, text=&quot;You&#x27;ve reached the end of the quiz.&quot;)
+            self.true_button.config(state=&quot;disabled&quot;)
+            self.false_button.config(state=&quot;disabled&quot;)
+
+    def true_pressed(self):
+        self.give_feedback(self.quiz.check_answer(&quot;True&quot;))
+
+    def false_pressed(self):
+        is_right = self.quiz.check_answer(&quot;False&quot;)
+        self.give_feedback(is_right)
+
+    def give_feedback(self, is_right):
+        if is_right:
+            self.canvas.config(bg=&quot;green&quot;)
+        else:
+            self.canvas.config(bg=&quot;red&quot;)
+        self.window.after(1000, self.get_next_question)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">images/false.png</summary><div class="indented"><figure id="775c6806-72d7-4023-a35d-9c3a2ba05adf" class="image"><a href="26%20Quizzler%20b4fc59853c7441b3ab6f51bd6fa9ffde/false.png"><img style="width:100px" src="26%20Quizzler%20b4fc59853c7441b3ab6f51bd6fa9ffde/false.png"/></a></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">images/true.png</summary><div class="indented"><figure id="9f6369d9-17bb-43a9-ba21-a4674b0e7a32" class="image"><a href="26%20Quizzler%20b4fc59853c7441b3ab6f51bd6fa9ffde/true.png"><img style="width:100px" src="26%20Quizzler%20b4fc59853c7441b3ab6f51bd6fa9ffde/true.png"/></a></figure></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Instructions for running the game</summary><div class="indented"><ol type="1" id="e7061393-0a96-42e7-a939-f2df0d6820c6" class="numbered-list" start="1"><li>Ensure you have Python installed on your system. You can download and install Python from the official Python website (https://www.python.org/downloads/).</li></ol><ol type="1" id="8fdb99f5-64af-43ff-b176-9ae72aee20a7" class="numbered-list" start="2"><li>Clone or download the project files to your local machine.</li></ol><ol type="1" id="821f1ff5-376d-4cf3-8a6e-a425214f4544" class="numbered-list" start="3"><li>Open a terminal or command prompt and navigate to the directory where the project files are located.</li></ol><ol type="1" id="09fae94d-7bed-45f7-a5d1-df9e1e4b7e46" class="numbered-list" start="4"><li>Install the required dependencies if they are not already installed. You can install dependencies by running:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1d236a36-c379-44e5-b0c4-e2b1c832c06c" class="code"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">pip install requests</code></pre></li></ol><ol type="1" id="40ed9268-3a1c-4a29-9bfc-6255923285e1" class="numbered-list" start="5"><li>Run the <code><strong>ui.py</strong></code> file using Python:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a0bca0ce-2ebf-42fe-b755-b94e58cda90c" class="code"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">python ui.py</code></pre></li></ol><ol type="1" id="b024fadd-09df-4a68-84ab-25e06030b747" class="numbered-list" start="6"><li>The quiz application window should open, allowing you to interact with the quiz. You can answer true/false questions by clicking the corresponding buttons and see immediate feedback on the correctness of your answers.</li></ol><ol type="1" id="7e932c9f-7a09-43dd-9d80-ce5c43aa567d" class="numbered-list" start="7"><li>Once you&#x27;ve completed the quiz, the application will display your final score and indicate that you&#x27;ve reached the end of the quiz.</li></ol><ol type="1" id="5ad73ed3-ffc2-4bfa-98ad-06807db0801d" class="numbered-list" start="8"><li>You can close the application window to exit the quiz.</li></ol></div></details><h1 id="c0dce588-36a1-47c9-b77c-4cf1a777af13" class="">Result</h1><figure id="bb0f65ac-3720-4245-92fa-3c9bad144bda" class="image"><a href="26%20Quizzler%20b4fc59853c7441b3ab6f51bd6fa9ffde/Screenshot_2024-02-19_at_00.02.02.png"><img style="width:384px" src="26%20Quizzler%20b4fc59853c7441b3ab6f51bd6fa9ffde/Screenshot_2024-02-19_at_00.02.02.png"/></a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

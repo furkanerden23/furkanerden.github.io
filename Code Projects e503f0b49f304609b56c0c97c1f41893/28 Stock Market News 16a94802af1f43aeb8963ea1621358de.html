@@ -1,0 +1,752 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>28. Stock Market News</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="16a94802-af1f-43ae-b896-3ea1621358de" class="page sans"><header><h1 class="page-title">28. Stock Market News</h1><p class="page-description"></p></header><div class="page-body"><p id="2f17c000-61fa-4305-9923-860234c02de6" class="">
+</p><h1 id="b4cf0854-59b6-4553-ad75-f8444a91635f" class="">Introduction</h1><p id="491f7a92-9d93-4bca-9ec3-7c43b9761a0b" class="">Welcome to the Automated Stock Market News Notifier project! This Python script serves as a robust tool for fetching real-time stock market data and delivering personalized news updates directly to users via text messages. Let&#x27;s dive into the core functionalities and the underlying coding principles driving this project.</p><ol type="1" id="a0eea4db-b1aa-4ae8-926c-282fcdf24afe" class="numbered-list" start="1"><li><strong>API Integration:</strong><br/>The backbone of this project lies in its integration with external APIs. We leverage the AlphaVantage API to fetch historical stock market data, including daily closing prices. This data forms the basis for analyzing price movements over time.<br/></li></ol><ol type="1" id="7efdab6a-9baa-4d31-a2a8-511dab8e8d43" class="numbered-list" start="2"><li><strong>Price Analysis:</strong><br/>Using the fetched stock data, the script calculates the percentage change in the stock price between yesterday and the day before yesterday. This analysis is pivotal in determining whether a significant price change has occurred, warranting further action.<br/></li></ol><ol type="1" id="f3b6d249-1b55-495d-8771-3a751fae801b" class="numbered-list" start="3"><li><strong>News Retrieval:</strong><br/>Upon detecting a notable price change, the script dynamically queries the NewsAPI to fetch relevant news articles pertaining to the specified company. This ensures that users receive timely updates aligned with their investment interests.<br/></li></ol><ol type="1" id="377775ae-0e0b-49a8-9038-523fc3b718f9" class="numbered-list" start="4"><li><strong>Message Formatting:</strong><br/>To provide users with clear and concise updates, the script meticulously formats the retrieved news articles. Each message contains essential details such as the stock name, percentage change, headline, and a brief description of the article.<br/></li></ol><ol type="1" id="031459c0-f2dd-491c-bd77-962f0bcc3f43" class="numbered-list" start="5"><li><strong>Twilio Integration:</strong><br/>The Twilio API serves as the communication bridge between the script and users&#x27; mobile devices. Leveraging Twilio&#x27;s messaging service, the script effortlessly delivers the formatted news updates as text messages, ensuring seamless and instantaneous dissemination of information.<br/></li></ol><ol type="1" id="c923f9ff-b8b3-4ebb-becb-4ab3959de1a3" class="numbered-list" start="6"><li><strong>Automation:</strong><br/>One of the key strengths of this project is its automation capability. By periodically running the script, users can receive timely news updates without manual intervention, streamlining the process of staying informed about the latest market developments.<br/></li></ol><p id="dc1e70a6-fc00-4a3b-b60a-bed985d2fcb6" class="">The Automated Stock Market News Notifier project exemplifies the power of Python in seamlessly integrating with external APIs and automating complex tasks. Through its efficient data retrieval, analysis, and delivery mechanisms, the script empowers users to make informed investment decisions with ease.</p><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Features</summary><div class="indented"><ol type="1" id="9b4a968f-23c4-4244-a70e-6c8a4131dd1c" class="numbered-list" start="1"><li><strong>Real-time Stock Data Retrieval:</strong> The script fetches historical stock market data, including daily closing prices, using the AlphaVantage API. This data serves as the foundation for analyzing price movements.</li></ol><ol type="1" id="8a9bda38-ca0e-4f03-b1d7-be8b1d910c1a" class="numbered-list" start="2"><li><strong>Price Change Analysis:</strong> By comparing yesterday&#x27;s closing price with the closing price from the day before yesterday, the script calculates the percentage change in stock price. This analysis helps identify significant price fluctuations.</li></ol><ol type="1" id="11acf2ae-946f-40d5-8dc0-fc3399a944e7" class="numbered-list" start="3"><li><strong>Dynamic News Retrieval:</strong> When a notable price change is detected (e.g., exceeding a predefined threshold), the script queries the NewsAPI to fetch relevant news articles related to the specified company.</li></ol><ol type="1" id="be96fbc6-812f-42b3-813b-dce6ccc1417d" class="numbered-list" start="4"><li><strong>Formatted News Updates:</strong> The retrieved news articles are meticulously formatted into concise messages containing essential details such as the stock name, percentage change, headline, and brief description of each article.</li></ol><ol type="1" id="ac17b607-4da6-4518-afff-9b0e78e20763" class="numbered-list" start="5"><li><strong>Twilio Integration:</strong> Leveraging the Twilio API, the script delivers the formatted news updates directly to users&#x27; mobile phones as text messages. Twilio&#x27;s messaging service ensures seamless and instantaneous communication.</li></ol><ol type="1" id="5ee985b8-3663-47fd-820d-f088e7a70ec1" class="numbered-list" start="6"><li><strong>Automation:</strong> The project is designed to be run periodically, allowing users to receive timely news updates without manual intervention. This automation streamlines the process of staying informed about the latest market developments.</li></ol><ol type="1" id="f2a9c51b-b2c5-4d88-ab57-e04b395b5127" class="numbered-list" start="7"><li><strong>Customization:</strong> Users can easily customize the script by specifying parameters such as the target stock symbol (e.g., TSLA for Tesla Inc), company name, API keys, and threshold for detecting significant price changes.</li></ol><ol type="1" id="3240d77b-cee3-4d73-9c51-9c106223a9b3" class="numbered-list" start="8"><li><strong>Scalability:</strong> The project&#x27;s modular design and integration with external APIs facilitate scalability, allowing for potential enhancements and additional features in the future.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">The aim of this project</summary><div class="indented"><ol type="1" id="42f64985-796b-4dad-9add-70769c1fde8f" class="numbered-list" start="1"><li><strong>Understanding API Integration:</strong> The project provides an opportunity to learn how to integrate with external APIs such as AlphaVantage and NewsAPI. This involves understanding API documentation, making HTTP requests, handling responses, and parsing JSON data.</li></ol><ol type="1" id="d9412722-da60-4856-95a8-2e112112fd8d" class="numbered-list" start="2"><li><strong>Data Retrieval and Analysis:</strong> Through the project, learners gain experience in retrieving and analyzing real-time stock market data. They learn how to extract relevant information, such as closing prices, and perform calculations to analyze price changes over time.</li></ol><ol type="1" id="2ec1f119-e43a-4f65-80c7-fd21deb1cb9d" class="numbered-list" start="3"><li><strong>Message Formatting and Delivery:</strong> Learners explore techniques for formatting data into clear and concise messages suitable for delivery via SMS. They learn about text formatting, including incorporating emojis and structuring messages for readability.</li></ol><ol type="1" id="06c492cb-e85a-4f9a-8d72-5bfd2060f0e0" class="numbered-list" start="4"><li><strong>Automation with Python:</strong> The project emphasizes the automation of tasks using Python scripts. Learners discover how to schedule script execution periodically, ensuring timely updates without manual intervention.</li></ol><ol type="1" id="9673b12d-f6de-44a6-aea9-ac92db0c7255" class="numbered-list" start="5"><li><strong>Error Handling and Debugging:</strong> Throughout the project, learners encounter various potential issues, such as API request errors or data parsing errors. They learn how to implement error handling mechanisms and debug their code effectively.</li></ol><ol type="1" id="c96b43c3-086d-444b-b6f2-ac783674314b" class="numbered-list" start="6"><li><strong>Customization and Parameterization:</strong> Learners have the opportunity to customize the project according to their preferences and requirements. They learn about parameterization, enabling easy configuration of variables such as stock symbols, API keys, and threshold values.</li></ol><ol type="1" id="f4acbc0c-eb0b-41df-bc6d-9d4114359356" class="numbered-list" start="7"><li><strong>Understanding Financial Concepts:</strong> While not explicitly stated, the project inherently involves exposure to financial concepts such as stock price fluctuations and their implications. Learners may deepen their understanding of financial markets and investment strategies as they engage with the project.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Achievements</summary><div class="indented"><ul id="1d476194-472c-435c-a79a-ac8f484fb945" class="bulleted-list"><li style="list-style-type:disc">Mastery of API integration.</li></ul><ul id="81909a56-0351-46e9-93f6-ade918101738" class="bulleted-list"><li style="list-style-type:disc">Proficiency in retrieving and analyzing real-time stock market data.</li></ul><ul id="dcb43650-f1fd-4670-aab1-10dee0c31366" class="bulleted-list"><li style="list-style-type:disc">Expertise in formatting data for clear communication.</li></ul><ul id="8467360c-90f2-40ad-9055-2722ac23b2a1" class="bulleted-list"><li style="list-style-type:disc">Proficiency in automating tasks using Python scripts.</li></ul><ul id="8e377f46-7822-4c43-8ad1-67423e0b9763" class="bulleted-list"><li style="list-style-type:disc">Understanding of customization and parameterization in software development.</li></ul><ul id="c7ef7019-cafe-4d39-963a-7b167f248109" class="bulleted-list"><li style="list-style-type:disc">Enhancement of debugging skills.</li></ul><ul id="20dea4a2-6238-4234-a3dd-55b1b2696df2" class="bulleted-list"><li style="list-style-type:disc">Improvement in financial literacy through engagement with the project.</li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Python code</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">stock_market_news.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="23908749-b60e-48c7-a34f-57e43b3900e8" class="code"><code class="language-Python">import requests
+from twilio.rest import Client
+
+VIRTUAL_TWILIO_NUMBER = &quot;your virtual twilio number&quot;
+VERIFIED_NUMBER = &quot;your own phone number verified with Twilio&quot;
+
+STOCK_NAME = &quot;TSLA&quot;
+COMPANY_NAME = &quot;Tesla Inc&quot;
+
+STOCK_ENDPOINT = &quot;https://www.alphavantage.co/query&quot;
+NEWS_ENDPOINT = &quot;https://newsapi.org/v2/everything&quot;
+
+STOCK_API_KEY = &quot;YOUR OWN API KEY FROM ALPHAVANTAGE&quot;
+NEWS_API_KEY = &quot;YOUR OWN API KEY FROM NEWSAPI&quot;
+TWILIO_SID = &quot;YOUR TWILIO ACCOUNT SID&quot;
+TWILIO_AUTH_TOKEN = &quot;YOUR TWILIO AUTH TOKEN&quot;
+
+
+#Get yesterday&#x27;s closing stock price
+stock_params = {
+    &quot;function&quot;: &quot;TIME_SERIES_DAILY&quot;,
+    &quot;symbol&quot;: STOCK_NAME,
+    &quot;apikey&quot;: STOCK_API_KEY,
+}
+
+response = requests.get(STOCK_ENDPOINT, params=stock_params)
+data = response.json()[&quot;Time Series (Daily)&quot;]
+data_list = [value for (key, value) in data.items()]
+yesterday_data = data_list[0]
+yesterday_closing_price = yesterday_data[&quot;4. close&quot;]
+print(yesterday_closing_price)
+
+#Get the day before yesterday&#x27;s closing stock price
+day_before_yesterday_data = data_list[1]
+day_before_yesterday_closing_price = day_before_yesterday_data[&quot;4. close&quot;]
+print(day_before_yesterday_closing_price)
+
+#Find the positive difference between 1 and 2. e.g. 40 - 20 = -20, but the positive difference is 20.
+difference = float(yesterday_closing_price) - float(day_before_yesterday_closing_price)
+up_down = None
+if difference &gt; 0:
+    up_down = &quot;🔺&quot;
+else:
+    up_down = &quot;🔻&quot;
+
+#Work out the percentage difference in price between closing price yesterday and closing price the day before yesterday.
+diff_percent = round((difference / float(yesterday_closing_price)) * 100)
+print(diff_percent)
+
+
+#If difference percentage is greater than 5 then print(&quot;Get News&quot;).
+if abs(diff_percent) &gt; 1:
+    news_params = {
+        &quot;apiKey&quot;: NEWS_API_KEY,
+        &quot;qInTitle&quot;: COMPANY_NAME,
+    }
+
+    news_response = requests.get(NEWS_ENDPOINT, params=news_params)
+    articles = news_response.json()[&quot;articles&quot;]
+
+    #Use Python slice operator to create a list that contains the first 3 articles.
+    three_articles = articles[:3]
+    print(three_articles)
+
+    #Create a new list of the first 3 article&#x27;s headline and description using list comprehension.
+    formatted_articles = [f&quot;{STOCK_NAME}: {up_down}{diff_percent}%\nHeadline: {article[&#x27;title&#x27;]}. \nBrief: {article[&#x27;description&#x27;]}&quot; for article in three_articles]
+    print(formatted_articles)
+    client = Client(TWILIO_SID, TWILIO_AUTH_TOKEN)
+
+    #Send each article as a separate message via Twilio.
+    for article in formatted_articles:
+        message = client.messages.create(
+            body=article,
+            from_=VIRTUAL_TWILIO_NUMBER,
+            to=VERIFIED_NUMBER
+        )</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Instructions for running the project</summary><div class="indented"><ol type="1" id="780737b0-521c-4d5c-86f1-082caa8b160c" class="numbered-list" start="1"><li><strong>Setup Environment:</strong><ul id="d74ec009-735b-4e0c-9d5c-3378241dde5e" class="bulleted-list"><li style="list-style-type:disc">Ensure you have Python installed on your system (preferably Python 3.x).</li></ul><ul id="1fd1e62e-690a-467f-852a-9ce9f05316aa" class="bulleted-list"><li style="list-style-type:disc">Install required Python packages using pip:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c4e606cc-b405-476a-83ad-af0e3dba2019" class="code"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">pip install requests twilio</code></pre></li></ul></li></ol><ol type="1" id="1526c06c-58e5-496d-afbb-225e294e7434" class="numbered-list" start="2"><li><strong>Obtain API Keys:</strong><ul id="aa979edc-cbd7-4bb1-ad66-5d539c38f8f2" class="bulleted-list"><li style="list-style-type:disc">Sign up for accounts and obtain API keys from the following services:<ul id="34754ec3-3bf6-4fdf-a2a1-a90d0ec7cdb4" class="bulleted-list"><li style="list-style-type:circle">AlphaVantage (for stock market data)</li></ul><ul id="a30d4946-e23e-4bbc-98db-a0f15a8ce878" class="bulleted-list"><li style="list-style-type:circle">NewsAPI (for news articles)</li></ul><ul id="cbfb3266-2af6-415f-bb99-0c4e80a1c6cc" class="bulleted-list"><li style="list-style-type:circle">Twilio (for sending SMS messages)</li></ul></li></ul></li></ol><ol type="1" id="7a9b6809-a419-4364-b8bf-5592b2d3b878" class="numbered-list" start="3"><li><strong>Update Constants:</strong><ul id="9e455a74-467f-486b-88fd-da72e321e12e" class="bulleted-list"><li style="list-style-type:disc">Open the <code><strong>stock_market_news.py</strong></code> file in a text editor.</li></ul><ul id="79f668dd-c1f7-4464-af24-aa3c0b70a3a0" class="bulleted-list"><li style="list-style-type:disc">Update the following constants with your API keys and other information:<ul id="a73a6d7f-d4e1-4d80-b486-0d0343110553" class="bulleted-list"><li style="list-style-type:circle"><code><strong>STOCK_API_KEY</strong></code>: Your API key from AlphaVantage.</li></ul><ul id="cef6fe01-2537-4007-bb20-b238de636217" class="bulleted-list"><li style="list-style-type:circle"><code><strong>NEWS_API_KEY</strong></code>: Your API key from NewsAPI.</li></ul><ul id="41952d00-5006-4fc8-b979-c2243aea5123" class="bulleted-list"><li style="list-style-type:circle"><code><strong>TWILIO_SID</strong></code> and <code><strong>TWILIO_AUTH_TOKEN</strong></code>: Your Twilio account SID and authentication token.</li></ul><ul id="6b63053c-8629-46b2-932b-df21ee0c9f53" class="bulleted-list"><li style="list-style-type:circle"><code><strong>VIRTUAL_TWILIO_NUMBER</strong></code>: Your Twilio virtual number.</li></ul><ul id="6a029a3e-e2b7-4c24-a571-0b7e62b5dd6a" class="bulleted-list"><li style="list-style-type:circle"><code><strong>VERIFIED_NUMBER</strong></code>: Your verified phone number with Twilio.</li></ul><ul id="18dbb283-fe25-452b-8cdf-e62208192cf2" class="bulleted-list"><li style="list-style-type:circle"><code><strong>STOCK_NAME</strong></code>: The stock symbol you want to monitor (e.g., &quot;TSLA&quot; for Tesla Inc).</li></ul><ul id="3306cc90-c6c1-4dac-8e35-96f5602a3d6c" class="bulleted-list"><li style="list-style-type:circle"><code><strong>COMPANY_NAME</strong></code>: The name of the company corresponding to the stock symbol.</li></ul></li></ul></li></ol><ol type="1" id="fe2ec25e-ec64-4e9d-88de-4b41ec082c71" class="numbered-list" start="4"><li><strong>Run the Script:</strong><ul id="7d2002b8-6a21-4946-8d8d-17df6dc23e6e" class="bulleted-list"><li style="list-style-type:disc">Open a terminal or command prompt.</li></ul><ul id="31085d15-dcdf-4770-8b5d-3e8378185f70" class="bulleted-list"><li style="list-style-type:disc">Navigate to the directory containing the <code><strong>stock_market_news.py</strong></code> file.</li></ul><ul id="b3f150bb-a1c4-45d9-9320-e7cf583d173b" class="bulleted-list"><li style="list-style-type:disc">Run the script using the following command:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="52667a15-f4ce-4cdb-8414-23b892b2dde8" class="code"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">python stock_market_news.py</code></pre></li></ul></li></ol><ol type="1" id="1cdb3d17-ea83-4f80-983f-10d045573445" class="numbered-list" start="5"><li><strong>Periodic Execution (Optional):</strong><ul id="e94e333e-c7b0-4530-9a00-7f3af60b674f" class="bulleted-list"><li style="list-style-type:disc">If you want to receive regular updates, you can schedule the script to run periodically using tools like cron jobs (on Unix-based systems) or Task Scheduler (on Windows).</li></ul></li></ol><ol type="1" id="f0565c59-230c-4667-b690-8e853b5f0e9b" class="numbered-list" start="6"><li><strong>Monitor Updates:</strong><ul id="85e8ae1f-3a8b-4be4-adae-5d1747d91fae" class="bulleted-list"><li style="list-style-type:disc">Once the script is running, it will periodically check for significant price changes in the specified stock.</li></ul><ul id="6fef4a0b-4a28-4989-b027-b760e5845fb2" class="bulleted-list"><li style="list-style-type:disc">If a significant change is detected, relevant news articles will be fetched and sent to your mobile phone via SMS.</li></ul></li></ol></div></details><h1 id="b0556d4e-7e2b-4cca-92da-8f39cc0a1d54" class="">Result</h1><p id="755e7651-3dcc-4893-8e70-1710926bb270" class="">Result is articles related stock market</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

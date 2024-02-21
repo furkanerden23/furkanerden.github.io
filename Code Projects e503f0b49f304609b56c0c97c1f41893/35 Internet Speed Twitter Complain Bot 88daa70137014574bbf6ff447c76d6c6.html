@@ -1,0 +1,729 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>35. Internet Speed Twitter Complain Bot</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="88daa701-3701-4574-bbf6-ff447c76d6c6" class="page sans"><header><h1 class="page-title">35. Internet Speed Twitter Complain Bot</h1><p class="page-description"></p></header><div class="page-body"><p id="fac6fb94-3e92-4446-bbe6-aa19cdddd892" class="">
+</p><h1 id="25e1cd97-4e9d-4503-bc5d-1080a05bc22a" class="">Introduction</h1><p id="6a767aea-4270-481b-9fdb-28162933b41a" class="">This project is a Python script designed to automate the process of complaining to your internet service provider (ISP) via Twitter if your internet speed falls below the promised threshold.</p><p id="113e22e9-532a-4cbc-a7c3-39402c7046cb" class="">Here&#x27;s how the script works:</p><ol type="1" id="ac259fa6-4fa3-47c1-85b2-a0a85319ea4f" class="numbered-list" start="1"><li>It utilizes Selenium, a web automation tool, to control a web browser (in this case, Chrome) programmatically.</li></ol><ol type="1" id="fba85cad-9a7a-4eec-a21d-79b805844f6a" class="numbered-list" start="2"><li>It defines constants such as the promised download and upload speeds, the path to the Chrome WebDriver, and your Twitter login credentials.</li></ol><ol type="1" id="beeb4372-fccd-465c-86eb-8b68db2047ab" class="numbered-list" start="3"><li>The <code><strong>InternetSpeedTwitterBot</strong></code> class is defined, which initializes a Chrome WebDriver instance.</li></ol><ol type="1" id="941b3b00-9379-4f67-8210-3f25e723aab6" class="numbered-list" start="4"><li>The <code><strong>get_internet_speed</strong></code> method navigates to speedtest.net, performs a speed test, and retrieves the current upload and download speeds.</li></ol><ol type="1" id="a5103440-9d13-4487-b6c1-e65969b53ab9" class="numbered-list" start="5"><li>The <code><strong>tweet_at_provider</strong></code> method logs in to Twitter, composes a tweet mentioning the ISP and complaining about the speed discrepancy, and then sends the tweet.</li></ol><ol type="1" id="bb3b49da-ec90-4058-8ebb-89f86f5db836" class="numbered-list" start="6"><li>Finally, an instance of <code><strong>InternetSpeedTwitterBot</strong></code> is created, and both <code><strong>get_internet_speed</strong></code> and <code><strong>tweet_at_provider</strong></code> methods are called sequentially.</li></ol><p id="e127a938-6be7-425e-afb6-11c1be80c943" class="">To use this script, you need to replace the placeholders with your actual Chrome WebDriver path, Twitter email, and password. Additionally, you might need to install Selenium (<code><strong>pip install selenium</strong></code>) and download the appropriate Chrome WebDriver for your system.</p><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Features</summary><div class="indented"><ol type="1" id="294ae3c0-8297-430b-b4ae-7ca55312ff25" class="numbered-list" start="1"><li><strong>Internet Speed Testing</strong>: The script can automatically conduct a speed test using speedtest.net to determine the current upload and download speeds of your internet connection.</li></ol><ol type="1" id="4a967b9f-e554-4eef-b082-700a38d5ccc8" class="numbered-list" start="2"><li><strong>Twitter Interaction</strong>: It logs into your Twitter account and sends a complaint tweet to your internet service provider (ISP) if the measured internet speeds fall below the promised thresholds.</li></ol><ol type="1" id="a35dc7dd-3efd-4eb4-9df9-a85b49edf087" class="numbered-list" start="3"><li><strong>Automation</strong>: The entire process, from conducting the speed test to sending the complaint tweet, is automated using Selenium, eliminating the need for manual intervention.</li></ol><ol type="1" id="b5e4e411-7dad-4ae7-9dbf-365e99f5ac1c" class="numbered-list" start="4"><li><strong>Customizable Parameters</strong>: Users can customize parameters such as the promised upload and download speeds, Chrome WebDriver path, and Twitter login credentials to suit their specific setup.</li></ol><ol type="1" id="94f9030e-a03e-45b3-bb08-4a17d3bbacb5" class="numbered-list" start="5"><li><strong>Error Handling</strong>: Although not explicitly implemented in the provided code snippet, error handling could be added to deal with potential issues such as network connectivity problems, incorrect login credentials, or elements not found on the web pages.</li></ol><ol type="1" id="3d147648-e45b-4a0f-99fe-585ab83b31f5" class="numbered-list" start="6"><li><strong>Scalability</strong>: This script could be extended to handle multiple ISPs or to run periodic speed tests and complaints at scheduled intervals.</li></ol><ol type="1" id="119ccac3-1f5e-4c60-8607-11747eec9b77" class="numbered-list" start="7"><li><strong>Potential for Integration</strong>: The script could be integrated into larger systems or workflows, such as a monitoring system for tracking internet performance over time or an automated customer support system for handling ISP complaints.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">The aim of this project</summary><div class="indented"><ol type="1" id="8f231617-d236-46d0-9f72-32f4444f838c" class="numbered-list" start="1"><li><strong>Develop Automation Skills</strong>: By using Selenium, learners can gain practical experience in automating web interactions, including navigating web pages, filling out forms, and clicking buttons, which are valuable skills for various applications in software development and testing.</li></ol><ol type="1" id="13947d45-ce59-444d-9fd8-96713e11abc3" class="numbered-list" start="2"><li><strong>Understanding Web Scraping</strong>: The project involves extracting data from web pages, which introduces learners to the concept of web scraping and how to locate and extract specific information from HTML elements.</li></ol><ol type="1" id="e352aa4a-58a2-4389-986b-11e478f871f6" class="numbered-list" start="3"><li><strong>Integration of APIs</strong>: Although not explicitly present in this project, learners could extend it by integrating with the Twitter API for sending tweets programmatically, providing an opportunity to learn about working with APIs and handling authentication.</li></ol><ol type="1" id="08de4722-d221-4b2d-9110-d94411992b87" class="numbered-list" start="4"><li><strong>Problem Solving and Troubleshooting</strong>: Learners will likely encounter challenges while implementing this project, such as handling dynamic elements on web pages or dealing with authentication mechanisms. Solving these challenges enhances problem-solving skills and teaches learners how to troubleshoot issues effectively.</li></ol><ol type="1" id="0c3be000-9109-4028-889a-a2cc9eb6532a" class="numbered-list" start="5"><li><strong>Understanding Real-World Applications</strong>: This project simulates a real-world scenario where a user wants to automate a task (complaining about internet speed) that involves interacting with web services (speed test and Twitter). By completing the project, learners gain insight into how automation can streamline repetitive tasks and solve practical problems.</li></ol><ol type="1" id="cb4e1d3d-f2e4-4693-96df-e95879d1f8fe" class="numbered-list" start="6"><li><strong>Customization and Parameterization</strong>: The project provides opportunities for learners to customize parameters such as internet speed thresholds, web browser settings, and login credentials, encouraging experimentation and exploration of different configurations.</li></ol><ol type="1" id="bb51d2a8-6df5-4130-a2b5-2ffbdf5e926c" class="numbered-list" start="7"><li><strong>Software Engineering Best Practices</strong>: Through the development of this project, learners can practice software engineering best practices such as modular design, encapsulation, and documentation, which are essential skills for writing maintainable and scalable code.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Achievements</summary><div class="indented"><ol type="1" id="5d3785ea-8a53-4a01-a171-827bb56901f1" class="numbered-list" start="1"><li>Automation Skills Development</li></ol><ol type="1" id="f7c3e520-e46d-41ec-9862-14f0a130897d" class="numbered-list" start="2"><li>Understanding Web Scraping Concepts</li></ol><ol type="1" id="99bc1f9e-95c9-4c78-bbaf-127747828470" class="numbered-list" start="3"><li>Integration with External APIs (e.g., Twitter)</li></ol><ol type="1" id="3563223b-cd62-4bc0-923c-631d3cee0888" class="numbered-list" start="4"><li>Problem-Solving and Troubleshooting Abilities Enhancement</li></ol><ol type="1" id="93926658-1797-4a48-af37-5be66d0ee131" class="numbered-list" start="5"><li>Real-World Application Simulation</li></ol><ol type="1" id="dbe587aa-7eb0-4b1a-b025-3348914d2d7a" class="numbered-list" start="6"><li>Customization and Parameterization Practice</li></ol><ol type="1" id="9cfe3c85-a774-4ffe-9009-0c3b79040516" class="numbered-list" start="7"><li>Application of Software Engineering Best Practices</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Python code</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">internet_speed_twitter_complain_bot.py</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="cdc3b1e2-32e4-4a56-a7ee-2a61b4d353ca" class="code"><code class="language-Python">from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+import time
+
+PROMISED_DOWN = 150
+PROMISED_UP = 10
+CHROME_DRIVER_PATH = &#x27;YOUR CHROME DRIVER PATH&#x27;
+TWITTER_EMAIL = &#x27;YOUR TWITTER EMAIL&#x27;
+TWITTER_PASSWORD = &#x27;YOUR TWITTER PASSWORD&#x27;
+
+
+class InternetSpeedTwitterBot:
+    def __init__(self, driver_path):
+        self.driver = webdriver.Chrome(executable_path=driver_path)
+        self.up = 0
+        self.down = 0
+
+    def get_internet_speed(self):
+        self.driver.get(&quot;https://www.speedtest.net/&quot;)
+        # accept_button = self.driver.find_element_by_id(&quot;_evidon-banner-acceptbutton&quot;)
+        # accept_button.click()
+        # time.sleep(3)
+
+        go_button = self.driver.find_element(By.CSS_SELECTOR, &quot;.start-button a&quot;)
+        go_button.click()
+        time.sleep(60)
+        self.up = self.driver.find_element(By.XPATH, &#x27;//*[@id=&quot;container&quot;]/div/div[3]/div/div/div/div[2]/div[3]/div[3]/div/div[3]/div/div/div[2]/div[1]/div[2]/div/div[2]/span&#x27;).text
+        self.down = self.driver.find_element(By.XPATH, &#x27;//*[@id=&quot;container&quot;]/div/div[3]/div/div/div/div[2]/div[3]/div[3]/div/div[3]/div/div/div[2]/div[1]/div[3]/div/div[2]/span&#x27;).text
+
+    def tweet_at_provider(self):
+        self.driver.get(&quot;https://twitter.com/login&quot;)
+        time.sleep(2)
+        email = self.driver.find_element(By.XPATH, &#x27;//*[@id=&quot;react-root&quot;]/div/div/div[2]/main/div/div/div[1]/form/div/div[1]/label/div/div[2]/div/input&#x27;)
+        password = self.driver.find_element(By.XPATH, &#x27;//*[@id=&quot;react-root&quot;]/div/div/div[2]/main/div/div/div[1]/form/div/div[2]/label/div/div[2]/div/input&#x27;)
+        email.send_keys(TWITTER_EMAIL)
+        password.send_keys(TWITTER_PASSWORD)
+        time.sleep(2)
+        password.send_keys(Keys.ENTER)
+        time.sleep(5)
+        tweet_compose = self.driver.find_element(By.XPATH, &#x27;//*[@id=&quot;react-root&quot;]/div/div/div[2]/main/div/div/div/div/div/div[2]/div/div[2]/div[1]/div/div/div/div[2]/div[1]/div/div/div/div/div/div/div/div/div/div[1]/div/div/div/div[2]/div/div/div/div&#x27;)
+        tweet = f&quot;Hey Internet Provider, why is my internet speed {self.down}down/{self.up}up when I pay for {PROMISED_DOWN}down/{PROMISED_UP}up?&quot;
+        tweet_compose.send_keys(tweet)
+        time.sleep(3)
+        tweet_button = self.driver.find_element(By.XPATH, &#x27;//*[@id=&quot;react-root&quot;]/div/div/div[2]/main/div/div/div/div/div/div[2]/div/div[2]/div[1]/div/div/div/div[2]/div[4]/div/div/div[2]/div[3]&#x27;)
+        tweet_button.click()
+        time.sleep(2)
+        self.driver.quit()
+
+
+bot = InternetSpeedTwitterBot(CHROME_DRIVER_PATH)
+bot.get_internet_speed()
+bot.tweet_at_provider()</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Instructions for running the project</summary><div class="indented"><ol type="1" id="0d48f714-395d-45e1-accc-cbe8db30da7b" class="numbered-list" start="1"><li><strong>Install Dependencies</strong>: Ensure you have Python installed on your system. Install the necessary dependencies using pip:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d9cc1941-4271-4ce6-9b96-c5666eafd4bd" class="code"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">pip install selenium</code></pre></li></ol><ol type="1" id="f3601a6e-af12-4fd0-9220-d544221884c0" class="numbered-list" start="2"><li><strong>Download Chrome WebDriver</strong>: Download the Chrome WebDriver compatible with your Chrome browser version. Ensure the WebDriver executable is placed in a directory accessible by your system.</li></ol><ol type="1" id="43db1618-67f9-4588-a352-01f9220062e8" class="numbered-list" start="3"><li><strong>Update Constants</strong>: Open the <code><strong>internet_speed_twitter_complain_bot.py</strong></code> file and update the following constants with your own information:<ul id="0579f8cc-b3c7-4fbb-8d1e-4f3d15f358f9" class="bulleted-list"><li style="list-style-type:disc"><code><strong>CHROME_DRIVER_PATH</strong></code>: Path to the Chrome WebDriver executable.</li></ul><ul id="1ec4f71b-a74c-41ed-bcea-38a135384541" class="bulleted-list"><li style="list-style-type:disc"><code><strong>TWITTER_EMAIL</strong></code>: Your Twitter email address.</li></ul><ul id="d85f20cd-9523-4359-bb94-ea08d638eb2e" class="bulleted-list"><li style="list-style-type:disc"><code><strong>TWITTER_PASSWORD</strong></code>: Your Twitter password.</li></ul></li></ol><ol type="1" id="1badfc65-0b35-40b0-9775-f4b377119193" class="numbered-list" start="4"><li><strong>Run the Script</strong>: Execute the Python script <code><strong>internet_speed_twitter_complain_bot.py</strong></code> using your preferred Python interpreter. You can do this from the command line:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ab01430f-9b4d-4d83-b454-583da9a21c02" class="code"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">python internet_speed_twitter_complain_bot.py</code></pre></li></ol><ol type="1" id="05af2db0-68e7-4004-a721-d8ee016099c1" class="numbered-list" start="5"><li><strong>Wait for Execution</strong>: The script will automate the process of conducting a speed test and tweeting at your internet service provider. Wait for the script to complete execution.</li></ol><ol type="1" id="69dbcc74-84e6-4c91-a9ce-6b988eb240a0" class="numbered-list" start="6"><li><strong>Review Output</strong>: Once the script finishes execution, review the output on the command line for any errors or messages indicating the success of the operation.</li></ol><ol type="1" id="82c4003d-7cb1-4a86-90d2-50ccbb74c16f" class="numbered-list" start="7"><li><strong>Adjust Parameters (Optional)</strong>: If needed, you can adjust parameters such as the promised internet speeds or the time intervals for waiting in the script to better suit your requirements.</li></ol><ol type="1" id="9278a82e-59a0-4496-b997-8d213d545eae" class="numbered-list" start="8"><li><strong>Customize Error Handling (Optional)</strong>: Consider customizing error handling within the script to handle any potential issues that may arise during execution, such as network connectivity problems or element not found errors.</li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

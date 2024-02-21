@@ -1,0 +1,742 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Bootstrap</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="c49b6665-dc50-4165-9af7-c5f13394ce69" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1612296727166-b44f0be45463?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">⛩️</span></div><h1 class="page-title">Bootstrap</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesCreatedAt"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM4.54102 8.91211H7.99316C8.30078 8.91211 8.54004 8.67285 8.54004 8.37207V3.8877C8.54004 3.58691 8.30078 3.34766 7.99316 3.34766C7.69238 3.34766 7.45312 3.58691 7.45312 3.8877V7.83203H4.54102C4.2334 7.83203 4.00098 8.06445 4.00098 8.37207C4.00098 8.67285 4.2334 8.91211 4.54102 8.91211Z"></path></svg></span>Created</th><td><time>@February 20, 2024 8:25 PM</time></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesSelect"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM7.62402 10.6348C7.79492 10.915 8.20508 10.9287 8.37598 10.6348L10.666 6.73145C10.8574 6.41016 10.7002 6.04102 10.3652 6.04102H5.62793C5.29297 6.04102 5.14941 6.43066 5.32031 6.73145L7.62402 10.6348Z"></path></svg></span>Class</th><td><span class="selected-value select-value-color-purple">Web Development</span></td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesCheckbox"><path d="M3.85742 14.4561H12.1357C13.6123 14.4561 14.3779 13.6904 14.3779 12.2344V3.91504C14.3779 2.45215 13.6123 1.69336 12.1357 1.69336H3.85742C2.38086 1.69336 1.61523 2.45215 1.61523 3.91504V12.2344C1.61523 13.6973 2.38086 14.4561 3.85742 14.4561ZM3.93945 13.1162C3.30371 13.1162 2.95508 12.7812 2.95508 12.1182V4.02441C2.95508 3.36133 3.30371 3.0332 3.93945 3.0332H12.0537C12.6826 3.0332 13.0381 3.36133 13.0381 4.02441V12.1182C13.0381 12.7812 12.6826 13.1162 12.0537 13.1162H3.93945ZM7.26855 11.3115C7.51465 11.3115 7.72656 11.1885 7.87012 10.9697L10.9258 6.19141C11.0146 6.04785 11.0967 5.88379 11.0967 5.72656C11.0967 5.3916 10.7959 5.16602 10.4746 5.16602C10.2695 5.16602 10.085 5.27539 9.94141 5.50781L7.24121 9.8418L5.96973 8.22168C5.80566 8.00977 5.6416 7.93457 5.43652 7.93457C5.10156 7.93457 4.8418 8.20117 4.8418 8.54297C4.8418 8.70703 4.90332 8.85742 5.01953 9.00098L6.63281 10.9697C6.81738 11.209 7.01562 11.3115 7.26855 11.3115Z"></path></svg></span>Reviewed</th><td><div class="checkbox checkbox-off"></div></td></tr></tbody></table></header><div class="page-body"><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Install</summary><div class="indented"><p id="a343b85c-496a-476b-9d34-8aa98a3fa3d6" class="">Install the Bootstrap to a project</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="128462ca-f355-4ca9-8351-b936eb812c6d" class="code"><code class="language-HTML">&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Bootstrap Installation&lt;/title&gt;
+    &lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; integrity=&quot;sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN&quot; crossorigin=&quot;anonymous&quot;&gt;
+		&lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js&quot; integrity=&quot;sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Bootstrap Layout</summary><div class="indented"><h2 id="d2fbc1fe-ae87-4bc6-9ca3-e5744862ca4e" class="">12 Column system</h2><p id="041af0a9-c58e-42bf-a9f5-e008552122c8" class="">Have a &lt;div&gt; .container for all of the elements in the column. </p><p id="44ed236d-8396-421c-a36f-fe6e4d79c097" class="">Create &lt;div&gt; .row for a single row</p><p id="c717d62e-2040-41f4-9096-831c94079023" class="">Put the items inside of this .row element</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0f375d05-4e58-4f38-b917-59a5f6346f69" class="code"><code class="language-HTML">&lt;div class=&quot;container&quot;&gt;
+	&lt;div class=&quot; row&quot;&gt;
+		&lt;div class=&quot;col&quot;&gt;Hello&lt;/div&gt;
+		&lt;!-- As many items as you like here --&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre><p id="afb931d5-d03f-4014-a923-282947c2d07b" class="">Item width across different containers and screens</p><table id="688bdfb0-3310-4230-8d91-529c69d6ce5e" class="simple-table"><tbody><tr id="74f0a0cc-1a00-467b-87aa-1711557660aa"><td id="{Of}" class=""></td><td id="rOXT" class="">x small</td><td id="zOn\" class="">small</td><td id="wdAY" class="">medium</td><td id="ZMaW" class="">large</td><td id="QpJQ" class="">x large</td><td id="VJMu" class="">xx large</td></tr><tr id="dc14b446-45e1-4b9e-a8db-cdd65f98639b"><td id="{Of}" class="">.container</td><td id="rOXT" class=""><mark class="highlight-gray">100%</mark></td><td id="zOn\" class="">540px</td><td id="wdAY" class="">720px</td><td id="ZMaW" class="">960px</td><td id="QpJQ" class="">1140px</td><td id="VJMu" class="">1320px</td></tr><tr id="435bae0c-05d5-49e4-a782-c643589e8d35"><td id="{Of}" class="">.container-sm</td><td id="rOXT" class=""><mark class="highlight-gray">100%</mark></td><td id="zOn\" class="">540 px</td><td id="wdAY" class="">720px</td><td id="ZMaW" class="">960px</td><td id="QpJQ" class="">1140px</td><td id="VJMu" class="">1320px</td></tr><tr id="19422468-5147-414e-bbe2-28668b49a9a7"><td id="{Of}" class="">.container-md</td><td id="rOXT" class=""><mark class="highlight-gray">100%</mark></td><td id="zOn\" class=""><mark class="highlight-gray">100%</mark></td><td id="wdAY" class="">720px</td><td id="ZMaW" class="">960px</td><td id="QpJQ" class="">1140px</td><td id="VJMu" class="">1320px</td></tr><tr id="c3809331-85b9-4e89-87f2-0ca6913ab415"><td id="{Of}" class="">.container-lg</td><td id="rOXT" class=""><mark class="highlight-gray">100%</mark></td><td id="zOn\" class=""><mark class="highlight-gray">100%</mark></td><td id="wdAY" class=""><mark class="highlight-gray">100%</mark></td><td id="ZMaW" class="">960px</td><td id="QpJQ" class="">1140px</td><td id="VJMu" class="">1320px</td></tr><tr id="44ac4ec6-0972-4b3a-91c4-2ad24416a04b"><td id="{Of}" class="">.container-xl</td><td id="rOXT" class=""><mark class="highlight-gray">100%</mark></td><td id="zOn\" class=""><mark class="highlight-gray">100%</mark></td><td id="wdAY" class=""><mark class="highlight-gray">100%</mark></td><td id="ZMaW" class=""><mark class="highlight-gray">100%</mark></td><td id="QpJQ" class="">1140px</td><td id="VJMu" class="">1320px</td></tr><tr id="a8d095b6-336c-43bf-989c-9ddc893fed2f"><td id="{Of}" class="">.container-xxl</td><td id="rOXT" class=""><mark class="highlight-gray">100%</mark></td><td id="zOn\" class=""><mark class="highlight-gray">100%</mark></td><td id="wdAY" class=""><mark class="highlight-gray">100%</mark></td><td id="ZMaW" class=""><mark class="highlight-gray">100%</mark></td><td id="QpJQ" class=""><mark class="highlight-gray">100%</mark></td><td id="VJMu" class="">1320px</td></tr><tr id="1c9bd557-327b-465c-ac32-015e5248630e"><td id="{Of}" class="">.container-fluid</td><td id="rOXT" class=""><mark class="highlight-gray">100%</mark></td><td id="zOn\" class=""><mark class="highlight-gray">100%</mark></td><td id="wdAY" class=""><mark class="highlight-gray">100%</mark></td><td id="ZMaW" class=""><mark class="highlight-gray">100%</mark></td><td id="QpJQ" class=""><mark class="highlight-gray">100%</mark></td><td id="VJMu" class=""><mark class="highlight-gray">100%</mark></td></tr></tbody></table><h2 id="720589ad-ba2a-4a16-b510-df1cbec46714" class="">Sized columns</h2><p id="25c93230-e3c7-421d-ae33-ba45dfebd076" class="">You can give specific width ratio to elements</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="113b3c4e-4564-40d9-8889-b47ed6621713" class="code"><code class="language-HTML">&lt;div class=&quot;container&quot;&gt;
+	&lt;div class=&quot; row&quot;&gt;
+		&lt;div class=&quot;col-2&quot;&gt;Hello&lt;/div&gt;
+		&lt;div class=&quot;col-4&quot;&gt;Hello&lt;/div&gt;
+		&lt;div class=&quot;col-6&quot;&gt;Hello&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre><p id="a0c32160-54b8-4550-86f1-ac76466cd8e6" class=""><code>col-2</code> 2/12 of the row</p><p id="250aca3b-0ac2-4ba8-9698-e99d2227967f" class=""><code>col-4</code> 4/12 of the row</p><p id="24161eec-1837-4b23-9aa2-585340bef58f" class=""><code>col-6</code> 6/12 of the row</p><h2 id="c27e2767-3e90-4b07-ae2e-c30e7814176d" class="">Breakpoints</h2><p id="a202979e-f6fa-4b2b-975f-161bf73ff5ac" class="">Bootstrap includes six default breakpoints, sometimes referred to as grid tiers, for building responsively. These breakpoints can be customized if you&#x27;re using the source Sass files.</p><table id="32fcd8ca-3132-408e-abcb-79728101cb20" class="simple-table"><tbody><tr id="30a420da-fe43-4af1-a131-91e25bc04b06"><td id="PI~p" class="">Breakpoint</td><td id="zHHp" class="">Class infix</td><td id="}^Na" class="">Dimensions</td><td id="X;p`" class=""></td></tr><tr id="3b738937-933d-487a-ad97-e26cd511a5cb"><td id="PI~p" class="">Extra small</td><td id="zHHp" class="">None</td><td id="}^Na" class="">&lt;576px</td><td id="X;p`" class=""></td></tr><tr id="a7bc5983-d5b2-4154-b7f9-1f32d2c14926"><td id="PI~p" class="">Small</td><td id="zHHp" class="">sm</td><td id="}^Na" class="">≥576px</td><td id="X;p`" class="">mobile</td></tr><tr id="7c0cf980-8e31-4ee9-82b6-cdfd26fb2ed7"><td id="PI~p" class="">Medium</td><td id="zHHp" class="">md</td><td id="}^Na" class="">≥768px</td><td id="X;p`" class="">ipad</td></tr><tr id="7541e5d0-8e27-4d33-82a1-8c934a8dad5c"><td id="PI~p" class="">Large</td><td id="zHHp" class="">lg</td><td id="}^Na" class="">≥992px</td><td id="X;p`" class="">laptop</td></tr><tr id="1f402869-432b-4b50-aa7d-130d239480b3"><td id="PI~p" class="">Extra large</td><td id="zHHp" class="">xl</td><td id="}^Na" class="">≥1200px</td><td id="X;p`" class="">desktop</td></tr><tr id="29a387d6-b738-47b0-ba4c-949ff1874327"><td id="PI~p" class="">Extra extra large</td><td id="zHHp" class="">xxl</td><td id="}^Na" class="">≥1400px</td><td id="X;p`" class="">tv</td></tr></tbody></table><h2 id="3519e9e4-b30f-4726-963b-d27c7cbd70a8" class="">Multiple breakpoints</h2><p id="759cb8b9-adc1-4377-a067-6728a5c39910" class="">Large devices or above, take 4/12 of the width</p><p id="167d32be-9dd9-42bb-8c52-a757075aeea3" class="">Medium devices, take 8/12 of the width</p><p id="6d716b14-4a82-4a1d-85ec-d4f9850277b1" class="">Small devices, take 12/12 of the width</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="995e930f-f05e-4c24-86d3-35f48f0b76be" class="code"><code class="language-HTML">&lt;div class=&quot;container&quot;&gt;
+	&lt;div class=&quot; row&quot;&gt;
+		&lt;div class=&quot;col-sm-12 col-md-8 col-lg-4&quot;&gt;Hello&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre><h2 id="85cc30c9-41c4-4fb2-b20f-a09cf2d67119" class="">Mix &amp; match</h2><p id="8356ef6c-a258-4bd3-a927-e5d718676ec6" class="">First element gets 2/12 of the width</p><p id="3b26f667-99a5-41d1-a31d-1de07eede31c" class="">Second element gets 4/12 of the width</p><p id="88f211e2-daa4-42b8-94ae-740aebbb928c" class="">The last element gets the rest of the width</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a2aa0a15-d360-4de8-9cac-a64427239793" class="code"><code class="language-HTML">&lt;div class=&quot;container&quot;&gt;
+	&lt;div class=&quot; row&quot;&gt;
+		&lt;div class=&quot;col-2&quot;&gt;Hello&lt;/div&gt;
+		&lt;div class=&quot;col-4&quot;&gt;Hello&lt;/div&gt;
+		&lt;div class=&quot;col&quot;&gt;Hello&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Bootstrap Components</summary><div class="indented"><h2 id="23f08387-770a-48b3-bc70-5af170901e9c" class="">Buttons</h2><figure id="8305caf9-af1e-4f45-acaf-d992475e7c89" class="image"><a href="Bootstrap%20c49b6665dc5041659af7c5f13394ce69/Screenshot_2024-01-24_at_22.41.46.png"><img style="width:2514px" src="Bootstrap%20c49b6665dc5041659af7c5f13394ce69/Screenshot_2024-01-24_at_22.41.46.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bc5e1c68-099b-4704-9d5c-0c55aedae970" class="code"><code class="language-HTML">&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Primary&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-secondary&quot;&gt;Secondary&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-success&quot;&gt;Success&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-danger&quot;&gt;Danger&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-warning&quot;&gt;Warning&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-info&quot;&gt;Info&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-light&quot;&gt;Light&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-dark&quot;&gt;Dark&lt;/button&gt;
+
+&lt;button type=&quot;button&quot; class=&quot;btn btn-link&quot;&gt;Link&lt;/button&gt;</code></pre><h2 id="6e2468de-b790-4872-ae7c-b4c067a4b877" class="">Card</h2><div id="501de22e-7d1d-4262-a31a-ab7e2d0e4959" class="column-list"><div id="7ee9ddc7-f6ff-4c42-8431-2fce1e249408" style="width:100%" class="column"><figure id="8a56e73e-f656-439f-9dab-a1248f94b27e" class="image"><a href="Bootstrap%20c49b6665dc5041659af7c5f13394ce69/Untitled.png"><img style="width:624px" src="Bootstrap%20c49b6665dc5041659af7c5f13394ce69/Untitled.png"/></a></figure></div><div id="1c25d531-c8f6-4107-9dee-ccfa0d93fdd0" style="width:100%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9d97b58d-c17c-490a-8841-d2fe464f3255" class="code"><code class="language-HTML">&lt;div class=&quot;card&quot; style=&quot;width: 18rem;&quot;&gt;
+  &lt;img src=&quot;...&quot; class=&quot;card-img-top&quot; alt=&quot;...&quot;&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;h5 class=&quot;card-title&quot;&gt;Card title&lt;/h5&gt;
+    &lt;p class=&quot;card-text&quot;&gt;Some quick example text to build on the card title and make up the bulk of the card&#x27;s content.&lt;/p&gt;
+    &lt;a href=&quot;#&quot; class=&quot;btn btn-primary&quot;&gt;Go somewhere&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div></div><h2 id="fb349cc3-3654-4be3-a833-1720a20be8f5" class="">Navs</h2><figure id="51b3b488-bf9c-4b8c-995b-d6018d8b6be5" class="image"><a href="Bootstrap%20c49b6665dc5041659af7c5f13394ce69/Untitled%201.png"><img style="width:1576px" src="Bootstrap%20c49b6665dc5041659af7c5f13394ce69/Untitled%201.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="cefbb5e9-bd27-4492-ae6e-6e51c69f1ad3" class="code"><code class="language-HTML">&lt;nav class=&quot;navbar navbar-expand-lg bg-body-tertiary&quot;&gt;
+  &lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Navbar&lt;/a&gt;
+    &lt;button class=&quot;navbar-toggler&quot; type=&quot;button&quot; data-bs-toggle=&quot;collapse&quot; data-bs-target=&quot;#navbarNav&quot; aria-controls=&quot;navbarNav&quot; aria-expanded=&quot;false&quot; aria-label=&quot;Toggle navigation&quot;&gt;
+      &lt;span class=&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;navbarNav&quot;&gt;
+      &lt;ul class=&quot;navbar-nav&quot;&gt;
+        &lt;li class=&quot;nav-item&quot;&gt;
+          &lt;a class=&quot;nav-link active&quot; aria-current=&quot;page&quot; href=&quot;#&quot;&gt;Home&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class=&quot;nav-item&quot;&gt;
+          &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Features&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class=&quot;nav-item&quot;&gt;
+          &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Pricing&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class=&quot;nav-item&quot;&gt;
+          &lt;a class=&quot;nav-link disabled&quot; aria-disabled=&quot;true&quot;&gt;Disabled&lt;/a&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre><h2 id="b9e833af-43e0-4110-810e-b664ffa293e2" class="">Spacing</h2><p id="23871692-6fdc-4ed2-9a3a-139cf37c5fb8" class="">The classes are named using the format <code>{property}{sides}-{size}</code> for <code>xs</code> and <code>{property}{sides}-{breakpoint}-{size}</code> for <code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code>, and <code>xxl</code>.</p><p id="9abfdcfc-8d86-4096-bf74-9c1b9c615fb4" class="">Where <em>property</em> is one of:</p><ul id="891804f5-5a83-439f-9d09-a76c2056a37a" class="bulleted-list"><li style="list-style-type:disc"><code>m</code> - for classes that set <code>margin</code></li></ul><ul id="76e5d644-f24d-4b65-b140-1a3bbc9ae597" class="bulleted-list"><li style="list-style-type:disc"><code>p</code> - for classes that set <code>padding</code></li></ul><p id="92258f63-ec9f-48a2-aca8-41074a2dda47" class="">Where <em>sides</em> is one of:</p><ul id="60767674-0673-42c3-aef8-0ff27601fdd9" class="bulleted-list"><li style="list-style-type:disc"><code>t</code> - for classes that set <code>margin-top</code> or <code>padding-top</code></li></ul><ul id="643ad986-eb39-4f56-92e8-c853b6551062" class="bulleted-list"><li style="list-style-type:disc"><code>b</code> - for classes that set <code>margin-bottom</code> or <code>padding-bottom</code></li></ul><ul id="9b81cd56-8d04-4887-81dc-ec8ba4252784" class="bulleted-list"><li style="list-style-type:disc"><code>s</code> - (start) for classes that set <code>margin-left</code> or <code>padding-left</code> in LTR, <code>margin-right</code> or <code>padding-right</code> in RTL</li></ul><ul id="f2f99549-3210-45d6-8fb7-d45aef1eb227" class="bulleted-list"><li style="list-style-type:disc"><code>e</code> - (end) for classes that set <code>margin-right</code> or <code>padding-right</code> in LTR, <code>margin-left</code> or <code>padding-left</code> in RTL</li></ul><ul id="14079188-8580-4436-a675-381f3625b194" class="bulleted-list"><li style="list-style-type:disc"><code>x</code> - for classes that set both <code>-left</code> and <code>-right</code></li></ul><ul id="2d50245a-5943-4169-98b6-46166f9c67b3" class="bulleted-list"><li style="list-style-type:disc"><code>y</code> - for classes that set both <code>-top</code> and <code>-bottom</code></li></ul><ul id="9f338b58-941c-4f2c-bcb0-ec5694a4f010" class="bulleted-list"><li style="list-style-type:disc">blank - for classes that set a <code>margin</code> or <code>padding</code> on all 4 sides of the element</li></ul><p id="59902563-9bc1-4a63-a3ed-b5b3ff967d42" class="">Where <em>size</em> is one of:</p><ul id="21ed122b-f30f-4914-a734-46607fc5e822" class="bulleted-list"><li style="list-style-type:disc"><code>0</code> - for classes that eliminate the <code>margin</code> or <code>padding</code> by setting it to <code>0</code></li></ul><ul id="3a9d8bb8-e2ed-4318-a920-a105f20b8196" class="bulleted-list"><li style="list-style-type:disc"><code>1</code> - (by default) for classes that set the <code>margin</code> or <code>padding</code> to <code>$spacer * .25</code></li></ul><ul id="a31e35eb-9fcc-4dbe-b38f-5562096f2e89" class="bulleted-list"><li style="list-style-type:disc"><code>2</code> - (by default) for classes that set the <code>margin</code> or <code>padding</code> to <code>$spacer * .5</code></li></ul><ul id="f7a48a43-5393-449d-a2d7-67e5e0800d74" class="bulleted-list"><li style="list-style-type:disc"><code>3</code> - (by default) for classes that set the <code>margin</code> or <code>padding</code> to <code>$spacer</code></li></ul><ul id="2c9e898b-1470-4e5f-872f-cb20a3c6471b" class="bulleted-list"><li style="list-style-type:disc"><code>4</code> - (by default) for classes that set the <code>margin</code> or <code>padding</code> to <code>$spacer * 1.5</code></li></ul><ul id="51c01df3-4ca3-4a07-b04b-6bf9efaf0850" class="bulleted-list"><li style="list-style-type:disc"><code>5</code> - (by default) for classes that set the <code>margin</code> or <code>padding</code> to <code>$spacer * 3</code></li></ul><ul id="edfee72e-5bbc-4aaf-96a4-cd279ce791af" class="bulleted-list"><li style="list-style-type:disc"><code>auto</code> - for classes that set the <code>margin</code> to auto</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bcbc99d3-88d8-4afe-b3c0-56485c9dcb00" class="code"><code class="language-HTML">&lt;p class=&quot;mt-5&quot;&gt;paragraph&lt;/p&gt;</code></pre><p id="757f991d-0693-4221-8995-476df4dbf618" class="">This means set Margin to Top side for the size of 5</p><h2 id="ae0eedf1-eecf-4ba9-8ee1-43ec291eb992" class="">Dark Mode</h2><p id="d05f4b88-c609-41b6-83e9-362d987dff63" class="">Add that to the boilerplate in &lt;html&gt; tag</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e0ea9b10-cf7e-41b8-9e89-cfd4bf76fd1c" class="code"><code class="language-HTML">&lt;html lang=&quot;en&quot; data-bs-theme=&quot;dark&quot;&gt;</code></pre></div></details><p id="61d6669f-00ce-4c6f-a1bc-6b00e2dbca14" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
